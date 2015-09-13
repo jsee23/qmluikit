@@ -1,10 +1,11 @@
+#include <UIKit/UIKit.h>
+#include <QSize>
+
 #include "quiviewcontroller.h"
 
 //////////////////////////
 // Objective-C
 //////////////////////////
-
-#include <UIKit/UIKit.h>
 
 @interface QNative_UIViewController : UIViewController
 {
@@ -30,7 +31,14 @@
 
 #include "quicontrol.h"
 
+class QUIViewControllerPrivate
+{
+public:
+    QSize m_size;
+};
+
 QUIViewController::QUIViewController(QObject *parent) :
+    d(new QUIViewControllerPrivate),
     QUIKitItem(parent)
 {
     initNativeResource();
@@ -49,7 +57,7 @@ void QUIViewController::initNativeResource()
     ((QNative_UIViewController*) m_nativeResource)->control = this;
 
     CGSize size = ((QNative_UIViewController*) m_nativeResource).view.frame.size;
-    m_size = QSize(size.width, size.height);
+    d->m_size = QSize(size.width, size.height);
 }
 
 QUIViewController::~QUIViewController()
@@ -87,15 +95,15 @@ void QUIViewController::setTitle(const QString &title)
 
 int QUIViewController::width() const
 {
-    return m_size.width();
+    return d->m_size.width();
 }
 
 int QUIViewController::height() const
 {
-    return m_size.height();
+    return d->m_size.height();
 }
 
 void QUIViewController::setSize(const QSize &size)
 {
-    m_size = size;
+    d->m_size = size;
 }

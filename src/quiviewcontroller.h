@@ -1,10 +1,9 @@
 #ifndef QUIVIEWCONTROLLER_H
 #define QUIVIEWCONTROLLER_H
 
-#include <QSize>
-
 #include "quikititem.h"
 
+class QUIViewControllerPrivate;
 class QUIViewController : public QUIKitItem
 {
     Q_OBJECT
@@ -37,7 +36,7 @@ signals:
 
 private:
     void initNativeResource();
-    QSize m_size;
+    QUIViewControllerPrivate* d;
 };
 
 #endif // QUIVIEWCONTROLLER_H

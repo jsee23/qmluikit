@@ -15,7 +15,7 @@
 #include "quitoolbar.h"
 #include "quibarbuttonitem.h"
 
-void SrcPlugin::registerTypes(const char *uri)
+void QmlUIKitPlugin::registerTypes(const char *uri)
 {
     // @uri de.jsee23.uikit
     qmlRegisterType<QUIWindow>(uri, 1, 0, "UIWindow");
