@@ -15,12 +15,10 @@
 @end
 
 @implementation QNative_UIViewController
--(void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+-(void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     control->setSize(QSize(size.width, size.height));
-    emit control->widthChanged();
-    emit control->heightChanged();
 }
 
 @end
@@ -45,6 +43,7 @@ QUIViewController::QUIViewController(QObject *parent) :
 }
 
 QUIViewController::QUIViewController(bool init, QObject *parent) :
+    d(new QUIViewControllerPrivate),
     QUIKitItem(parent)
 {
     if (init)
@@ -105,5 +104,10 @@ int QUIViewController::height() const
 
 void QUIViewController::setSize(const QSize &size)
 {
+    if (size == d->m_size)
+        return;
+
     d->m_size = size;
+    emit widthChanged();
+    emit heightChanged();
 }

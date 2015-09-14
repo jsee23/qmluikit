@@ -6,6 +6,21 @@
 
 #include <UIKit/UIKit.h>
 
+@interface QNative_UINavigationController : UINavigationController
+{
+    @public
+    QUINavigationController* control;
+}
+@end
+
+@implementation QNative_UINavigationController
+-(void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
+{
+    [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
+    control->setSize(QSize(size.width, size.height));
+}
+@end
+
 //////////////////////////
 // Qt
 //////////////////////////
@@ -22,7 +37,8 @@ QUINavigationController::~QUINavigationController()
 
 void QUINavigationController::initNativeResource()
 {
-    m_nativeResource = [[UINavigationController alloc] init];
+    m_nativeResource = [[QNative_UINavigationController alloc] init];
+    ((QNative_UINavigationController*) m_nativeResource)->control = this;
 }
 
 void QUINavigationController::childrenDidChanged()
@@ -44,6 +60,7 @@ void QUINavigationController::setInitialViewController(QUIViewController *contro
 
 void QUINavigationController::pushViewController(QUIViewController* controller)
 {
+    controller->setSize(QSize(width(), height()));
     [((UINavigationController*) m_nativeResource)
             pushViewController:((UIViewController*) controller->nativeItem()) animated:YES];
 
