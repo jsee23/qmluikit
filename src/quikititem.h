@@ -12,7 +12,7 @@ class QUIKitItem : public QObject
 
 public:
     explicit QUIKitItem(QObject *parent = 0);
-    ~QUIKitItem();
+    virtual ~QUIKitItem();
 
     QQmlListProperty<QObject> children();
     virtual void* nativeItem() {

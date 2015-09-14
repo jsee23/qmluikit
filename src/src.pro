@@ -5,10 +5,12 @@ IMPORT_VERSION = 1.0
 QT += qml quick
 
 OTHER_FILES = qmldir
+DEFINES += __x86_64__
 
 # Input
 SOURCES += \
-    qmluikit_plugin.cpp
+    qmluikit_plugin.cpp \
+    quikititem.cpp
 
 OBJECTIVE_SOURCES += \
     quiviewcontroller.mm \

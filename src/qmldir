@@ -1,4 +1,4 @@
-module de.jsee23.uikit
+module de.jsee23.qmluikit
 plugin qmluikit
 classname QmlUIKitPlugin
 

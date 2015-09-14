@@ -7,7 +7,7 @@ unix:!android {
         }
         export(target.path)
     }
-    INSTALLS += target
+    #INSTALLS += target
 }
 
 export(INSTALLS)
