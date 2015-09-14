@@ -19,6 +19,43 @@
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
     control->setSize(QSize(size.width, size.height));
 }
+
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    CGSize size = self.view.frame.size;
+    control->setSize(QSize(size.width, size.height));
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    emit control->navigationBarGeometryChanged();
+}
+
+- (void)viewDidLoad {
+    [[NSNotificationCenter defaultCenter]
+        addObserver:self
+        selector:@selector(statusFrameChanged:)
+        name:UIApplicationDidChangeStatusBarFrameNotification
+        object:nil];
+
+    control->setStatusBarHeight(MIN([UIApplication sharedApplication].statusBarFrame.size.height,
+                              [UIApplication sharedApplication].statusBarFrame.size.width));
+}
+- (void)viewDidUnload
+{
+    [[NSNotificationCenter defaultCenter]
+        removeObserver:self
+        name:UIApplicationDidChangeStatusBarFrameNotification
+        object:nil];
+    [super viewDidUnload];
+}
+
+- (void) statusFrameChanged:(NSNotification*)note
+{
+    CGRect statusBarFrame = [note.userInfo[UIApplicationStatusBarFrameUserInfoKey] CGRectValue];
+    control->setStatusBarHeight(MIN(statusBarFrame.size.height,
+                               statusBarFrame.size.width));
+}
 @end
 
 //////////////////////////
@@ -53,7 +90,8 @@ QUIViewController* QUINavigationController::initialViewController() const
 void QUINavigationController::setInitialViewController(QUIViewController *controller)
 {
     m_initialViewController = controller;
-    pushViewController(controller);
+    [((UINavigationController*) m_nativeResource)
+            pushViewController:((UIViewController*) controller->nativeItem()) animated:YES];
 
     emit initialViewControllerChanged();
 }
@@ -63,9 +101,8 @@ void QUINavigationController::pushViewController(QUIViewController* controller)
     controller->setSize(QSize(width(), height()));
     [((UINavigationController*) m_nativeResource)
             pushViewController:((UIViewController*) controller->nativeItem()) animated:YES];
-
-    // check navigation bar and its height
-    emit navigationBarGeometryChanged();
+//    // check navigation bar and its height
+//    emit navigationBarGeometryChanged();
 }
 
 QRect QUINavigationController::navigationBarGeometry() const
@@ -77,5 +114,19 @@ QRect QUINavigationController::navigationBarGeometry() const
     int width = ((UINavigationController*) m_nativeResource).navigationBar.frame.size.width;
     int height = ((UINavigationController*) m_nativeResource).navigationBar.frame.size.height;
     return QRect(x, y, width, height);
+}
+
+int QUINavigationController::statusBarHeight() const
+{
+    return m_statusBarHeight;
+}
+
+void QUINavigationController::setStatusBarHeight(int height)
+{
+    if (height == m_statusBarHeight)
+        return;
+
+    m_statusBarHeight = height;
+    emit statusBarHeightChanged();
 }
 

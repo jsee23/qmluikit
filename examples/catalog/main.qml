@@ -15,8 +15,9 @@ UIWindow {
 
             UIProgressView {
                 id: progressView
-                y: 20 + navigationController.navigationBarGeometry.height
-                width: navigationController.navigationBarGeometry.width
+                y: navigationController.statusBarHeight +
+                   navigationController.navigationBarGeometry.height
+                width: initialPage.width
                 progress: 0.0
                 progressAnimated: false
 
@@ -59,12 +60,12 @@ UIWindow {
                 y: 400
             }
 
-            UIDatePicker {
-                x: 0
-                y: initialPage.height - height
-                width: initialPage.width
-                height: 200
-            }
+//            UIDatePicker {
+//                x: 0
+//                y: initialPage.height - height
+//                width: initialPage.width
+//                height: 200
+//            }
         }
 
         UIViewController {
@@ -77,7 +78,8 @@ UIWindow {
                     "Eins", "Zwei", "Drei"
                 ]
                 width: secondController.width - 10
-                y: 20 + navigationController.navigationBarGeometry.height + 5
+                y: navigationController.statusBarHeight +
+                   navigationController.navigationBarGeometry.height + 5
                 x: 5
             }
 
