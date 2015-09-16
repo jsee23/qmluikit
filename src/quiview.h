@@ -35,6 +35,9 @@ public:
 
     virtual void* nativeItem() Q_DECL_OVERRIDE;
 
+protected slots:
+    virtual void childrenDidChanged() Q_DECL_OVERRIDE;
+
 signals:
     void xChanged();
     void yChanged();

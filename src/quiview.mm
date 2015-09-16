@@ -24,6 +24,17 @@ void* QUIView::nativeItem()
     return m_nativeResource;
 }
 
+void QUIView::childrenDidChanged()
+{
+    for (int i=0; i < m_children.size(); i++) {
+        QUIView *view = qobject_cast<QUIView*>(m_children.at(i));
+        if (view && view->nativeItem()) {
+            [((UIView*) m_nativeResource) addSubview:(UIView*)view->nativeItem()];
+            continue;
+        }
+    }
+}
+
 int QUIView::x() const
 {
     return ((UIControl*) m_nativeResource).frame.origin.x;

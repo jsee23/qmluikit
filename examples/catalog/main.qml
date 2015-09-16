@@ -13,59 +13,22 @@ UIWindow {
             id: initialPage
             title: "First"
 
-            UIProgressView {
-                id: progressView
-                y: navigationController.statusBarHeight +
-                   navigationController.navigationBarGeometry.height
+            UIScrollView {
                 width: initialPage.width
-                progress: 0.0
-                progressAnimated: false
+                height: initialPage.height
+                contentWidth: width
+                contentHeight: height * 2
 
-                Timer {
-                    running: true
-                    repeat: true
-                    interval: 1000
-                    onTriggered: {
-                        if (progressView.progress >= 1.0)
-                            progressView.progress = 0.0
-                        else
-                            progressView.progress += 0.1
-                    }
+                UIButton {
+                    width: initialPage.width
+                    titleLabel: "Button"
+                }
+                UIButton {
+                    y: 100
+                    width: initialPage.width
+                    titleLabel: "Button"
                 }
             }
-
-            UIButton {
-                y: 100
-                titleLabel: "Klick mich!"
-            }
-
-            UIButton {
-                titleLabel: "Blubb"
-                x: 0
-                y: 200
-                width: 400
-                height: 200
-                onClicked: navigationController.pushViewController(secondController)
-            }
-
-            UISwitch {
-                x: 100
-                y: 300
-                on: true
-                onTintColor: "red"
-            }
-
-            UISlider {
-                x: 100
-                y: 400
-            }
-
-//            UIDatePicker {
-//                x: 0
-//                y: initialPage.height - height
-//                width: initialPage.width
-//                height: 200
-//            }
         }
 
         UIViewController {

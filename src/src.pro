@@ -26,7 +26,8 @@ OBJECTIVE_SOURCES += \
     quikithelpers.mm \
     quidatepicker.mm \
     quitoolbar.mm \
-    quibarbuttonitem.mm
+    quibarbuttonitem.mm \
+    quiscrollview.mm
 
 HEADERS += \
     qmluikit_plugin.h \
@@ -44,7 +45,8 @@ HEADERS += \
     quisegmentedcontrol.h \
     quidatepicker.h \
     quitoolbar.h \
-    quibarbuttonitem.h
+    quibarbuttonitem.h \
+    quiscrollview.h
 
 CONFIG += no_cxx_module
 load(qml_plugin)

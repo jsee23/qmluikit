@@ -14,6 +14,7 @@
 #include "quidatepicker.h"
 #include "quitoolbar.h"
 #include "quibarbuttonitem.h"
+#include "quiscrollview.h"
 
 void QmlUIKitPlugin::registerTypes(const char *uri)
 {
@@ -32,6 +33,7 @@ void QmlUIKitPlugin::registerTypes(const char *uri)
     qmlRegisterType<QUIDatePicker>(uri, 1, 0, "UIDatePicker");
     qmlRegisterType<QUIToolbar>(uri, 1, 0, "UIToolbar");
     qmlRegisterType<QUIBarButtonItem>(uri, 1, 0, "UIBarButtonItem");
+    qmlRegisterType<QUIScrollView>(uri, 1, 0, "UIScrollView");
 }
 
 
