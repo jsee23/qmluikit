@@ -105,28 +105,3 @@ void QUINavigationController::pushViewController(QUIViewController* controller)
 //    emit navigationBarGeometryChanged();
 }
 
-QRect QUINavigationController::navigationBarGeometry() const
-{
-    if (!((UINavigationController*) m_nativeResource).navigationBar)
-        return QRect();
-    int x = ((UINavigationController*) m_nativeResource).navigationBar.frame.origin.x;
-    int y = ((UINavigationController*) m_nativeResource).navigationBar.frame.origin.y;
-    int width = ((UINavigationController*) m_nativeResource).navigationBar.frame.size.width;
-    int height = ((UINavigationController*) m_nativeResource).navigationBar.frame.size.height;
-    return QRect(x, y, width, height);
-}
-
-int QUINavigationController::statusBarHeight() const
-{
-    return m_statusBarHeight;
-}
-
-void QUINavigationController::setStatusBarHeight(int height)
-{
-    if (height == m_statusBarHeight)
-        return;
-
-    m_statusBarHeight = height;
-    emit statusBarHeightChanged();
-}
-

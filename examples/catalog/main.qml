@@ -9,26 +9,25 @@ UIWindow {
         id: navigationController
         initialViewController: initialPage
 
-        UIViewController {
+        UITableViewController {
             id: initialPage
-            title: "First"
+            title: "Catalog"
 
-            UIScrollView {
-                width: initialPage.width
-                height: initialPage.height
-                contentWidth: width
-                contentHeight: height * 2
+            sections: [
+                UITableViewSection {
+                    title: "section 1"
+                    cells: [
+                        "cell 1", "cell 2"
+                    ]
+                },
+                UITableViewSection {
+                    title: "section 2"
+                    cells: [
+                        "cell 1", "cell 2", "cell 3"
+                    ]
+                }
 
-                UIButton {
-                    width: initialPage.width
-                    titleLabel: "Button"
-                }
-                UIButton {
-                    y: 100
-                    width: initialPage.width
-                    titleLabel: "Button"
-                }
-            }
+            ]
         }
 
         UIViewController {

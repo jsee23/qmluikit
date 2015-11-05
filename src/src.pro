@@ -10,7 +10,8 @@ DEFINES += __x86_64__
 # Input
 SOURCES += \
     qmluikit_plugin.cpp \
-    quikititem.cpp
+    quikititem.cpp \
+    quitableviewsection.cpp
 
 OBJECTIVE_SOURCES += \
     quiviewcontroller.mm \
@@ -27,7 +28,8 @@ OBJECTIVE_SOURCES += \
     quidatepicker.mm \
     quitoolbar.mm \
     quibarbuttonitem.mm \
-    quiscrollview.mm
+    quiscrollview.mm \
+    quitableviewcontroller.mm
 
 HEADERS += \
     qmluikit_plugin.h \
@@ -46,7 +48,9 @@ HEADERS += \
     quidatepicker.h \
     quitoolbar.h \
     quibarbuttonitem.h \
-    quiscrollview.h
+    quiscrollview.h \
+    quitableviewcontroller.h \
+    quitableviewsection.h
 
 CONFIG += no_cxx_module
 load(qml_plugin)

@@ -35,16 +35,16 @@ public:
     QSize m_size;
 };
 
-QUIViewController::QUIViewController(QObject *parent) :
-    d(new QUIViewControllerPrivate),
-    QUIKitItem(parent)
+QUIViewController::QUIViewController(QObject *parent)
+    : QUIKitItem(parent)
+    , d(new QUIViewControllerPrivate)
 {
     initNativeResource();
 }
 
-QUIViewController::QUIViewController(bool init, QObject *parent) :
-    d(new QUIViewControllerPrivate),
-    QUIKitItem(parent)
+QUIViewController::QUIViewController(bool init, QObject *parent)
+    : QUIKitItem(parent)
+    , d(new QUIViewControllerPrivate)
 {
     if (init)
         initNativeResource();
@@ -110,4 +110,29 @@ void QUIViewController::setSize(const QSize &size)
     d->m_size = size;
     emit widthChanged();
     emit heightChanged();
+}
+
+QRect QUIViewController::navigationBarGeometry() const
+{
+    if (!((UINavigationController*) m_nativeResource).navigationBar)
+        return QRect();
+    int x = ((UINavigationController*) m_nativeResource).navigationBar.frame.origin.x;
+    int y = ((UINavigationController*) m_nativeResource).navigationBar.frame.origin.y;
+    int width = ((UINavigationController*) m_nativeResource).navigationBar.frame.size.width;
+    int height = ((UINavigationController*) m_nativeResource).navigationBar.frame.size.height;
+    return QRect(x, y, width, height);
+}
+
+int QUIViewController::statusBarHeight() const
+{
+    return m_statusBarHeight;
+}
+
+void QUIViewController::setStatusBarHeight(int height)
+{
+    if (height == m_statusBarHeight)
+        return;
+
+    m_statusBarHeight = height;
+    emit statusBarHeightChanged();
 }
