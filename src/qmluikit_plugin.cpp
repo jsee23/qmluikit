@@ -17,6 +17,7 @@
 #include "quiscrollview.h"
 #include "quitableviewcontroller.h"
 #include "quitableviewsection.h"
+#include "quitableviewcell.h"
 
 void QmlUIKitPlugin::registerTypes(const char *uri)
 {
@@ -38,6 +39,7 @@ void QmlUIKitPlugin::registerTypes(const char *uri)
     qmlRegisterType<QUIScrollView>(uri, 1, 0, "UIScrollView");
     qmlRegisterType<QUITableViewController>(uri, 1, 0, "UITableViewController");
     qmlRegisterType<QUITableViewSection>(uri, 1, 0, "UITableViewSection");
+    qmlRegisterType<QUITableViewCell>(uri, 1, 0, "UITableViewCell");
 }
 
 

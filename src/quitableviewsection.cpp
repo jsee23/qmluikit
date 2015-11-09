@@ -1,7 +1,7 @@
 #include "quitableviewsection.h"
 
 QUITableViewSection::QUITableViewSection(QObject *parent)
-    : QObject(parent)
+    : QUIKitItem(parent)
 {
 }
 
@@ -19,17 +19,33 @@ void QUITableViewSection::setTitle(const QString &title)
     emit titleChanged();
 }
 
-QStringList QUITableViewSection::cells() const
+QQmlListProperty<QUITableViewCell> QUITableViewSection::cells()
 {
-    return m_cells;
+    return QQmlListProperty<QUITableViewCell>(this, m_cells);
 }
 
-void QUITableViewSection::setCells(const QStringList cells)
+int QUITableViewSection::cellsCount() const
 {
-    if (cells == m_cells)
-        return;
-
-    m_cells = cells;
-    emit cellsChanged();
+    return m_cells.size();
 }
 
+QUITableViewCell *QUITableViewSection::cellItemAt(int index)
+{
+    if (index >= m_cells.size())
+        return NULL;
+
+    return m_cells.at(index);
+}
+
+void QUITableViewSection::childrenDidChanged()
+{
+    m_cells.clear();
+
+    for (int i=0; i < m_children.size(); i++) {
+        QUITableViewCell *cell = qobject_cast<QUITableViewCell*>(m_children.at(i));
+        if (cell) {
+            m_cells.append(cell);
+            continue;
+        }
+    }
+}

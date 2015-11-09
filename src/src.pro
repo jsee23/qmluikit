@@ -29,7 +29,8 @@ OBJECTIVE_SOURCES += \
     quitoolbar.mm \
     quibarbuttonitem.mm \
     quiscrollview.mm \
-    quitableviewcontroller.mm
+    quitableviewcontroller.mm \
+    quitableviewcell.mm
 
 HEADERS += \
     qmluikit_plugin.h \
@@ -50,7 +51,8 @@ HEADERS += \
     quibarbuttonitem.h \
     quiscrollview.h \
     quitableviewcontroller.h \
-    quitableviewsection.h
+    quitableviewsection.h \
+    quitableviewcell.h
 
 CONFIG += no_cxx_module
 load(qml_plugin)

@@ -64,22 +64,26 @@
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return control->qlistSections().at(section)->cells().size();
+    return control->qlistSections().at(section)->cellsCount();
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] init];
-    NSInteger row = (NSInteger)[indexPath row];
-    cell.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.5f];
-    [cell.textLabel
-            setText:control->qlistSections().at(indexPath.section)->cells().at(row).toNSString()];
-    return cell;
+    int row = indexPath.row;
+    return ((UITableViewCell*) control->qlistSections().at(indexPath.section)->cellItemAt(row)->nativeItem());
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     return control->qlistSections().at(section)->title().toNSString();
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    int selectedRow = indexPath.row;
+    emit control->qlistSections().at(indexPath.section)->cellItemAt(selectedRow)->selected();
 }
 @end
 

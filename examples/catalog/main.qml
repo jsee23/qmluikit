@@ -16,15 +16,27 @@ UIWindow {
             sections: [
                 UITableViewSection {
                     title: "section 1"
-                    cells: [
-                        "cell 1", "cell 2"
-                    ]
+
+                    UITableViewCell {
+                        title: "cell 1"
+                        onSelected: navigationController.pushViewController(secondController)
+                    }
+                    UITableViewCell {
+                        title: "cell 2"
+                    }
                 },
                 UITableViewSection {
                     title: "section 2"
-                    cells: [
-                        "cell 1", "cell 2", "cell 3"
-                    ]
+
+                    UITableViewCell {
+                        title: "cell 1"
+                    }
+                    UITableViewCell {
+                        title: "cell 2"
+                    }
+                    UITableViewCell {
+                        title: "cell 3"
+                    }
                 }
 
             ]
