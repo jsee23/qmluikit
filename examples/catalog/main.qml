@@ -3,7 +3,11 @@ import QtQuick 2.5
 import de.jsee23.qmluikit 1.0
 
 UIWindow {
+    id: root
     initialViewController: navigationController
+
+    property TableViewController tableViewController: TableViewController {}
+    property SegmentedController segmentedController: SegmentedController {}
 
     UINavigationController {
         id: navigationController
@@ -15,73 +19,42 @@ UIWindow {
 
             sections: [
                 UITableViewSection {
-                    title: "section 1"
+                    title: "ViewControllers"
 
                     UITableViewCell {
-                        title: "cell 1"
-                        onSelected: navigationController.pushViewController(secondController)
+                        title: "UITableViewController"
+                        onSelected: navigationController.pushViewController(root.tableViewController)
                     }
                     UITableViewCell {
-                        title: "cell 2"
+                        title: "UISegmentedControl"
+                        onSelected: navigationController.pushViewController(root.segmentedController)
+                    }
+                    UITableViewCell {
+                        title: "UIToolbar"
                     }
                 },
                 UITableViewSection {
-                    title: "section 2"
+                    title: "Controls"
 
                     UITableViewCell {
-                        title: "cell 1"
+                        title: "UIButton"
                     }
                     UITableViewCell {
-                        title: "cell 2"
+                        title: "UISlider"
                     }
                     UITableViewCell {
-                        title: "cell 3"
+                        title: "UISwitch"
+                    }
+                },
+                UITableViewSection {
+                    title: "Input"
+
+                    UITableViewCell {
+                        title: "todo"
                     }
                 }
 
             ]
-        }
-
-        UIViewController {
-            id: secondController
-            title: "Second"
-
-            UISegmentedControl {
-                id: segmentedControl
-                items: [
-                    "Eins", "Zwei", "Drei"
-                ]
-                width: secondController.width - 10
-                y: navigationController.statusBarHeight +
-                   navigationController.navigationBarGeometry.height + 5
-                x: 5
-            }
-
-            UIView {
-                width: secondController.width
-                y: segmentedControl.y + segmentedControl.height + 5
-                height: secondController.height - y
-                visible: segmentedControl.selectedSegment == 0
-
-                UIButton {
-                    y: 300
-                    titleLabel: "First"
-                }
-            }
-
-            UIToolbar {
-                y: secondController.height - height
-                width: secondController.width
-
-                UIBarButtonItem {
-                    title: "Test1"
-                }
-
-                UIBarButtonItem {
-                    title: "Test2"
-                    onClicked: console.log("Test...")
-                }
-            }
         }
     }
 }

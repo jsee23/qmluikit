@@ -30,7 +30,10 @@ void QUITableViewCell::updateNativeItem()
 {
     if (m_title.isEmpty())
         return;
+    if (m_nativeResource != NULL)
+        [((UITableViewCell*) m_nativeResource) release];
 
+    //m_nativeResource = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
     m_nativeResource = [[UITableViewCell alloc] init];
     ((UITableViewCell*) m_nativeResource).backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.5f];
     ((UITableViewCell*) m_nativeResource).textLabel.text =  m_title.toNSString();

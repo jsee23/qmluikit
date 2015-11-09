@@ -1,6 +1,7 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>TableViewController.qml</file>
+        <file>SegmentedController.qml</file>
     </qresource>
 </RCC>
-
