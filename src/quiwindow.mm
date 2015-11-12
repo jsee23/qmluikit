@@ -9,7 +9,7 @@ public:
 };
 
 QUIWindow::QUIWindow(QObject *parent)
-    : QUIKitItem(parent),
+    : QUIView(false, parent),
       d(new QUIWindowPrivate)
 {
     d->m_screen = [UIScreen mainScreen];

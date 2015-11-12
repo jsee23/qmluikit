@@ -5,12 +5,12 @@
 #include <QColor>
 #include <QtQml/QQmlListProperty>
 
-#include "quikititem.h"
+#include "quiview.h"
 #include "quiviewcontroller.h"
 
 class QUIWindowPrivate;
 
-class QUIWindow : public QUIKitItem
+class QUIWindow : public QUIView
 {
     Q_OBJECT
 
