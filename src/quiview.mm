@@ -20,6 +20,7 @@ QUIView::QUIView(bool init, QObject *parent) :
 
 QUIView::~QUIView()
 {
+    [((UIView*) m_nativeResource) release];
 }
 
 void* QUIView::nativeItem()

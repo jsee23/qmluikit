@@ -21,6 +21,8 @@ QUIProgressView::QUIProgressView(QObject* parent)
 
 QUIProgressView::~QUIProgressView()
 {
+    if (m_nativeResource)
+        [((UIProgressView*) m_nativeResource) release];
 }
 
 qreal QUIProgressView::progress() const

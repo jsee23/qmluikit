@@ -100,6 +100,7 @@ QUITableViewController::QUITableViewController(QObject* parent) :
 
 QUITableViewController::~QUITableViewController()
 {
+    [((QNative_UITableViewController*) m_nativeResource) release];
 }
 
 QQmlListProperty<QUITableViewSection> QUITableViewController::sections()

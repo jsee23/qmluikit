@@ -18,6 +18,8 @@ QUIScrollView::QUIScrollView(QObject* parent)
 
 QUIScrollView::~QUIScrollView()
 {
+    if (m_nativeResource)
+        [((UIScrollView*) m_nativeResource) release];
 }
 
 int QUIScrollView::contentWidth() const

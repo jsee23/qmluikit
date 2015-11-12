@@ -70,6 +70,8 @@ QUINavigationController::QUINavigationController(QObject* parent) :
 
 QUINavigationController::~QUINavigationController()
 {
+    if (m_nativeResource)
+        [((QNative_UINavigationController*) m_nativeResource) release];
 }
 
 void QUINavigationController::initNativeResource()

@@ -45,6 +45,10 @@ QUIDatePicker::QUIDatePicker(QObject* parent)
 
 QUIDatePicker::~QUIDatePicker()
 {
+    if (d->native)
+        [d->native release];
+    if (m_nativeResource)
+        [((UIDatePicker*) m_nativeResource) release];
 }
 
 QDateTime QUIDatePicker::date() const

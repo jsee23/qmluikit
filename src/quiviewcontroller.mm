@@ -61,6 +61,7 @@ void QUIViewController::initNativeResource()
 
 QUIViewController::~QUIViewController()
 {
+    [((QNative_UIViewController*) m_nativeResource) release];
 }
 
 void* QUIViewController::nativeItem()

@@ -51,6 +51,8 @@ QUISwitch::~QUISwitch()
 {
     if (d->native)
         [d->native release];
+    if (m_nativeResource)
+        [((UISwitch*) m_nativeResource) release];
 }
 
 bool QUISwitch::on() const

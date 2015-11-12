@@ -17,4 +17,6 @@ QUIControl::QUIControl(bool init, QObject *parent) :
 
 QUIControl::~QUIControl()
 {
+    if (m_nativeResource)
+        [((UIControl*) m_nativeResource) release];
 }

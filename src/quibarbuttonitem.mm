@@ -44,6 +44,10 @@ QUIBarButtonItem::QUIBarButtonItem(QObject* parent)
 
 QUIBarButtonItem::~QUIBarButtonItem()
 {
+    if (d->native)
+        [d->native release];
+    if (m_nativeResource)
+        [((UIBarButtonItem*) m_nativeResource) release];
 }
 
 QString QUIBarButtonItem::title() const

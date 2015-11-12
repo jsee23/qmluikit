@@ -47,6 +47,8 @@ QUIButton::~QUIButton()
 {
     if (d->native)
         [d->native release];
+    if (m_nativeResource)
+        [((UIButton*) m_nativeResource) release];
 }
 
 QString QUIButton::titleLabel() const

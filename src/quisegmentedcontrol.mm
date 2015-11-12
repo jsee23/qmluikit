@@ -48,6 +48,10 @@ QUISegmentedControl::QUISegmentedControl(QObject* parent)
 
 QUISegmentedControl::~QUISegmentedControl()
 {
+    if (d->native)
+        [d->native release];
+    if (m_nativeResource)
+        [((UISegmentedControl*) m_nativeResource) release];
 }
 
 QStringList QUISegmentedControl::items() const

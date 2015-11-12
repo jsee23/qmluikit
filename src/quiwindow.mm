@@ -23,6 +23,7 @@ QUIWindow::QUIWindow(QObject *parent)
 
 QUIWindow::~QUIWindow()
 {
+    [d->m_window release];
 }
 
 QUIViewController* QUIWindow::initialViewController() const

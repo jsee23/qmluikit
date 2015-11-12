@@ -47,6 +47,10 @@ QUISlider::QUISlider(QObject* parent)
 
 QUISlider::~QUISlider()
 {
+    if (d->native)
+        [d->native release];
+    if (m_nativeResource)
+        [((UISlider*) m_nativeResource) release];
 }
 
 qreal QUISlider::value() const
