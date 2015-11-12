@@ -6,6 +6,7 @@ QUITableViewCell::QUITableViewCell(QObject *parent)
     : QUIView(false, parent),
       m_style(StyleDefault)
 {
+    updateNativeItem();
 }
 
 QUITableViewCell::~QUITableViewCell()
@@ -27,8 +28,6 @@ void QUITableViewCell::setTextLabel(const QString &title)
 
     if (m_nativeResource != NULL)
         ((UITableViewCell*) m_nativeResource).textLabel.text =  m_textLabel.toNSString();
-
-    updateNativeItem();
 }
 
 QString QUITableViewCell::detailTextLabel() const
@@ -66,8 +65,6 @@ void QUITableViewCell::setStyle(QUITableViewCell::CellStyle style)
 
 void QUITableViewCell::updateNativeItem()
 {
-    if (m_textLabel.isEmpty())
-        return;
     if (m_nativeResource != NULL)
         [((UITableViewCell*) m_nativeResource) release];
 
