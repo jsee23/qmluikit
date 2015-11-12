@@ -2,14 +2,10 @@
 
 #include <UIKit/UIKit.h>
 
-#include "quikithelpers.h"
-
 class QUIWindowPrivate {
 public:
     UIScreen* m_screen;
     UIWindow* m_window;
-
-    QColor m_backgroundColor;
 };
 
 QUIWindow::QUIWindow(QObject *parent)
@@ -23,25 +19,10 @@ QUIWindow::QUIWindow(QObject *parent)
     d->m_window.backgroundColor = [UIColor whiteColor];
 
     [d->m_window makeKeyAndVisible];
-
-    d->m_backgroundColor = QColor::fromRgb(0,0,0);
 }
 
 QUIWindow::~QUIWindow()
 {
-}
-
-QColor QUIWindow::backgroundColor() const
-{
-    return d->m_backgroundColor;
-}
-
-void QUIWindow::setBackgroundColor(const QColor& color)
-{
-    d->m_backgroundColor = color;
-    UIColor* uiColor = QUIKitColors::qcolorToUIColor(color);
-    d->m_window.backgroundColor = uiColor;
-    emit backgroundColorChanged();
 }
 
 QUIViewController* QUIWindow::initialViewController() const

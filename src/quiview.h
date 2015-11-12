@@ -1,6 +1,8 @@
 #ifndef QUIVIEW_H
 #define QUIVIEW_H
 
+#include <QColor>
+
 #include "quikititem.h"
 
 class QUIView : public QUIKitItem
@@ -12,6 +14,9 @@ class QUIView : public QUIKitItem
     Q_PROPERTY(int width READ width WRITE setWidth NOTIFY widthChanged)
     Q_PROPERTY(int height READ height WRITE setHeight NOTIFY heightChanged)
     Q_PROPERTY(bool visible READ visible WRITE setVisible NOTIFY visibleChanged)
+
+    Q_PROPERTY(QColor backgroundColor READ backgroundColor WRITE setBackgroundColor
+               NOTIFY backgroundColorChanged)
 
 public:
     QUIView(QObject* parent = 0);
@@ -33,6 +38,9 @@ public:
     bool visible() const;
     void setVisible(bool visible);
 
+    QColor backgroundColor() const;
+    void setBackgroundColor(const QColor& color);
+
     virtual void* nativeItem() Q_DECL_OVERRIDE;
 
 protected slots:
@@ -44,6 +52,10 @@ signals:
     void widthChanged();
     void heightChanged();
     void visibleChanged();
+    void backgroundColorChanged();
+
+private:
+    QColor m_backgroundColor;
 };
 
 #endif // QUIVIEW_H

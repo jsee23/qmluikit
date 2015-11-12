@@ -2,10 +2,13 @@
 
 #include <UIKit/UIKit.h>
 
+#include "quikithelpers.h"
+
 QUIView::QUIView(QObject* parent) :
     QUIKitItem(parent)
 {
     m_nativeResource = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    m_backgroundColor = QColor::fromRgb(0,0,0);
 }
 
 QUIView::QUIView(bool init, QObject *parent) :
@@ -103,4 +106,18 @@ void QUIView::setVisible(bool visible)
     ((UIView*) m_nativeResource).hidden = !visible;
     emit visibleChanged();
 }
+
+QColor QUIView::backgroundColor() const
+{
+    return m_backgroundColor;
+}
+
+void QUIView::setBackgroundColor(const QColor& color)
+{
+    m_backgroundColor = color;
+    UIColor* uiColor = QUIKitColors::qcolorToUIColor(color);
+    ((UIView*) m_nativeResource).backgroundColor = uiColor;
+    emit backgroundColorChanged();
+}
+
 

@@ -22,6 +22,8 @@ UIViewController {
         y: segmentedControl.y + segmentedControl.height + 5
         height: segmentedController.height - y
         visible: segmentedControl.selectedSegment == 0
+
+        backgroundColor: "red"
     }
 
     UIView {
@@ -29,13 +31,17 @@ UIViewController {
         y: segmentedControl.y + segmentedControl.height + 5
         height: segmentedController.height - y
         visible: segmentedControl.selectedSegment == 1
+
+        backgroundColor: "green"
     }
 
     UIView {
         width: segmentedController.width
         y: segmentedControl.y + segmentedControl.height + 5
         height: segmentedController.height - y
-        visible: segmentedControl.selectedSegment == 3
+        visible: segmentedControl.selectedSegment == 2
+
+        backgroundColor: "blue"
     }
 }
 
