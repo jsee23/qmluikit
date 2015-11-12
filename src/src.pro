@@ -4,7 +4,10 @@ IMPORT_VERSION = 1.0
 
 QT += qml quick
 
-OTHER_FILES = qmldir
+OTHER_FILES = \
+    qmldir \
+    plugins.qmltypes
+
 DEFINES += __x86_64__
 
 # Input

@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>TableViewController.qml</file>
         <file>SegmentedController.qml</file>
+        <file>ButtonController.qml</file>
     </qresource>
 </RCC>

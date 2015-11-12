@@ -1,0 +1,87 @@
+import QtQuick.tooling 1.2
+
+// This file describes the plugin-supplied types contained in the library.
+// It is used for QML tooling purposes only.
+//
+// This file was NOT auto-generated!
+
+Module {
+    Component {
+        name: "QUIView"
+        defaultProperty: "data"
+        exports: ["de.jsee23.qmluikit/UIView 1.0"]
+        exportMetaObjectRevisions: [0]
+
+        Property { name: "x"; type: "int" }
+        Property { name: "y"; type: "int" }
+        Property { name: "width"; type: "int" }
+        Property { name: "height"; type: "int" }
+        Property { name: "visible"; type: "bool" }
+        Property { name: "backgroundColor"; type: "color" }
+
+        Signal { name: "xChanged" }
+        Signal { name: "yChanged" }
+        Signal { name: "widthChanged" }
+        Signal { name: "heightChanged" }
+        Signal { name: "visibleChanged" }
+        Signal { name: "backgroundColorChanged" }
+    }
+    Component {
+        name: "QUIWindow"
+        prototype: "QUIView"
+        exports: ["de.jsee23.qmluikit/UIWindow 1.0"]
+        exportMetaObjectRevisions: [0]
+
+        Property { name: "initialViewController"; type: "QUIViewController*" }
+        Signal { name: "initialViewControllerChanged" }
+    }
+    Component {
+        name: "QUIControl"
+        prototype: "QUIView"
+        exports: ["de.jsee23.qmluikit/UIControl 1.0"]
+        exportMetaObjectRevisions: [0]
+    }
+    Component {
+        name: "QUIButton"
+        prototype: "QUIControl"
+        exports: ["de.jsee23.qmluikit/UIButton 1.0"]
+        exportMetaObjectRevisions: [0]
+
+        Property { name: "titleLabel"; type: "string" }
+
+        Signal { name: "titleLabelChanged" }
+    }
+    // TODO
+    Component {
+        name: "QUISwitch"
+        prototype: "QUIControl"
+        exports: ["de.jsee23.qmluikit/UISwitch 1.0"]
+        exportMetaObjectRevisions: [0]
+
+        Property { name: "on"; type: "bool" }
+        Property { name: "onTintColor"; type: "color" }
+        Property { name: "thumbTintColor"; type: "color" }
+        Property { name: "tintColor"; type: "color" }
+
+        Signal { name: "onChanged" }
+        Signal { name: "onTintColorChanged" }
+        Signal { name: "thumbTintColorChanged" }
+        Signal { name: "tintColorChanged" }
+    }
+
+    Component {
+        name: "QUIViewController"
+        exports: ["de.jsee23.qmluikit/UIViewController 1.0"]
+        exportMetaObjectRevisions: [0]
+
+        Property { name: "title"; type: "string" }
+        Property { name: "width"; type: "int" }
+        Property { name: "height"; type: "int" }
+
+        Signal { name: "titleChanged" }
+        Signal { name: "widthChanged" }
+        Signal { name: "widthChanged" }
+
+        // TODO - properties and signals
+    }
+}

@@ -8,6 +8,7 @@ UIWindow {
 
     property TableViewController tableViewController: TableViewController {}
     property SegmentedController segmentedController: SegmentedController {}
+    property ButtonController buttonController: ButtonController {}
 
     UINavigationController {
         id: navigationController
@@ -40,6 +41,7 @@ UIWindow {
 
                     UITableViewCell {
                         textLabel: "UIButton"
+                        onSelected: navigationController.pushViewController(root.buttonController)
                     }
                     UITableViewCell {
                         textLabel: "UISlider"
