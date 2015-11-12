@@ -22,35 +22,37 @@ UIWindow {
                     title: "ViewControllers"
 
                     UITableViewCell {
-                        title: "UITableViewController"
+                        textLabel: "UITableViewController"
                         onSelected: navigationController.pushViewController(root.tableViewController)
                     }
                     UITableViewCell {
-                        title: "UISegmentedControl"
+                        textLabel: "UISegmentedControl"
+                        detailTextLabel: "UIView"
+                        style: UITableViewCell.StyleSubtitle
                         onSelected: navigationController.pushViewController(root.segmentedController)
                     }
                     UITableViewCell {
-                        title: "UIToolbar"
+                        textLabel: "UIToolbar"
                     }
                 },
                 UITableViewSection {
                     title: "Controls"
 
                     UITableViewCell {
-                        title: "UIButton"
+                        textLabel: "UIButton"
                     }
                     UITableViewCell {
-                        title: "UISlider"
+                        textLabel: "UISlider"
                     }
                     UITableViewCell {
-                        title: "UISwitch"
+                        textLabel: "UISwitch"
                     }
                 },
                 UITableViewSection {
                     title: "Input"
 
                     UITableViewCell {
-                        title: "todo"
+                        textLabel: "todo"
                     }
                 }
 
