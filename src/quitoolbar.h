@@ -1,7 +1,7 @@
 #ifndef QUITOOLBAR_H
 #define QUITOOLBAR_H
 
-#include <quiview.h>
+#include "views/quiview.h"
 
 class QUIToolbarPrivate;
 class QUIToolbar : public QUIView

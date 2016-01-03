@@ -1,7 +1,7 @@
 #ifndef QUISLIDER_H
 #define QUISLIDER_H
 
-#include <quicontrol.h>
+#include "quicontrol.h"
 
 class QUISliderPrivate;
 class QUISlider : public QUIControl

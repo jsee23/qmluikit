@@ -1,7 +1,7 @@
 #ifndef QUITABLEVIEWCELL_H
 #define QUITABLEVIEWCELL_H
 
-#include "quiview.h"
+#include "views/quiview.h"
 
 class QUITableViewCell : public QUIView
 {

@@ -1,7 +1,7 @@
 #ifndef QUICONTROL_H
 #define QUICONTROL_H
 
-#include "quiview.h"
+#include "../views/quiview.h"
 
 class QUIControl : public QUIView
 {

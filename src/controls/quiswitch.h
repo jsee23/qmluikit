@@ -8,7 +8,7 @@
 
 #include <QColor>
 
-#include <quicontrol.h>
+#include "quicontrol.h"
 
 class QUISwitchPrivate;
 class QUISwitch : public QUIControl

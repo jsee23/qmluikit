@@ -3,7 +3,7 @@
 
 #include <QDate>
 
-#include <quicontrol.h>
+#include "quicontrol.h"
 
 class QUIDatePickerPrivate;
 class QUIDatePicker : public QUIControl

@@ -5,8 +5,8 @@
 #include <QColor>
 #include <QtQml/QQmlListProperty>
 
-#include "quiview.h"
-#include "quiviewcontroller.h"
+#include "views/quiview.h"
+#include "controllers/quiviewcontroller.h"
 
 class QUIWindowPrivate;
 

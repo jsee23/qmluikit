@@ -27,7 +27,7 @@
 // Qt
 //////////////////////////
 
-#include "quicontrol.h"
+#include "../views/quiview.h"
 
 class QUIViewControllerPrivate
 {

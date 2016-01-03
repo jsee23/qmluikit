@@ -1,7 +1,7 @@
 #ifndef QUISEGMENTEDCONTROL_H
 #define QUISEGMENTEDCONTROL_H
 
-#include <quicontrol.h>
+#include "quicontrol.h"
 
 class QUISegmentedControlPrivate;
 class QUISegmentedControl : public QUIControl
