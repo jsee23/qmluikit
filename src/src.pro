@@ -23,14 +23,14 @@ OBJECTIVE_SOURCES += \
     views/quiview.mm \
     views/quiprogressview.mm \
     views/quiscrollview.mm \
+    controls/quicontrol.mm \
+    controls/quibutton.mm \
+    controls/quidatepicker.mm \
+    controls/quisegmentedcontrol.mm \
+    controls/quislider.mm \
+    controls/quiswitch.mm \
     quiwindow.mm \
-    quibutton.mm \
-    quicontrol.mm \
-    quiswitch.mm \
-    quislider.mm \
-    quisegmentedcontrol.mm \
     quikithelpers.mm \
-    quidatepicker.mm \
     quitoolbar.mm \
     quibarbuttonitem.mm \
     quitableviewcell.mm
@@ -43,15 +43,15 @@ HEADERS += \
     views/quiview.h \
     views/quiprogressview.h \
     views/quiscrollview.h \
+    controls/quicontrol.h \
+    controls/quibutton.h \
+    controls/quidatepicker.h \
+    controls/quisegmentedcontrol.h \
+    controls/quislider.h \
+    controls/quiswitch.h \
     quiwindow.h \
     quikititem.h \
-    quibutton.h \
-    quicontrol.h \
-    quiswitch.h \
-    quislider.h \
     quikithelpers.h \
-    quisegmentedcontrol.h \
-    quidatepicker.h \
     quitoolbar.h \
     quibarbuttonitem.h \
     quitableviewsection.h \
