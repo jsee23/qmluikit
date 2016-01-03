@@ -2,7 +2,7 @@ TARGET  = qmluikit
 TARGETPATH = de/jsee23/qmluikit
 IMPORT_VERSION = 1.0
 
-QT += qml quick
+QT += qml
 
 OTHER_FILES = \
     qmldir \
@@ -17,43 +17,43 @@ SOURCES += \
     quitableviewsection.cpp
 
 OBJECTIVE_SOURCES += \
-    quiviewcontroller.mm \
+    controllers/quiviewcontroller.mm \
+    controllers/quinavigationcontroller.mm \
+    controllers/quitableviewcontroller.mm \
+    views/quiview.mm \
+    views/quiprogressview.mm \
+    views/quiscrollview.mm \
     quiwindow.mm \
     quibutton.mm \
-    quiview.mm \
     quicontrol.mm \
-    quinavigationcontroller.mm \
     quiswitch.mm \
     quislider.mm \
-    quiprogressview.mm \
     quisegmentedcontrol.mm \
     quikithelpers.mm \
     quidatepicker.mm \
     quitoolbar.mm \
     quibarbuttonitem.mm \
-    quiscrollview.mm \
-    quitableviewcontroller.mm \
     quitableviewcell.mm
 
 HEADERS += \
     qmluikit_plugin.h \
-    quiviewcontroller.h \
+    controllers/quiviewcontroller.h \
+    controllers/quinavigationcontroller.h \
+    controllers/quitableviewcontroller.h \
+    views/quiview.h \
+    views/quiprogressview.h \
+    views/quiscrollview.h \
     quiwindow.h \
     quikititem.h \
     quibutton.h \
-    quiview.h \
     quicontrol.h \
-    quinavigationcontroller.h \
     quiswitch.h \
     quislider.h \
-    quiprogressview.h \
     quikithelpers.h \
     quisegmentedcontrol.h \
     quidatepicker.h \
     quitoolbar.h \
     quibarbuttonitem.h \
-    quiscrollview.h \
-    quitableviewcontroller.h \
     quitableviewsection.h \
     quitableviewcell.h
 
