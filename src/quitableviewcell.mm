@@ -66,8 +66,11 @@ void QUITableViewCell::setStyle(QUITableViewCell::CellStyle style)
 
 void QUITableViewCell::updateNativeItem()
 {
-    if (m_nativeResource != NULL)
-        [((UITableViewCell*) m_nativeResource) release];
+// *****************
+// FIXME:   release the old UITableViewCell in a safe way....!
+// *****************
+//    if (m_nativeResource != NULL)
+//        [((UITableViewCell*) m_nativeResource) release];
 
     if (m_style == StyleDefault)
         m_nativeResource = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
