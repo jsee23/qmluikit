@@ -5,73 +5,74 @@ import de.jsee23.qmluikit 1.0
 UITableViewController {
     title: "UITableViewController"
 
-    model: [
-        "Lorem", "Ipsum", "Dolor", "Sit"
-    ]
+    model: itemRows
+
     delegate: UITableViewCell {
-        textLabel: modelData
-        detailTextLabel: "Dolor Sit"
+        textLabel: modelData.label
+        detailTextLabel: modelData.detailedText
+        style: modelData.style
     }
 
-//    sections: [
-//        UITableViewSection {
-//            title: "StyleDefault"
+    sections: [
+        UITableViewSection {
+            title: "StyleDefault"
+            count: 2
+        },
+        UITableViewSection {
+            title: "StyleValue1"
+            count: 2
+        },
+        UITableViewSection {
+            title: "StyleValue2"
+            count: 2
+        },
+        UITableViewSection {
+            title: "StyleSubtitle"
+            count: 2
+        }
+    ]
 
-//            UITableViewCell {
-//                textLabel: "Lorem Ipsum"
-//                detailTextLabel: "Dolor Sit"
-//            }
-
-//            UITableViewCell {
-//                textLabel: "Amet Consetetur"
-//                detailTextLabel: "Sadipscing Elitr"
-//            }
-//        },
-//        UITableViewSection {
-//            title: "StyleValue1"
-
-//            UITableViewCell {
-//                textLabel: "Lorem Ipsum"
-//                detailTextLabel: "Dolor Sit"
-//                style: UITableViewCell.StyleValue1
-//            }
-
-//            UITableViewCell {
-//                textLabel: "Amet Consetetur"
-//                detailTextLabel: "Sadipscing Elitr"
-//                style: UITableViewCell.StyleValue1
-//            }
-//        },
-//        UITableViewSection {
-//            title: "StyleValue2"
-
-//            UITableViewCell {
-//                textLabel: "Lorem Ipsum"
-//                detailTextLabel: "Dolor Sit"
-//                style: UITableViewCell.StyleValue2
-//            }
-
-//            UITableViewCell {
-//                textLabel: "Amet Consetetur"
-//                detailTextLabel: "Sadipscing Elitr"
-//                style: UITableViewCell.StyleValue2
-//            }
-//        },
-//        UITableViewSection {
-//            title: "StyleSubtitle"
-
-//            UITableViewCell {
-//                textLabel: "Lorem Ipsum"
-//                detailTextLabel: "Dolor Sit"
-//                style: UITableViewCell.StyleSubtitle
-//            }
-
-//            UITableViewCell {
-//                textLabel: "Amet Consetetur"
-//                detailTextLabel: "Sadipscing Elitr"
-//                style: UITableViewCell.StyleSubtitle
-//            }
-//        }
-//    ]
+    property list<QtObject> itemRows: [
+        QtObject {
+            property string label: "Lorem Ipsum"
+            property string detailedText: "Dolor Sit"
+            property int style: UITableViewCell.StyleDefault
+        },
+        QtObject {
+            property string label: "Amet Consetetur"
+            property string detailedText: "Sadipscing Elitr"
+            property int style: UITableViewCell.StyleDefault
+        },
+        QtObject {
+            property string label: "Lorem Ipsum"
+            property string detailedText: "Dolor Sit"
+            property int style: UITableViewCell.StyleValue1
+        },
+        QtObject {
+            property string label: "Amet Consetetur"
+            property string detailedText: "Sadipscing Elitr"
+            property int style: UITableViewCell.StyleValue1
+        },
+        QtObject {
+            property string label: "Lorem Ipsum"
+            property string detailedText: "Dolor Sit"
+            property int style: UITableViewCell.StyleValue2
+        },
+        QtObject {
+            property string label: "Amet Consetetur"
+            property string detailedText: "Sadipscing Elitr"
+            property int style: UITableViewCell.StyleValue2
+        },
+        QtObject {
+            property string label: "Lorem Ipsum"
+            property string detailedText: "Dolor Sit"
+            property int style: UITableViewCell.StyleSubtitle
+        },
+        QtObject {
+            property string label: "Amet Consetetur"
+            property string detailedText: "Sadipscing Elitr"
+            property int style: UITableViewCell.StyleSubtitle
+        }
+    ]
 }
 
