@@ -1,6 +1,6 @@
 TARGET  = qmluikit
-TARGETPATH = de/jsee23/qmluikit
-IMPORT_VERSION = 1.0
+TARGETPATH = jsee23/qmluikit
+IMPORT_VERSION = 0.1
 
 QT += qml qml-private
 

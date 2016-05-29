@@ -9,7 +9,7 @@ Module {
     Component {
         name: "QUIView"
         defaultProperty: "data"
-        exports: ["de.jsee23.qmluikit/UIView 1.0"]
+        exports: ["jsee23.qmluikit/UIView 0.1"]
         exportMetaObjectRevisions: [0]
 
         Property { name: "x"; type: "int" }
@@ -29,7 +29,7 @@ Module {
     Component {
         name: "QUIWindow"
         prototype: "QUIView"
-        exports: ["de.jsee23.qmluikit/UIWindow 1.0"]
+        exports: ["jsee23.qmluikit/UIWindow 0.1"]
         exportMetaObjectRevisions: [0]
 
         Property { name: "initialViewController"; type: "QUIViewController*" }
@@ -38,13 +38,13 @@ Module {
     Component {
         name: "QUIControl"
         prototype: "QUIView"
-        exports: ["de.jsee23.qmluikit/UIControl 1.0"]
+        exports: ["jsee23.qmluikit/UIControl 0.1"]
         exportMetaObjectRevisions: [0]
     }
     Component {
         name: "QUIButton"
         prototype: "QUIControl"
-        exports: ["de.jsee23.qmluikit/UIButton 1.0"]
+        exports: ["jsee23.qmluikit/UIButton 0.1"]
         exportMetaObjectRevisions: [0]
 
         Property { name: "titleLabel"; type: "string" }
@@ -55,7 +55,7 @@ Module {
     Component {
         name: "QUISwitch"
         prototype: "QUIControl"
-        exports: ["de.jsee23.qmluikit/UISwitch 1.0"]
+        exports: ["jsee23.qmluikit/UISwitch 0.1"]
         exportMetaObjectRevisions: [0]
 
         Property { name: "on"; type: "bool" }
@@ -71,7 +71,7 @@ Module {
 
     Component {
         name: "QUIViewController"
-        exports: ["de.jsee23.qmluikit/UIViewController 1.0"]
+        exports: ["jsee23.qmluikit/UIViewController 0.1"]
         exportMetaObjectRevisions: [0]
 
         Property { name: "title"; type: "string" }
