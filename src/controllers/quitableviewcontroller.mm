@@ -95,8 +95,13 @@
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-    int selectedRow = indexPath.row;
-    QUITableViewCell* cell = qobject_cast<QUITableViewCell*>(control->objectModel()->object(selectedRow, false));
+    int itemIndex = 0;
+    for (int i = 0; i < indexPath.section; i++) {
+        itemIndex += control->qlistSections().at(i)->count();
+    }
+    itemIndex += indexPath.row;
+
+    QUITableViewCell* cell = qobject_cast<QUITableViewCell*>(control->objectModel()->object(itemIndex, false));
     emit cell->selected();
 }
 @end
