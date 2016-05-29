@@ -53,6 +53,22 @@
 
 #include "../views/quiview.h"
 
+/*!
+ * \brief TODO: doc
+ * \qmltype UIViewController
+ * \inqmlmodule jsee23.qmluikit
+ *
+ * TODO
+ *
+ * \qml
+ * import jsee23.qmluikit 0.1
+ *
+ * UIWindow {
+ *     // TODO: doc
+ * }
+ * \endqml
+ */
+
 class QUIViewControllerPrivate
 {
 public:
@@ -104,6 +120,11 @@ void QUIViewController::childrenDidChanged()
     }
 }
 
+/*!
+ * \qmlproperty string jsee23.qmluikit::UIViewController::title
+ *
+ * TODO: doc
+ */
 QString QUIViewController::title() const
 {
     return QString::fromNSString(((UIViewController*) m_nativeResource).navigationItem.title);
@@ -117,11 +138,23 @@ void QUIViewController::setTitle(const QString &title)
     emit titleChanged();
 }
 
+/*!
+ * \qmlproperty int jsee23.qmluikit::UIViewController::width
+ * \readonly
+ *
+ * TODO: doc
+ */
 int QUIViewController::width() const
 {
     return d->m_size.width();
 }
 
+/*!
+ * \qmlproperty int jsee23.qmluikit::UIViewController::height
+ * \readonly
+ *
+ * TODO: doc
+ */
 int QUIViewController::height() const
 {
     return d->m_size.height();
@@ -137,6 +170,12 @@ void QUIViewController::setSize(const QSize &size)
     emit heightChanged();
 }
 
+/*!
+ * \qmlproperty size jsee23.qmluikit::UIViewController::navigationBarGeometry
+ * \readonly
+ *
+ * TODO: doc
+ */
 QRect QUIViewController::navigationBarGeometry() const
 {
     if (!((UINavigationController*) m_nativeResource).navigationBar)
@@ -148,6 +187,12 @@ QRect QUIViewController::navigationBarGeometry() const
     return QRect(x, y, width, height);
 }
 
+/*!
+ * \qmlproperty int jsee23.qmluikit::UIViewController::statusBarHeight
+ * \readonly
+ *
+ * TODO: doc
+ */
 int QUIViewController::statusBarHeight() const
 {
     return m_statusBarHeight;

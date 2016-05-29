@@ -26,6 +26,25 @@
 
 #include <UIKit/UIKit.h>
 
+/*!
+ * \brief Provides a top-level application window
+ * \qmltype UIWindow
+ * \inqmlmodule jsee23.qmluikit
+ *
+ * UIWindow is the top-level object of an application and simply specify, which
+ * view controller will be loaded at startup.
+ *
+ * \qml
+ * import jsee23.qmluikit 0.1
+ *
+ * UIWindow {
+ *     initialViewController: UIViewController {
+ *         // ...
+ *     }
+ * }
+ * \endqml
+ */
+
 class QUIWindowPrivate {
 public:
     UIScreen* m_screen;
@@ -50,6 +69,11 @@ QUIWindow::~QUIWindow()
     [d->m_window release];
 }
 
+/*!
+ * \qmlproperty UIViewController jsee23.qmluikit::UIWindow::initialViewController
+ *
+ * This property holds the view controller, that will be displayed at startup.
+ */
 QUIViewController* QUIWindow::initialViewController() const
 {
     return m_initialViewController;

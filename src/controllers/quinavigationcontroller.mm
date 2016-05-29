@@ -86,6 +86,22 @@
 // Qt
 //////////////////////////
 
+/*!
+ * \brief TODO: doc
+ * \qmltype UINavigationController
+ * \inqmlmodule jsee23.qmluikit
+ *
+ * TODO
+ *
+ * \qml
+ * import jsee23.qmluikit 0.1
+ *
+ * UIWindow {
+ *     // TODO: doc
+ * }
+ * \endqml
+ */
+
 QUINavigationController::QUINavigationController(QObject* parent) :
     QUIViewController(false, parent)
 {
@@ -122,6 +138,11 @@ void QUINavigationController::setInitialViewController(QUIViewController *contro
     emit initialViewControllerChanged();
 }
 
+/*!
+ * \qmlmethod void jsee23.qmluikit::UINavigationController::pushViewController(UIViewController* controller)
+ *
+ * TODO: doc
+ */
 void QUINavigationController::pushViewController(QUIViewController* controller)
 {
     controller->setSize(QSize(width(), height()));

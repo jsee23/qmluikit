@@ -134,6 +134,27 @@
 // Qt
 //////////////////////////
 
+/*!
+ * \brief TODO: doc
+ * \qmltype UIVTableViewController
+ * \inqmlmodule jsee23.qmluikit
+ *
+ * TODO: doc
+ *
+ * \qml
+ * import jsee23.qmluikit 0.1
+ *
+ * // ...
+ *     UIVTableViewController {
+ *         model: [ "Apple", "Banana", "Tomato" ]
+ *         delegate: UITableViewCell {
+ *             textLabel: modelData
+ *         }
+ *     }
+ * // ...
+ * \endqml
+ */
+
 QUITableViewController::QUITableViewController(QObject* parent) :
     QUIViewController(false, parent)
 {
@@ -146,6 +167,11 @@ QUITableViewController::~QUITableViewController()
     [((QNative_UITableViewController*) m_nativeResource) release];
 }
 
+/*!
+ * \qmlproperty list<UITableViewSection> jsee23.qmluikit::UITableViewController::sections
+ *
+ * TODO: doc
+ */
 QQmlListProperty<QUITableViewSection> QUITableViewController::sections()
 {
     return QQmlListProperty<QUITableViewSection>(this, 0, &QUITableViewController::append_section,
@@ -162,6 +188,11 @@ QPointer<QQmlInstanceModel> QUITableViewController::objectModel() const
     return m_model;
 }
 
+/*!
+ * \qmlproperty var jsee23.qmluikit::UITableViewController::model
+ *
+ * TODO: doc
+ */
 QVariant QUITableViewController::model() const
 {
     if (m_dataSourceIsObject) {
@@ -227,6 +258,11 @@ void QUITableViewController::setModel(const QVariant &m)
     emit countChanged();
 }
 
+/*!
+ * \qmlproperty Component jsee23.qmluikit::UITableViewController::delegate
+ *
+ * TODO: doc
+ */
 QQmlComponent *QUITableViewController::delegate() const
 {
     if (m_model) {
@@ -256,6 +292,11 @@ void QUITableViewController::setDelegate(QQmlComponent *delegate)
     }
 }
 
+/*!
+ * \qmlproperty int jsee23.qmluikit::UITableViewController::count
+ *
+ * TODO: doc
+ */
 int QUITableViewController::count() const
 {
     return m_itemCount;
