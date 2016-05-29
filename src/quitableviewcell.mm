@@ -3,10 +3,11 @@
 #include <UIKit/UIKit.h>
 
 QUITableViewCell::QUITableViewCell(QObject *parent)
-    : QUIView(false, parent),
-      m_style(StyleDefault)
+    : QUIView(false, parent)
+    , m_style(StyleDefault)
+    , m_componentCompleted(false)
 {
-    updateNativeItem();
+    m_nativeResource = nullptr;
 }
 
 QUITableViewCell::~QUITableViewCell()
@@ -62,6 +63,13 @@ void QUITableViewCell::setStyle(QUITableViewCell::CellStyle style)
     m_style = style;
     emit styleChanged();
 
+    if (m_componentCompleted)
+        updateNativeItem();
+}
+
+void QUITableViewCell::componentComplete()
+{
+    m_componentCompleted = true;
     updateNativeItem();
 }
 

@@ -1,9 +1,11 @@
 #ifndef QUITABLEVIEWCELL_H
 #define QUITABLEVIEWCELL_H
 
+#include <QtQml/QQmlParserStatus>
+
 #include "views/quiview.h"
 
-class QUITableViewCell : public QUIView
+class QUITableViewCell : public QUIView, public QQmlParserStatus
 {
     Q_OBJECT
 
@@ -13,6 +15,8 @@ class QUITableViewCell : public QUIView
                WRITE setDetailTextLabel NOTIFY detailTextLabelChanged)
     Q_PROPERTY(CellStyle style READ style
                WRITE setStyle NOTIFY styleChanged)
+
+    Q_INTERFACES(QQmlParserStatus)
 
 public:
     enum CellStyle
@@ -36,6 +40,10 @@ public:
     CellStyle style() const;
     void setStyle(CellStyle style);
 
+protected:
+    void classBegin() {}
+    void componentComplete();
+
 signals:
     void textLabelChanged();
     void detailTextLabelChanged();
@@ -49,6 +57,8 @@ private:
     QString m_textLabel;
     QString m_detailTextLabel;
     CellStyle m_style;
+
+    bool m_componentCompleted;
 };
 
 #endif // QUITABLEVIEWCELL_H
