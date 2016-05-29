@@ -18,44 +18,41 @@ UIWindow {
             id: initialPage
             title: "Catalog"
 
-            sections: [
-                UITableViewSection {
-                    title: "ViewControllers"
+            model: subviews
 
-                    UITableViewCell {
-                        textLabel: "UITableViewController"
-                        onSelected: navigationController.pushViewController(root.tableViewController)
+            delegate: UITableViewCell {
+                textLabel: modelData.label
+                onSelected: {
+                    if (modelData.target) {
+                        navigationController.pushViewController(modelData.target)
                     }
-                    UITableViewCell {
-                        textLabel: "UISegmentedControl"
-                        detailTextLabel: "UIView"
-                        style: UITableViewCell.StyleSubtitle
-                        onSelected: navigationController.pushViewController(root.segmentedController)
-                    }
-                    UITableViewCell {
-                        textLabel: "UIToolbar"
-                    }
+                }
+            }
+
+            property list<QtObject> subviews: [
+                QtObject {
+                    property string label: "UITableViewController"
+                    property QtObject target: root.tableViewController
                 },
-                UITableViewSection {
-                    title: "Controls"
-
-                    UITableViewCell {
-                        textLabel: "UIButton"
-                        onSelected: navigationController.pushViewController(root.buttonController)
-                    }
-                    UITableViewCell {
-                        textLabel: "UISlider"
-                    }
-                    UITableViewCell {
-                        textLabel: "UISwitch"
-                    }
+                QtObject {
+                    property string label: "UISegmentedControl"
+                    property QtObject target: root.segmentedController
                 },
-                UITableViewSection {
-                    title: "Input"
-
-                    UITableViewCell {
-                        textLabel: "todo"
-                    }
+                QtObject {
+                    property string label: "UIToolbar"
+                },
+                QtObject {
+                    property string label: "UIButton"
+                    property QtObject target: root.buttonController
+                },
+                QtObject {
+                    property string label: "UISlider"
+                },
+                QtObject {
+                    property string label: "UISwitch"
+                },
+                QtObject {
+                    property string label: "todo"
                 }
 
             ]

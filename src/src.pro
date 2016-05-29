@@ -2,7 +2,7 @@ TARGET  = qmluikit
 TARGETPATH = de/jsee23/qmluikit
 IMPORT_VERSION = 1.0
 
-QT += qml
+QT += qml qml-private
 
 OTHER_FILES = \
     qmldir \

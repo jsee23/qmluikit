@@ -12,6 +12,7 @@ QUITableViewCell::QUITableViewCell(QObject *parent)
 QUITableViewCell::~QUITableViewCell()
 {
     [((UITableViewCell*) m_nativeResource) release];
+    m_nativeResource = nullptr;
 }
 
 QString QUITableViewCell::textLabel() const
