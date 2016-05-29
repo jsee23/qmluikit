@@ -250,7 +250,6 @@ void QUITableViewController::componentComplete()
 
 void QUITableViewController::modelUpdated(const QQmlChangeSet &changeSet, bool reset)
 {
-    qWarning("model updated...");
 
     if (!isComponentComplete())
         return;
