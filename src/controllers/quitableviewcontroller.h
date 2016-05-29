@@ -26,6 +26,8 @@ public:
     ~QUITableViewController();
 
     QQmlListProperty<QUITableViewSection> sections();
+    QList<QUITableViewSection*> qlistSections() const;
+
     QPointer<QQmlInstanceModel> objectModel() const;
 
     QVariant model() const;

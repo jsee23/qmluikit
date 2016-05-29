@@ -64,28 +64,31 @@
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
-    // TODO: sections...
-    return 1;
+    return control->qlistSections().count();
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    qWarning("-- numberOfRowsInSection = %d", control->count());
-    return control->count();
+    if (control->qlistSections().count() == 0)
+        return control->count();
+    else
+        return control->qlistSections().at(section)->count();
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    qWarning("-- cellForRowAtIndexPath");
-    int row = indexPath.row;
-    //return ((UITableViewCell*) control->qlistSections().at(indexPath.section)->cellItemAt(row)->nativeItem());
-    QUITableViewCell* cell = qobject_cast<QUITableViewCell*>(control->objectModel()->object(row, false));
+    int itemIndex = 0;
+    for (int i = 0; i < indexPath.section; i++) {
+        itemIndex += control->qlistSections().at(i)->count();
+    }
+    itemIndex += indexPath.row;
+
+    QUITableViewCell* cell = qobject_cast<QUITableViewCell*>(control->objectModel()->object(itemIndex, false));
     return ((UITableViewCell*) cell->nativeItem());
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    return QString("lkaslcknasc").toNSString();
-    //return control->qlistSections().at(section)->title().toNSString();
+    return control->qlistSections().at(section)->title().toNSString();
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -93,7 +96,6 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 
     int selectedRow = indexPath.row;
-    //emit control->qlistSections().at(indexPath.section)->cellItemAt(selectedRow)->selected();
     QUITableViewCell* cell = qobject_cast<QUITableViewCell*>(control->objectModel()->object(selectedRow, false));
     emit cell->selected();
 }
@@ -119,6 +121,11 @@ QQmlListProperty<QUITableViewSection> QUITableViewController::sections()
 {
     return QQmlListProperty<QUITableViewSection>(this, 0, &QUITableViewController::append_section,
                                                  0, 0, 0);
+}
+
+QList<QUITableViewSection *> QUITableViewController::qlistSections() const
+{
+    return m_sections;
 }
 
 QPointer<QQmlInstanceModel> QUITableViewController::objectModel() const
