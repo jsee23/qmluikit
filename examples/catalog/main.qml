@@ -19,6 +19,21 @@ UIWindow {
             title: "Catalog"
 
             model: subviews
+            sections: [
+                UITableViewSection {
+                    title: "Controllers"
+                    count: 2
+                },
+                UITableViewSection {
+                    title: "Controls"
+                    count: 4
+                },
+                UITableViewSection {
+                    title: "Input"
+                    count: 1
+                }
+
+            ]
 
             delegate: UITableViewCell {
                 textLabel: modelData.label
