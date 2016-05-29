@@ -294,7 +294,6 @@ void QUITableViewController::modelUpdated(const QQmlChangeSet &changeSet, bool r
 
 void QUITableViewController::createdItem(int index, QObject *)
 {
-    qWarning("createdItem %d", index);
     QObject *object = m_model->object(index, false);
     QUITableViewCell *item = qmlobject_cast<QUITableViewCell*>(object);
     emit itemAdded(index, item);
@@ -303,7 +302,6 @@ void QUITableViewController::createdItem(int index, QObject *)
         // TODO
         // [self.tableView endUpdates];
 
-        qWarning("reloading now...");
         [((QNative_UITableViewController*) m_nativeResource).tableView reloadData];
     }
 }
