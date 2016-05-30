@@ -24,7 +24,7 @@
 
 import QtQml 2.0
 import QtQuick 2.5
-import jsee23.qmluikit 1.0
+import jsee23.qmluikit 0.1
 
 UIViewController {
     id: buttonController

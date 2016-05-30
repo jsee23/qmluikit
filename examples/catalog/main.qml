@@ -24,7 +24,7 @@
 
 import QtQml 2.0
 import QtQuick 2.5
-import jsee23.qmluikit 1.0
+import jsee23.qmluikit 0.1
 
 UIWindow {
     id: root
@@ -33,6 +33,7 @@ UIWindow {
     property TableViewController tableViewController: TableViewController {}
     property SegmentedController segmentedController: SegmentedController {}
     property ButtonController buttonController: ButtonController {}
+    property TabBarController tabBarController: TabBarController {}
 
     UINavigationController {
         id: navigationController
@@ -46,7 +47,7 @@ UIWindow {
             sections: [
                 UITableViewSection {
                     title: "Controllers"
-                    count: 2
+                    count: 3
                 },
                 UITableViewSection {
                     title: "Controls"
@@ -72,6 +73,10 @@ UIWindow {
                 QtObject {
                     property string label: "UITableViewController"
                     property QtObject target: root.tableViewController
+                },
+                QtObject {
+                    property string label: "UITabBarController"
+                    property QtObject target: root.tabBarController
                 },
                 QtObject {
                     property string label: "UISegmentedControl"
