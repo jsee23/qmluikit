@@ -4,5 +4,6 @@
         <file>TableViewController.qml</file>
         <file>SegmentedController.qml</file>
         <file>ButtonController.qml</file>
+        <file>TabBarController.qml</file>
     </qresource>
 </RCC>
