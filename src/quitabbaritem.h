@@ -26,6 +26,7 @@
 #define QUITABBARITEM_H
 
 #include <QtQml/QQmlParserStatus>
+#include <QUrl>
 
 #include "quikititem.h"
 
@@ -37,15 +38,42 @@ class QUITabBarItem : public QUIKitItem, public QQmlParserStatus
     Q_OBJECT
 
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
+    Q_PROPERTY(QUrl imageSource READ imageSource
+               WRITE setImageSource NOTIFY imageSourceChanged)
+    Q_PROPERTY(SystemItems systemItem READ systemItem
+               WRITE setSystemItem NOTIFY systemItemChanged)
 
     Q_INTERFACES(QQmlParserStatus)
 
 public:
+    enum SystemItems {
+        NoSystemItem,
+        More,
+        Favorites,
+        Featured,
+        TopRated,
+        Recents,
+        Contacts,
+        History,
+        Bookmarks,
+        Search,
+        Downloads,
+        MostRecent,
+        MostViewed
+    };
+    Q_ENUM(SystemItems)
+
     QUITabBarItem(QObject* parent = 0);
     ~QUITabBarItem();
 
     QString title() const;
     void setTitle(const QString &title);
+
+    QUrl imageSource() const;
+    void setImageSource(const QUrl &source);
+
+    SystemItems systemItem() const;
+    void setSystemItem(SystemItems item);
 
     void setTargetViewController(QUIViewController* controller);
 
@@ -58,6 +86,8 @@ protected:
 signals:
     void clicked();
     void titleChanged();
+    void imageSourceChanged();
+    void systemItemChanged();
 
 private:
     void updateItem();

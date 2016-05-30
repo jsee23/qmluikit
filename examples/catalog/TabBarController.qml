@@ -7,6 +7,7 @@ UITabBarController {
         title: "Eins"
         tabBarItem: UITabBarItem {
             title: "Eins"
+            systemItem: UITabBarItem.Contacts
         }
 
         UIView {
@@ -18,6 +19,7 @@ UITabBarController {
         title: "Zwei"
         tabBarItem: UITabBarItem {
             title: "Zwei"
+            systemItem: UITabBarItem.Recents
         }
 
         UIView {
@@ -29,6 +31,7 @@ UITabBarController {
         title: "Drei"
         tabBarItem: UITabBarItem {
             title: "Drei"
+            systemItem: UITabBarItem.Downloads
         }
 
         UIView {

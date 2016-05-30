@@ -22,6 +22,8 @@
 **
 ****************************************************************************/
 
+#include <QImage>
+
 #include "quitabbaritem.h"
 #include "controllers/quiviewcontroller.h"
 
@@ -51,11 +53,43 @@
 // Qt
 //////////////////////////
 
+UITabBarSystemItem systemItemToTag(QUITabBarItem::SystemItems item)
+{
+    switch (item) {
+    case QUITabBarItem::More:
+        return UITabBarSystemItemMore;
+    case QUITabBarItem::Favorites:
+        return UITabBarSystemItemFavorites;
+    case QUITabBarItem::Featured:
+        return UITabBarSystemItemFeatured;
+    case QUITabBarItem::TopRated:
+        return UITabBarSystemItemTopRated;
+    case QUITabBarItem::Recents:
+        return UITabBarSystemItemRecents;
+    case QUITabBarItem::Contacts:
+        return UITabBarSystemItemContacts;
+    case QUITabBarItem::History:
+        return UITabBarSystemItemHistory;
+    case QUITabBarItem::Bookmarks:
+        return UITabBarSystemItemBookmarks;
+    case QUITabBarItem::Search:
+        return UITabBarSystemItemSearch;
+    case QUITabBarItem::Downloads:
+        return UITabBarSystemItemDownloads;
+    case QUITabBarItem::MostRecent:
+        return UITabBarSystemItemMostRecent;
+    case QUITabBarItem::MostViewed:
+        return UITabBarSystemItemMostViewed;
+    }
+}
+
 class QUITabBarItemPrivate
 {
 public:
     QUITabBarItemEventHandler* native;
     QString title;
+    QUrl imageSource;
+    QUITabBarItem::SystemItems systemItem;
     QUIViewController* targetViewController;
     bool componentCompleted;
 };
@@ -67,6 +101,7 @@ QUITabBarItem::QUITabBarItem(QObject* parent)
     d->native = [[QUITabBarItemEventHandler alloc] init];
     m_nativeResource = NULL;
     d->native->control = this;
+    d->systemItem = NoSystemItem;
     d->targetViewController = nullptr;
     d->componentCompleted = false;
 }
@@ -96,6 +131,34 @@ void QUITabBarItem::setTitle(const QString &title)
     emit titleChanged();
 }
 
+QUrl QUITabBarItem::imageSource() const
+{
+    return d->imageSource;
+}
+
+void QUITabBarItem::setImageSource(const QUrl &source)
+{
+    if (source == d->imageSource)
+        return;
+
+    d->imageSource = source;
+    emit imageSourceChanged();
+}
+
+QUITabBarItem::SystemItems QUITabBarItem::systemItem() const
+{
+    return d->systemItem;
+}
+
+void QUITabBarItem::setSystemItem(QUITabBarItem::SystemItems item)
+{
+    if (item == d->systemItem)
+        return;
+
+    d->systemItem = item;
+    emit systemItemChanged();
+}
+
 void QUITabBarItem::setTargetViewController(QUIViewController *controller)
 {
     d->targetViewController = controller;
@@ -116,7 +179,31 @@ void QUITabBarItem::componentComplete()
 
 void QUITabBarItem::updateItem()
 {
-    if (!title().isEmpty()) {
+    if (!d->imageSource.isEmpty()) {
+//        if (m_nativeResource)
+//            [((UITabBarItem*) m_nativeResource) release];
+
+//        // FIXME: slow, slower, this...
+//        QImage qImg(d->imageSource.toString().remove("qrc"));
+//        qWarning("is not valid = %d --> %s", qImg.isNull(), qPrintable(d->imageSource.toString()));
+//        UIImage *img = QImage2UIImmage(qImg);
+
+//        m_nativeResource = [[UITabBarItem alloc]
+//            initWithTitle:d->title.toNSString()
+//            image:img
+//            tag:0];
+
+//        updateViewControllerTarget();
+    } else if (d->systemItem != NoSystemItem) {
+        if (m_nativeResource)
+            [((UITabBarItem*) m_nativeResource) release];
+
+        m_nativeResource = [[UITabBarItem alloc]
+                initWithTabBarSystemItem:systemItemToTag(d->systemItem)
+                tag:0];
+
+        updateViewControllerTarget();
+    } else {
         if (m_nativeResource)
             [((UITabBarItem*) m_nativeResource) release];
 
