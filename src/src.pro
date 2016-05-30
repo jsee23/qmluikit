@@ -20,6 +20,7 @@ OBJECTIVE_SOURCES += \
     controllers/quiviewcontroller.mm \
     controllers/quinavigationcontroller.mm \
     controllers/quitableviewcontroller.mm \
+    controllers/quitabbarcontroller.mm \
     views/quiview.mm \
     views/quiprogressview.mm \
     views/quiscrollview.mm \
@@ -40,6 +41,7 @@ HEADERS += \
     controllers/quiviewcontroller.h \
     controllers/quinavigationcontroller.h \
     controllers/quitableviewcontroller.h \
+    controllers/quitabbarcontroller.h \
     views/quiview.h \
     views/quiprogressview.h \
     views/quiscrollview.h \

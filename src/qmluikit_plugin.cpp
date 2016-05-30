@@ -29,6 +29,7 @@
 #include "controllers/quiviewcontroller.h"
 #include "controllers/quinavigationcontroller.h"
 #include "controllers/quitableviewcontroller.h"
+#include "controllers/quitabbarcontroller.h"
 #include "views/quiview.h"
 #include "views/quiprogressview.h"
 #include "views/quiscrollview.h"
@@ -51,6 +52,7 @@ void QmlUIKitPlugin::registerTypes(const char *uri)
     qmlRegisterType<QUIViewController>(uri, 0, 1, "UIViewController");
     qmlRegisterType<QUINavigationController>(uri, 0, 1, "UINavigationController");
     qmlRegisterType<QUITableViewController>(uri, 0, 1, "UITableViewController");
+    qmlRegisterType<QUITabBarController>(uri, 0, 1, "UITabBarController");
 
     qmlRegisterType<QUIView>(uri, 0, 1, "UIView");
     qmlRegisterType<QUIControl>(uri, 0, 1, "UIControl");
