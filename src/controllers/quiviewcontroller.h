@@ -28,6 +28,7 @@
 #include <QRect>
 
 #include "quikititem.h"
+#include "../quitabbaritem.h"
 
 class QUIViewControllerPrivate;
 class QUIViewController : public QUIKitItem
@@ -41,6 +42,9 @@ class QUIViewController : public QUIKitItem
                NOTIFY navigationBarGeometryChanged)
     Q_PROPERTY(int statusBarHeight READ statusBarHeight
                NOTIFY statusBarHeightChanged)
+
+    Q_PROPERTY(QUITabBarItem* tabBarItem READ tabBarItem
+               WRITE setTabBarItem NOTIFY tabBarItemChanged)
 
 public:
     QUIViewController(QObject *parent = 0);
@@ -59,6 +63,9 @@ public:
     int statusBarHeight() const;
     void setStatusBarHeight(int height);
 
+    QUITabBarItem* tabBarItem() const;
+    void setTabBarItem(QUITabBarItem* item);
+
     virtual void* nativeItem() Q_DECL_OVERRIDE;
 
 protected slots:
@@ -70,11 +77,13 @@ signals:
     void heightChanged();
     void navigationBarGeometryChanged();
     void statusBarHeightChanged();
+    void tabBarItemChanged();
 
 private:
     void initNativeResource();
     QUIViewControllerPrivate* d;
     int m_statusBarHeight;
+    QUITabBarItem* m_tabBarItem;
 };
 
 #endif // QUIVIEWCONTROLLER_H

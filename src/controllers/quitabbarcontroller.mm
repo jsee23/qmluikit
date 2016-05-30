@@ -101,8 +101,6 @@ QUITabBarController::~QUITabBarController()
 
 void QUITabBarController::childrenDidChanged()
 {
-    qWarning("QUITabBarController::childrenDidChange");
-
     NSMutableArray * controllers = [[NSMutableArray alloc] initWithCapacity:m_children.size()];
     for (int i = 0; i < m_children.size(); i++) {
         QUIViewController* item = qobject_cast<QUIViewController*>(m_children.at(i));

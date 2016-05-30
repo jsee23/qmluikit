@@ -42,6 +42,7 @@
 #include "controls/quiswitch.h"
 #include "quitoolbar.h"
 #include "quibarbuttonitem.h"
+#include "quitabbaritem.h"
 #include "quitableviewsection.h"
 
 void QmlUIKitPlugin::registerTypes(const char *uri)
@@ -64,6 +65,7 @@ void QmlUIKitPlugin::registerTypes(const char *uri)
     qmlRegisterType<QUIDatePicker>(uri, 0, 1, "UIDatePicker");
     qmlRegisterType<QUIToolbar>(uri, 0, 1, "UIToolbar");
     qmlRegisterType<QUIBarButtonItem>(uri, 0, 1, "UIBarButtonItem");
+    qmlRegisterType<QUITabBarItem>(uri, 0, 1, "UITabBarItem");
     qmlRegisterType<QUIScrollView>(uri, 0, 1, "UIScrollView");
 
     qmlRegisterType<QUITableViewSection>(uri, 0, 1, "UITableViewSection");

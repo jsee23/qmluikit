@@ -78,6 +78,7 @@ public:
 QUIViewController::QUIViewController(QObject *parent)
     : QUIKitItem(parent)
     , d(new QUIViewControllerPrivate)
+    , m_tabBarItem(nullptr)
 {
     initNativeResource();
 }
@@ -205,4 +206,20 @@ void QUIViewController::setStatusBarHeight(int height)
 
     m_statusBarHeight = height;
     emit statusBarHeightChanged();
+}
+
+QUITabBarItem *QUIViewController::tabBarItem() const
+{
+    return m_tabBarItem;
+}
+
+void QUIViewController::setTabBarItem(QUITabBarItem *item)
+{
+    if (item == m_tabBarItem)
+        return;
+
+    m_tabBarItem = item;
+    emit tabBarItemChanged();
+
+    item->setTargetViewController(this);
 }
