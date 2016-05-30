@@ -42,5 +42,4 @@ private:
     void initNativeResource();
 };
 
-
 #endif // QUITABBARCONTROLLER_H

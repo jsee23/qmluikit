@@ -25,11 +25,14 @@
 #ifndef QUITABBARITEM_H
 #define QUITABBARITEM_H
 
+#include <QtQml/QQmlParserStatus>
+
 #include "quikititem.h"
 
 class QUIViewController;
 class QUITabBarItemPrivate;
-class QUITabBarItem : public QUIKitItem
+
+class QUITabBarItem : public QUIKitItem, public QQmlParserStatus
 {
     Q_OBJECT
 
@@ -46,15 +49,19 @@ public:
 
     virtual void* nativeItem() Q_DECL_OVERRIDE;
 
+protected:
+    void classBegin() {}
+    void componentComplete();
+
 signals:
     void clicked();
     void titleChanged();
 
 private:
     void updateItem();
+    void updateViewControllerTarget();
 
     QUITabBarItemPrivate* d;
-    QUIViewController* m_targetViewController;
 };
 
 #endif // QUITABBARITEM_H

@@ -56,16 +56,19 @@ class QUITabBarItemPrivate
 public:
     QUITabBarItemEventHandler* native;
     QString title;
+    QUIViewController* targetViewController;
+    bool componentCompleted;
 };
 
 QUITabBarItem::QUITabBarItem(QObject* parent)
     : QUIKitItem(parent)
     , d(new QUITabBarItemPrivate)
-    , m_targetViewController(nullptr)
 {
     d->native = [[QUITabBarItemEventHandler alloc] init];
     m_nativeResource = NULL;
     d->native->control = this;
+    d->targetViewController = nullptr;
+    d->componentCompleted = false;
 }
 
 QUITabBarItem::~QUITabBarItem()
@@ -85,22 +88,30 @@ void QUITabBarItem::setTitle(const QString &title)
 {
     if (title == d->title)
         return;
+
     d->title = title;
-    updateItem();
+    if (d->componentCompleted)
+        updateItem();
 
     emit titleChanged();
 }
 
 void QUITabBarItem::setTargetViewController(QUIViewController *controller)
 {
-    m_targetViewController = controller;
-    if (m_nativeResource)
-        updateItem();
+    d->targetViewController = controller;
+    if (d->componentCompleted)
+        updateViewControllerTarget();
 }
 
 void* QUITabBarItem::nativeItem()
 {
     return m_nativeResource;
+}
+
+void QUITabBarItem::componentComplete()
+{
+    d->componentCompleted = true;
+    updateItem();
 }
 
 void QUITabBarItem::updateItem()
@@ -114,10 +125,15 @@ void QUITabBarItem::updateItem()
             image:nil
             tag:0];
 
-        if (m_targetViewController) {
-            UITabBarItem* nativeItem = (UITabBarItem*) this->nativeItem();
-            [((UIViewController*) m_targetViewController->nativeItem())
-                    setTabBarItem:nativeItem];
-        }
+        updateViewControllerTarget();
+    }
+}
+
+void QUITabBarItem::updateViewControllerTarget()
+{
+    if (d->targetViewController && m_nativeResource) {
+        UITabBarItem* nativeItem = (UITabBarItem*) this->nativeItem();
+        [((UIViewController*) d->targetViewController->nativeItem())
+                setTabBarItem:nativeItem];
     }
 }
