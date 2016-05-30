@@ -28,7 +28,7 @@
 #include <QQmlListProperty>
 
 #include "quikititem.h"
-#include "quitableviewcell.h"
+#include "views/quitableviewcell.h"
 
 class QUITableViewSection : public QUIKitItem
 {

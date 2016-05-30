@@ -23,6 +23,7 @@ OBJECTIVE_SOURCES += \
     views/quiview.mm \
     views/quiprogressview.mm \
     views/quiscrollview.mm \
+    views/quitableviewcell.mm \
     controls/quicontrol.mm \
     controls/quibutton.mm \
     controls/quidatepicker.mm \
@@ -32,8 +33,7 @@ OBJECTIVE_SOURCES += \
     quiwindow.mm \
     quikithelpers.mm \
     quitoolbar.mm \
-    quibarbuttonitem.mm \
-    quitableviewcell.mm
+    quibarbuttonitem.mm
 
 HEADERS += \
     qmluikit_plugin.h \
@@ -43,6 +43,7 @@ HEADERS += \
     views/quiview.h \
     views/quiprogressview.h \
     views/quiscrollview.h \
+    views/quitableviewcell.h \
     controls/quicontrol.h \
     controls/quibutton.h \
     controls/quidatepicker.h \
@@ -54,8 +55,7 @@ HEADERS += \
     quikithelpers.h \
     quitoolbar.h \
     quibarbuttonitem.h \
-    quitableviewsection.h \
-    quitableviewcell.h
+    quitableviewsection.h
 
 CONFIG += no_cxx_module
 load(qml_plugin)
