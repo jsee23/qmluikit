@@ -38,6 +38,8 @@ class QUITabBarItem : public QUIKitItem, public QQmlParserStatus
 
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
 
+    Q_INTERFACES(QQmlParserStatus)
+
 public:
     QUITabBarItem(QObject* parent = 0);
     ~QUITabBarItem();
@@ -50,8 +52,8 @@ public:
     virtual void* nativeItem() Q_DECL_OVERRIDE;
 
 protected:
-    void classBegin() {}
-    void componentComplete();
+    void classBegin() Q_DECL_OVERRIDE {}
+    void componentComplete() Q_DECL_OVERRIDE;
 
 signals:
     void clicked();
