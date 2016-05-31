@@ -31,7 +31,7 @@ UITabBarController {
         title: "Drei"
         tabBarItem: UITabBarItem {
             title: "Drei"
-            systemItem: UITabBarItem.Downloads
+            imageSource: "qrc:/img/bullish.png"
         }
 
         UIView {

@@ -5,6 +5,8 @@
         <file>SegmentedController.qml</file>
         <file>ButtonController.qml</file>
         <file>TabBarController.qml</file>
-        <file>star.png</file>
+        <file>img/bullish.png</file>
+        <file>img/bullish@2.png</file>
+        <file>img/bullish@3.png</file>
     </qresource>
 </RCC>

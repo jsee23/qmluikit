@@ -23,6 +23,7 @@
 ****************************************************************************/
 
 #include <QImage>
+#include <QFile>
 
 #include "quitabbaritem.h"
 #include "controllers/quiviewcontroller.h"
@@ -180,20 +181,24 @@ void QUITabBarItem::componentComplete()
 void QUITabBarItem::updateItem()
 {
     if (!d->imageSource.isEmpty()) {
-//        if (m_nativeResource)
-//            [((UITabBarItem*) m_nativeResource) release];
+        if (m_nativeResource)
+            [((UITabBarItem*) m_nativeResource) release];
 
-//        // FIXME: slow, slower, this...
-//        QImage qImg(d->imageSource.toString().remove("qrc"));
-//        qWarning("is not valid = %d --> %s", qImg.isNull(), qPrintable(d->imageSource.toString()));
-//        UIImage *img = QImage2UIImmage(qImg);
+        // load file buffer
+        QFile imgFile(d->imageSource.toString().remove("qrc"));
+        imgFile.open(QFile::ReadOnly);
+        NSData* rawImgData = imgFile.readAll().toNSData();
+        imgFile.close();
 
-//        m_nativeResource = [[UITabBarItem alloc]
-//            initWithTitle:d->title.toNSString()
-//            image:img
-//            tag:0];
+        // create UIImage
+        UIImage *img = [[UIImage alloc] initWithData:rawImgData];
 
-//        updateViewControllerTarget();
+        m_nativeResource = [[UITabBarItem alloc]
+            initWithTitle:d->title.toNSString()
+            image:img
+            tag:0];
+
+        updateViewControllerTarget();
     } else if (d->systemItem != NoSystemItem) {
         if (m_nativeResource)
             [((UITabBarItem*) m_nativeResource) release];
