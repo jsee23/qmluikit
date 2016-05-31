@@ -6,7 +6,9 @@ The base idea of qmluikit is to provide the native UIKit controls easily in the 
 
 ### Current state
 The currently implemented controls are:
-* UIButton, UIControl, UIDatePicker, UINavigationController, UIProgressView, UIScrollView, UISegmentedControl, UISlider, UISwitch, UITableViewCell, UITableViewController, UIToolbar, UIView, UIViewController, UIWindow
+* UIAlertController, UIAlertAction, UIBarButtonItem, UIButton, UIControl, UIDatePicker, UINavigationController, UIProgressView, UIScrollView, UISegmentedControl, UISlider, UISwitch, UITabBarController, UITabBarItem, UITableViewCell, UITableViewController, UITableViewSection(*), UIToolbar, UIView, UIViewController, UIWindow
+
+(*) not part of the UIKit framework
 
 IMPORTANT: the implementations of these classes are very basic, e.g. styling is missing right now.
 
