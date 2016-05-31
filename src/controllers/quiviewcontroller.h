@@ -66,6 +66,8 @@ public:
     QUITabBarItem* tabBarItem() const;
     void setTabBarItem(QUITabBarItem* item);
 
+    Q_INVOKABLE void presentViewController(QUIViewController* controller);
+
     virtual void* nativeItem() Q_DECL_OVERRIDE;
 
 protected slots:

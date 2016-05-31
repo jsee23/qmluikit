@@ -26,6 +26,7 @@
 #include <QSize>
 
 #include "quiviewcontroller.h"
+#include "quialertcontroller.h"
 
 //////////////////////////
 // Objective-C
@@ -73,6 +74,7 @@ class QUIViewControllerPrivate
 {
 public:
     QSize m_size;
+    QString m_title;
 };
 
 QUIViewController::QUIViewController(QObject *parent)
@@ -128,14 +130,17 @@ void QUIViewController::childrenDidChanged()
  */
 QString QUIViewController::title() const
 {
-    return QString::fromNSString(((UIViewController*) m_nativeResource).navigationItem.title);
+    return d->m_title;
 }
 
 void QUIViewController::setTitle(const QString &title)
 {
-    [((UIViewController*) m_nativeResource).navigationItem
-            setTitle:title.toNSString()];
+    if (((UIViewController*) m_nativeResource).navigationItem) {
+        [((UIViewController*) m_nativeResource).navigationItem
+                setTitle:title.toNSString()];
+    }
 
+    d->m_title = title;
     emit titleChanged();
 }
 
@@ -222,4 +227,16 @@ void QUIViewController::setTabBarItem(QUITabBarItem *item)
     emit tabBarItemChanged();
 
     item->setTargetViewController(this);
+}
+
+void QUIViewController::presentViewController(QUIViewController *controller)
+{
+    QUIAlertController* alertController = qobject_cast<QUIAlertController*>(controller);
+    if (!alertController) {
+        [((UIViewController*) m_nativeResource)
+            presentViewController:((UIViewController*) controller->nativeItem())
+            animated:YES completion:nil];
+    } else {
+        alertController->createControllerAndPresent(this);
+    }
 }

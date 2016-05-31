@@ -30,6 +30,7 @@
 #include "controllers/quinavigationcontroller.h"
 #include "controllers/quitableviewcontroller.h"
 #include "controllers/quitabbarcontroller.h"
+#include "controllers/quialertcontroller.h"
 #include "views/quiview.h"
 #include "views/quiprogressview.h"
 #include "views/quiscrollview.h"
@@ -44,6 +45,7 @@
 #include "quibarbuttonitem.h"
 #include "quitabbaritem.h"
 #include "quitableviewsection.h"
+#include "quialertaction.h"
 
 void QmlUIKitPlugin::registerTypes(const char *uri)
 {
@@ -54,6 +56,7 @@ void QmlUIKitPlugin::registerTypes(const char *uri)
     qmlRegisterType<QUINavigationController>(uri, 0, 1, "UINavigationController");
     qmlRegisterType<QUITableViewController>(uri, 0, 1, "UITableViewController");
     qmlRegisterType<QUITabBarController>(uri, 0, 1, "UITabBarController");
+    qmlRegisterType<QUIAlertController>(uri, 0, 1, "UIAlertController");
 
     qmlRegisterType<QUIView>(uri, 0, 1, "UIView");
     qmlRegisterType<QUIControl>(uri, 0, 1, "UIControl");
@@ -67,6 +70,7 @@ void QmlUIKitPlugin::registerTypes(const char *uri)
     qmlRegisterType<QUIBarButtonItem>(uri, 0, 1, "UIBarButtonItem");
     qmlRegisterType<QUITabBarItem>(uri, 0, 1, "UITabBarItem");
     qmlRegisterType<QUIScrollView>(uri, 0, 1, "UIScrollView");
+    qmlRegisterType<QUIAlertAction>(uri, 0, 1, "UIAlertAction");
 
     qmlRegisterType<QUITableViewSection>(uri, 0, 1, "UITableViewSection");
     qmlRegisterType<QUITableViewCell>(uri, 0, 1, "UITableViewCell");
