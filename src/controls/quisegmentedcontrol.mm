@@ -56,6 +56,7 @@ public:
     QUISegmentedControlEventHandler* native;
     QStringList items;
     int initialSelectedSegment;
+    bool componentCompleted;
 };
 
 QUISegmentedControl::QUISegmentedControl(QObject* parent)
@@ -69,6 +70,8 @@ QUISegmentedControl::QUISegmentedControl(QObject* parent)
         action:@selector(currentIndexChanged:)
         forControlEvents:UIControlEventValueChanged];
     d->native->control = this;
+    d->componentCompleted = false;
+    d->initialSelectedSegment = -1;
 }
 
 QUISegmentedControl::~QUISegmentedControl()
@@ -110,4 +113,13 @@ void QUISegmentedControl::setInitialSelectedSegment(int index)
 
     d->initialSelectedSegment = index;
     emit initialSelectedSegmentChanged();
+}
+
+void QUISegmentedControl::componentComplete()
+{
+    d->componentCompleted = true;
+    if (d->initialSelectedSegment >= 0) {
+        ((UISegmentedControl*) m_nativeResource).selectedSegmentIndex = d->initialSelectedSegment;
+        emit selectedSegmentChanged();
+    }
 }

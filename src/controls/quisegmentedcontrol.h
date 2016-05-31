@@ -25,10 +25,12 @@
 #ifndef QUISEGMENTEDCONTROL_H
 #define QUISEGMENTEDCONTROL_H
 
+#include <QtQml/QQmlParserStatus>
+
 #include "quicontrol.h"
 
 class QUISegmentedControlPrivate;
-class QUISegmentedControl : public QUIControl
+class QUISegmentedControl : public QUIControl, public QQmlParserStatus
 {
     Q_OBJECT
 
@@ -36,6 +38,8 @@ class QUISegmentedControl : public QUIControl
     Q_PROPERTY(int selectedSegment READ selectedSegment NOTIFY selectedSegmentChanged)
     Q_PROPERTY(int initialSelectedSegment READ initialSelectedSegment
                WRITE setInitialSelectedSegment NOTIFY initialSelectedSegmentChanged)
+
+    Q_INTERFACES(QQmlParserStatus)
 
 public:
     QUISegmentedControl(QObject* parent = 0);
@@ -48,6 +52,10 @@ public:
 
     int initialSelectedSegment() const;
     void setInitialSelectedSegment(int index);
+
+protected:
+    void classBegin() Q_DECL_OVERRIDE {}
+    void componentComplete() Q_DECL_OVERRIDE;
 
 signals:
     void itemsChanged();
