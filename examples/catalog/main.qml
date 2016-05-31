@@ -34,6 +34,7 @@ UIWindow {
     property SegmentedController segmentedController: SegmentedController {}
     property ButtonController buttonController: ButtonController {}
     property TabBarController tabBarController: TabBarController {}
+    property AlertActionController alertActionController: AlertActionController {}
 
     UINavigationController {
         id: navigationController
@@ -48,6 +49,10 @@ UIWindow {
                 UITableViewSection {
                     title: "Controllers"
                     count: 3
+                },
+                UITableViewSection {
+                    title: "Views"
+                    count: 1
                 },
                 UITableViewSection {
                     title: "Controls"
@@ -81,6 +86,10 @@ UIWindow {
                 QtObject {
                     property string label: "UISegmentedControl"
                     property QtObject target: root.segmentedController
+                },
+                QtObject {
+                    property string label: "UIActionSheet"
+                    property QtObject target: root.alertActionController
                 },
                 QtObject {
                     property string label: "UIToolbar"

@@ -8,5 +8,6 @@
         <file>img/bullish.png</file>
         <file>img/bullish@2.png</file>
         <file>img/bullish@3.png</file>
+        <file>AlertActionController.qml</file>
     </qresource>
 </RCC>
