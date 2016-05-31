@@ -39,6 +39,8 @@ UIViewController {
         y: navigationController.statusBarHeight +
            navigationController.navigationBarGeometry.height + 5
         x: 5
+
+        initialSelectedSegment: 0
     }
 
     UIView {

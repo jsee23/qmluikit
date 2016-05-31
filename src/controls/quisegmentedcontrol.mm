@@ -55,6 +55,7 @@ class QUISegmentedControlPrivate
 public:
     QUISegmentedControlEventHandler* native;
     QStringList items;
+    int initialSelectedSegment;
 };
 
 QUISegmentedControl::QUISegmentedControl(QObject* parent)
@@ -95,4 +96,18 @@ void QUISegmentedControl::setItems(const QStringList &items)
 int QUISegmentedControl::selectedSegment() const
 {
     return ((UISegmentedControl*) m_nativeResource).selectedSegmentIndex;
+}
+
+int QUISegmentedControl::initialSelectedSegment() const
+{
+    return d->initialSelectedSegment;
+}
+
+void QUISegmentedControl::setInitialSelectedSegment(int index)
+{
+    if (index == d->initialSelectedSegment)
+        return;
+
+    d->initialSelectedSegment = index;
+    emit initialSelectedSegmentChanged();
 }

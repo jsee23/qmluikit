@@ -34,6 +34,8 @@ class QUISegmentedControl : public QUIControl
 
     Q_PROPERTY(QStringList items READ items WRITE setItems NOTIFY itemsChanged)
     Q_PROPERTY(int selectedSegment READ selectedSegment NOTIFY selectedSegmentChanged)
+    Q_PROPERTY(int initialSelectedSegment READ initialSelectedSegment
+               WRITE setInitialSelectedSegment NOTIFY initialSelectedSegmentChanged)
 
 public:
     QUISegmentedControl(QObject* parent = 0);
@@ -44,9 +46,13 @@ public:
 
     int selectedSegment() const;
 
+    int initialSelectedSegment() const;
+    void setInitialSelectedSegment(int index);
+
 signals:
     void itemsChanged();
     void selectedSegmentChanged();
+    void initialSelectedSegmentChanged();
 
 private:
     QUISegmentedControlPrivate* d;
