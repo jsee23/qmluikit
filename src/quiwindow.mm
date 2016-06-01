@@ -34,11 +34,15 @@
  * UIWindow is the top-level object of an application and simply specify, which
  * view controller will be loaded at startup.
  *
+ * UIWindow expect a UIViewController or subtype as a child. Note, that only
+ * one child is supported!
+ *
  * \qml
  * import jsee23.qmluikit 0.1
  *
  * UIWindow {
- *     initialViewController: UIViewController {
+ *     UIViewController {
+ *         id: initialShownViewController
  *         // ...
  *     }
  * }
