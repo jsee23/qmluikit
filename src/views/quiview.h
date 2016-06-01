@@ -44,6 +44,7 @@ class QUIView : public QUIKitItem
 
 public:
     QUIView(QObject* parent = 0);
+    QUIView(void* controllerRoot, QObject* parent);
     QUIView(bool init, QObject* parent = 0);
     ~QUIView();
 

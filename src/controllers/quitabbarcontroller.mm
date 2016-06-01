@@ -115,4 +115,6 @@ void QUITabBarController::initNativeResource()
 {
     m_nativeResource = [[QNative_UITabBarController alloc] init];
     ((QNative_UITabBarController*) m_nativeResource)->control = this;
+
+    m_controllerView = new QUIView(((QNative_UITabBarController*) m_nativeResource).view, this);
 }

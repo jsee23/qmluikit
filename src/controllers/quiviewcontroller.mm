@@ -59,14 +59,28 @@
  * \qmltype UIViewController
  * \inqmlmodule jsee23.qmluikit
  *
- * TODO
+ * UIViewController is the common container for a page of your application. It
+ * typically fill out the whole screen and contains views and controls.
  *
  * \qml
  * import jsee23.qmluikit 0.1
  *
- * UIWindow {
- *     // TODO: doc
- * }
+ * //...
+ *     UIViewController {
+ *         title: "My Super App"
+ *
+ *         UIButton {
+ *             //...
+ *         }
+ *
+ *         UISlider {
+ *             //...
+ *         }
+ *
+ *         //...
+ *     }
+ * //...
+ *
  * \endqml
  */
 
@@ -80,6 +94,7 @@ public:
 QUIViewController::QUIViewController(QObject *parent)
     : QUIKitItem(parent)
     , d(new QUIViewControllerPrivate)
+    , m_controllerView(nullptr)
     , m_tabBarItem(nullptr)
 {
     initNativeResource();
@@ -88,6 +103,8 @@ QUIViewController::QUIViewController(QObject *parent)
 QUIViewController::QUIViewController(bool init, QObject *parent)
     : QUIKitItem(parent)
     , d(new QUIViewControllerPrivate)
+    , m_controllerView(nullptr)
+    , m_tabBarItem(nullptr)
 {
     if (init)
         initNativeResource();
@@ -100,6 +117,8 @@ void QUIViewController::initNativeResource()
 
     CGSize size = ((QNative_UIViewController*) m_nativeResource).view.frame.size;
     d->m_size = QSize(size.width, size.height);
+
+    m_controllerView = new QUIView(((QNative_UIViewController*) m_nativeResource).view, this);
 }
 
 QUIViewController::~QUIViewController()
@@ -211,6 +230,11 @@ void QUIViewController::setStatusBarHeight(int height)
 
     m_statusBarHeight = height;
     emit statusBarHeightChanged();
+}
+
+QUIView *QUIViewController::view() const
+{
+    return m_controllerView;
 }
 
 QUITabBarItem *QUIViewController::tabBarItem() const

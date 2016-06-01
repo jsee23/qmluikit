@@ -118,6 +118,8 @@ void QUINavigationController::initNativeResource()
 {
     m_nativeResource = [[QNative_UINavigationController alloc] init];
     ((QNative_UINavigationController*) m_nativeResource)->control = this;
+
+    m_controllerView = new QUIView(((QNative_UINavigationController*) m_nativeResource).view, this);
 }
 
 void QUINavigationController::childrenDidChanged()

@@ -35,6 +35,12 @@ QUIView::QUIView(QObject* parent) :
     m_backgroundColor = QColor::fromRgb(0,0,0);
 }
 
+QUIView::QUIView(void *controllerRoot, QObject *parent) :
+    QUIKitItem(parent)
+{
+    m_nativeResource = controllerRoot;
+}
+
 QUIView::QUIView(bool init, QObject *parent) :
     QUIKitItem(parent)
 {

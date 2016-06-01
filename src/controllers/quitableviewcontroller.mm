@@ -160,6 +160,8 @@ QUITableViewController::QUITableViewController(QObject* parent) :
 {
     m_nativeResource = [[QNative_UITableViewController alloc] init];
     ((QNative_UITableViewController*) m_nativeResource)->control = this;
+
+    m_controllerView = new QUIView(((QNative_UITableViewController*) m_nativeResource).view, this);
 }
 
 QUITableViewController::~QUITableViewController()

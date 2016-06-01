@@ -29,6 +29,7 @@
 
 #include "quikititem.h"
 #include "../quitabbaritem.h"
+#include "../views/quiview.h"
 
 class QUIViewControllerPrivate;
 class QUIViewController : public QUIKitItem
@@ -43,6 +44,7 @@ class QUIViewController : public QUIKitItem
     Q_PROPERTY(int statusBarHeight READ statusBarHeight
                NOTIFY statusBarHeightChanged)
 
+    Q_PROPERTY(QUIView* view READ view CONSTANT)
     Q_PROPERTY(QUITabBarItem* tabBarItem READ tabBarItem
                WRITE setTabBarItem NOTIFY tabBarItemChanged)
 
@@ -63,6 +65,8 @@ public:
     int statusBarHeight() const;
     void setStatusBarHeight(int height);
 
+    QUIView* view() const;
+
     QUITabBarItem* tabBarItem() const;
     void setTabBarItem(QUITabBarItem* item);
 
@@ -72,6 +76,9 @@ public:
 
 protected slots:
     virtual void childrenDidChanged() Q_DECL_OVERRIDE;
+
+protected:
+    QUIView* m_controllerView;
 
 signals:
     void titleChanged();
