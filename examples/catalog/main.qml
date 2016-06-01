@@ -28,7 +28,6 @@ import jsee23.qmluikit 0.1
 
 UIWindow {
     id: root
-    initialViewController: navigationController
 
     property TableViewController tableViewController: TableViewController {}
     property SegmentedController segmentedController: SegmentedController {}

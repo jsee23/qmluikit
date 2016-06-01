@@ -38,18 +38,12 @@ class QUIWindow : public QUIView
 {
     Q_OBJECT
 
-    Q_PROPERTY(QUIViewController* initialViewController READ initialViewController
-               WRITE setInitialViewController NOTIFY initialViewControllerChanged)
-
 public:
     explicit QUIWindow(QObject *parent = 0);
     ~QUIWindow();
 
-    QUIViewController* initialViewController() const;
-    void setInitialViewController(QUIViewController* controller);
-
-signals:
-    void initialViewControllerChanged();
+protected slots:
+    virtual void childrenDidChanged() Q_DECL_OVERRIDE;
 
 private:
     QUIWindowPrivate* d;

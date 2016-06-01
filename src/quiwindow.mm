@@ -49,12 +49,15 @@ class QUIWindowPrivate {
 public:
     UIScreen* m_screen;
     UIWindow* m_window;
+    bool foundInitialViewController;
 };
 
 QUIWindow::QUIWindow(QObject *parent)
     : QUIView(false, parent),
       d(new QUIWindowPrivate)
 {
+    d->foundInitialViewController = false;
+
     d->m_screen = [UIScreen mainScreen];
     d->m_window = [[UIWindow alloc] initWithFrame:[d->m_screen bounds]];
 
@@ -69,20 +72,16 @@ QUIWindow::~QUIWindow()
     [d->m_window release];
 }
 
-/*!
- * \qmlproperty UIViewController jsee23.qmluikit::UIWindow::initialViewController
- *
- * This property holds the view controller, that will be displayed at startup.
- */
-QUIViewController* QUIWindow::initialViewController() const
+void QUIWindow::childrenDidChanged()
 {
-    return m_initialViewController;
-}
+    if (d->foundInitialViewController)
+        return;
 
-void QUIWindow::setInitialViewController(QUIViewController *controller)
-{
-    m_initialViewController = controller;
-    d->m_window.rootViewController = (UIViewController*) controller->nativeItem();
-
-    emit initialViewControllerChanged();
+    for (int i = 0; i < m_children.size(); i++) {
+        QUIViewController* controller = qobject_cast<QUIViewController*>(m_children.at(i));
+        if (controller && controller->nativeItem()) {
+            d->m_window.rootViewController = (UIViewController*) controller->nativeItem();
+            d->foundInitialViewController = true;
+        }
+    }
 }
