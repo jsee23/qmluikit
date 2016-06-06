@@ -2,6 +2,7 @@
 #define QUIALERTCONTROLLER_H
 
 #include "quiviewcontroller.h"
+#include "../quialertaction.h"
 
 class QUIAlertController : public QUIViewController
 {
@@ -38,6 +39,7 @@ protected slots:
 private:
     QString m_message;
     Style m_style;
+    QList<QUIAlertAction*> m_actions;
 };
 
 #endif // QUIALERTCONTROLLER_H

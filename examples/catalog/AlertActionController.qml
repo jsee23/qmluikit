@@ -29,10 +29,12 @@ UIViewController {
         UIAlertAction {
             title: "OK"
             style: UIAlertAction.DestructiveStyle
+            onClicked: console.log("clicked OK")
         }
         UIAlertAction {
             title: "Cancel"
             style: UIAlertAction.CancelStyle
+            onClicked: console.log("clicked Cancel")
         }
     }
 
@@ -45,9 +47,11 @@ UIViewController {
 
         UIAlertAction {
             title: "Cancel"
+            onClicked: console.log("clicked Cancel")
         }
         UIAlertAction {
             title: "OK"
+            onClicked: console.log("clicked OK")
         }
     }
 }

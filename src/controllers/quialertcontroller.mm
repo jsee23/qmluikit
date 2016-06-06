@@ -102,19 +102,22 @@ void QUIAlertController::createControllerAndPresent(QUIViewController *parent)
             message:controllerMsg
             preferredStyle:styleToUIAlertControllerStyle(m_style)];
 
+    m_actions.clear();
     for (int i = 0; i < m_children.size(); i++) {
         QUIAlertAction* item = qobject_cast<QUIAlertAction*>(m_children.at(i));
         if (item) {
             UIAlertAction* action = [UIAlertAction
                         actionWithTitle:item->title().toNSString()
                         style:styleToUIAlertActionStyle(item->style())
-                        handler:nil];
+                        handler:^(UIAlertAction * action) {
+                            emit m_actions.at(i)->clicked();
+                        }];
             [alert addAction:action];
+            m_actions.append(item);
         }
     }
 
-    [parentController presentViewController:alert
-      animated:YES completion:nil];
+    [parentController presentViewController:alert animated:YES completion:nil];
 }
 
 void QUIAlertController::childrenDidChanged()

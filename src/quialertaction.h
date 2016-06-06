@@ -33,6 +33,8 @@ signals:
     void titleChanged();
     void styleChanged();
 
+    void clicked();
+
 private:
     void updateItem();
 
