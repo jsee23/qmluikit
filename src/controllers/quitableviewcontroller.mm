@@ -88,7 +88,7 @@
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
-    return control->qlistSections().count();
+    return control->qlistSections().count() == 0 ? 1 : control->qlistSections().count();
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -136,7 +136,7 @@
 
 /*!
  * \brief TODO: doc
- * \qmltype UIVTableViewController
+ * \qmltype UITableViewController
  * \inqmlmodule jsee23.qmluikit
  *
  * TODO: doc
@@ -144,14 +144,17 @@
  * \qml
  * import jsee23.qmluikit 0.1
  *
- * // ...
- *     UIVTableViewController {
- *         model: [ "Apple", "Banana", "Tomato" ]
- *         delegate: UITableViewCell {
- *             textLabel: modelData
+ * UIWindow {
+ *     UINavigationController {
+ *         initialViewController: UITableViewController {
+ *             title: "UITableViewController"
+ *             model: [ "Apple", "Banana", "Tomato" ]
+ *             delegate: UITableViewCell {
+ *                 textLabel: modelData
+ *             }
  *         }
  *     }
- * // ...
+ * }
  * \endqml
  */
 
