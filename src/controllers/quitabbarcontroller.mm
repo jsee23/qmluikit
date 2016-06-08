@@ -87,6 +87,20 @@
 // Qt
 //////////////////////////
 
+/*!
+ * \brief Provides a container for displaying multiple \l {UIViewController} through a tab bar.
+ * \qmltype UITabBarViewController
+ * \inqmlmodule jsee23.qmluikit
+ *
+ * \l {UITabBarViewController} is a TODO: doc
+ *
+ * \qml
+ * import jsee23.qmluikit 0.1
+ *
+ * // TODO: doc
+ * \endqml
+ */
+
 QUITabBarController::QUITabBarController(QObject *parent)
     : QUIViewController(false, parent)
 {

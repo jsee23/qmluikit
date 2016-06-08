@@ -59,6 +59,20 @@ public:
     bool componentCompleted;
 };
 
+/*!
+ * \brief TODO: doc
+ * \qmltype UISegmentedControl
+ * \inqmlmodule jsee23.qmluikit
+ *
+ * \l {UISegmentedControl} is a TODO: doc
+ *
+ * \qml
+ * import jsee23.qmluikit 0.1
+ *
+ * // TODO: doc
+ * \endqml
+ */
+
 QUISegmentedControl::QUISegmentedControl(QObject* parent)
     : QUIControl(false, parent),
       d(new QUISegmentedControlPrivate)

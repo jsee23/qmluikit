@@ -4,10 +4,12 @@
     \brief Information about blaaaaaa
 
     \section1 General concepts
-    Todo
+    \list
+        \li view controllers
+        \li controls
+    \endlist
 
     \section1 Classes
-    Todo
     \list
         \li basic items
             \list
@@ -38,5 +40,23 @@
                 \li \l {UISlider}
                 \li \l {UISwitch}
             \endlist
+        \li others
+            \list
+                \li \l {UIAlertAction}
+                \li \l {UIBarButtonItem}
+                \li \l {UITabBarItem}
+                \li \l {UITableViewSection}
+                \li \l {UIToolbar}
+            \endlist
+    \endlist
+
+    \section1 Currently unsupported items
+    \list
+        \li UISearchBar
+        \li UISearchBarController
+        \li UILabel
+        \li UIActivityIndicatorView
+        \li UITextField
+        \li UIStepper
     \endlist
 */

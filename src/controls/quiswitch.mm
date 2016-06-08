@@ -58,6 +58,20 @@ public:
     QUISwitchEventHandler* native;
 };
 
+/*!
+ * \brief TODO: doc
+ * \qmltype UISwitch
+ * \inqmlmodule jsee23.qmluikit
+ *
+ * \l {UISwitch} is a TODO: doc
+ *
+ * \qml
+ * import jsee23.qmluikit 0.1
+ *
+ * // TODO: doc
+ * \endqml
+ */
+
 QUISwitch::QUISwitch(QObject* parent)
     : QUIControl(false, parent),
       d(new QUISwitchPrivate)

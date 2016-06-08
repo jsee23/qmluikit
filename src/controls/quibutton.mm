@@ -56,6 +56,21 @@ public:
     QUIButtonEventHandler* native;
 };
 
+
+/*!
+ * \brief TODO: doc
+ * \qmltype UIButton
+ * \inqmlmodule jsee23.qmluikit
+ *
+ * \l {UIButton} is a TODO: doc
+ *
+ * \qml
+ * import jsee23.qmluikit 0.1
+ *
+ * // TODO: doc
+ * \endqml
+ */
+
 QUIButton::QUIButton(QObject *parent)
     : QUIControl(false, parent),
       d(new QUIButtonPrivate)

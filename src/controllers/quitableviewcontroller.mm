@@ -135,11 +135,12 @@
 //////////////////////////
 
 /*!
- * \brief TODO: doc
+ * \brief Provides a \l {UIViewController} for displaying lists.
  * \qmltype UITableViewController
  * \inqmlmodule jsee23.qmluikit
  *
- * TODO: doc
+ * \l {UITableViewController} is a \l {UIViewController} that provides convenience
+ * for displaying a list and is comparable to the QtQuick ListView item.
  *
  * \qml
  * import jsee23.qmluikit 0.1
@@ -156,6 +157,11 @@
  *     }
  * }
  * \endqml
+ *
+ * \image UITableViewController_00.png "UITableViewController"
+ *
+ * The style and content of the list items are defined through the delegate
+ * property and its \l {UITableViewCell} item.
  */
 
 QUITableViewController::QUITableViewController(QObject* parent) :
@@ -175,7 +181,26 @@ QUITableViewController::~QUITableViewController()
 /*!
  * \qmlproperty list<UITableViewSection> jsee23.qmluikit::UITableViewController::sections
  *
- * TODO: doc
+ * An optional property to arrange the list items in sections. By default, all the list items
+ * are displayed in one section without a title.
+ *
+ * \qml
+ * UITableViewController {
+ *     model: [ "Anna", "AJ", "Boris", "Ben", "Becky" ]
+ *     sections: [
+ *         UITableViewSection {
+ *             title: "A"
+ *             count: 2
+ *         },
+ *         UITableViewSection {
+ *             title: "B"
+ *             count: 3
+ *         }
+ *     ]
+ * }
+ * \endqml
+ *
+ * \sa {UITableViewSection}
  */
 QQmlListProperty<QUITableViewSection> QUITableViewController::sections()
 {
@@ -194,9 +219,12 @@ QPointer<QQmlInstanceModel> QUITableViewController::objectModel() const
 }
 
 /*!
- * \qmlproperty var jsee23.qmluikit::UITableViewController::model
+ * \qmlproperty model jsee23.qmluikit::UITableViewController::model
  *
- * TODO: doc
+ * This property holds the model providing data for the list. The model
+ * provides the set of data that is used to create the items in the view.
+ * Models can be created directly in QML using ListModel, XmlListModel,
+ * VisualItemModel or JavaScript lists.
  */
 QVariant QUITableViewController::model() const
 {
@@ -299,8 +327,9 @@ void QUITableViewController::setDelegate(QQmlComponent *delegate)
 
 /*!
  * \qmlproperty int jsee23.qmluikit::UITableViewController::count
+ * \readonly
  *
- * TODO: doc
+ * This property holds the number of items in the UITableViewController.
  */
 int QUITableViewController::count() const
 {

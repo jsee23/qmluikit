@@ -53,6 +53,20 @@ static inline UIAlertActionStyle styleToUIAlertActionStyle(QUIAlertAction::Style
         return UIAlertActionStyleDestructive;
 }
 
+/*!
+ * \brief Provides a popup \l {UIViewController}.
+ * \qmltype UIAlertController
+ * \inqmlmodule jsee23.qmluikit
+ *
+ * \l {UIAlertController} is a TODO: doc
+ *
+ * \qml
+ * import jsee23.qmluikit 0.1
+ *
+ * // TODO: doc
+ * \endqml
+ */
+
 QUIAlertController::QUIAlertController(QObject *parent)
     : QUIViewController(false, parent)
     , m_style(QUIAlertController::ActionSheetStyle)

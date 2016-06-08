@@ -1,3 +1,9 @@
+include(/Users/jsee/Qt/5.6/clang_64/doc/global/macros.qdocconf) #macros for QDoc commands
+include(/Users/jsee/Qt/5.6/clang_64/doc/global/qt-cpp-defines.qdocconf) #needed by C++ projects
+include(/Users/jsee/Qt/5.6/clang_64/doc/global/compat.qdocconf) #compatibility macros
+include(/Users/jsee/Qt/5.6/clang_64/doc/global/fileextensions.qdocconf) #configuration common among QDoc projects
+include(/Users/jsee/Qt/5.6/clang_64/doc/global/qt-html-templates-offline.qdocconf) #offline HTML template for documentation shipped to Qt Creator
+
 project                 = QmlUIKit
 description             = QML module for UIKit framework
 version                 = 0.1.0

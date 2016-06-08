@@ -54,6 +54,20 @@ public:
     QUIDatePickerEventHandler* native;
 };
 
+/*!
+ * \brief TODO: doc
+ * \qmltype UIDatePicker
+ * \inqmlmodule jsee23.qmluikit
+ *
+ * \l {UIDatePicker} is a TODO: doc
+ *
+ * \qml
+ * import jsee23.qmluikit 0.1
+ *
+ * // TODO: doc
+ * \endqml
+ */
+
 QUIDatePicker::QUIDatePicker(QObject* parent)
     : QUIControl(false, parent),
       d(new QUIDatePickerPrivate)

@@ -56,6 +56,20 @@ public:
     QUISliderEventHandler* native;
 };
 
+/*!
+ * \brief TODO: doc
+ * \qmltype UISlider
+ * \inqmlmodule jsee23.qmluikit
+ *
+ * \l {UISlider} is a TODO: doc
+ *
+ * \qml
+ * import jsee23.qmluikit 0.1
+ *
+ * // TODO: doc
+ * \endqml
+ */
+
 QUISlider::QUISlider(QObject* parent)
     : QUIControl(false, parent),
       d(new QUISliderPrivate)
