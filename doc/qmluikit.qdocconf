@@ -1,0 +1,18 @@
+project                 = QmlUIKit
+description             = QML module for UIKit framework
+version                 = 0.1.0
+
+outputdir		= html
+outputformats		= HTML
+
+headerdirs		= ./../src
+headers.fileextensions	= "*.h"
+
+sourcedirs		= \
+	. \
+	./../src
+sources.fileextensions	= "*.qdoc" "*.mm"
+
+exampledirs += ../examples
+
+imagedirs   += images

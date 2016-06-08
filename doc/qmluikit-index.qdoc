@@ -1,0 +1,42 @@
+/*!
+    \page index.html
+    \title qmluikit
+    \brief Information about blaaaaaa
+
+    \section1 General concepts
+    Todo
+
+    \section1 Classes
+    Todo
+    \list
+        \li basic items
+            \list
+                \li \l {UIWindow}
+            \endlist
+        \li view controllers
+            \list
+                \li \l {UIViewController}
+                \li \l {UINavigationController}
+                \li \l {UITableViewController}
+                \li \l {UITabBarViewController}
+                \li \l {UIAlertController}
+            \endlist
+        \li views
+            \list
+                \li \l {UIView}
+                \li \l {UIScrollView}
+                \li \l {UIProgressView}
+                \li \l {UITableViewCell}
+                \li \l {UIToolbar}
+            \endlist
+        \li controls
+            \list
+                \li \l {UIControl}
+                \li \l {UIButton}
+                \li \l {UIDatePicker}
+                \li \l {UISegmentedControl}
+                \li \l {UISlider}
+                \li \l {UISwitch}
+            \endlist
+    \endlist
+*/
