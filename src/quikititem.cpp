@@ -25,7 +25,9 @@
 #include "quikititem.h"
 #include <QDebug>
 
-QUIKitItem::QUIKitItem(QObject *parent) : QObject(parent)
+QUIKitItem::QUIKitItem(QObject *parent)
+    : QObject(parent)
+    , m_nativeResource(nullptr)
 {
     connect(this, SIGNAL(childrenChanged()),
             this, SLOT(childrenDidChanged()));

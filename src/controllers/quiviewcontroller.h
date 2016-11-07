@@ -32,7 +32,7 @@
 #include "../views/quiview.h"
 
 class QUIViewControllerPrivate;
-class QUIViewController : public QUIKitItem
+class QUIViewController : public QUIKitItem, public QQmlParserStatus
 {
     Q_OBJECT
 
@@ -47,6 +47,8 @@ class QUIViewController : public QUIKitItem
     Q_PROPERTY(QUIView* view READ view CONSTANT)
     Q_PROPERTY(QUITabBarItem* tabBarItem READ tabBarItem
                WRITE setTabBarItem NOTIFY tabBarItemChanged)
+
+    Q_INTERFACES(QQmlParserStatus)
 
 public:
     QUIViewController(QObject *parent = 0);
@@ -74,6 +76,10 @@ public:
 
     virtual void* nativeItem() Q_DECL_OVERRIDE;
 
+protected:
+    void classBegin() override {}
+    virtual void componentComplete() override;
+
 protected slots:
     virtual void childrenDidChanged() Q_DECL_OVERRIDE;
 
@@ -93,6 +99,7 @@ private:
     QUIViewControllerPrivate* d;
     int m_statusBarHeight;
     QUITabBarItem* m_tabBarItem;
+    bool m_componentCompleted = false;
 };
 
 #endif // QUIVIEWCONTROLLER_H

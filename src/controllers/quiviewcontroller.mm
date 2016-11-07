@@ -131,6 +131,13 @@ void* QUIViewController::nativeItem()
     return m_nativeResource;
 }
 
+void QUIViewController::componentComplete()
+{
+    m_componentCompleted = true;
+
+    setTitle(d->m_title);
+}
+
 void QUIViewController::childrenDidChanged()
 {
     for (int i=0; i < m_children.size(); i++) {
@@ -154,13 +161,16 @@ QString QUIViewController::title() const
 
 void QUIViewController::setTitle(const QString &title)
 {
+    d->m_title = title;
+    emit titleChanged();
+
+    if (!m_componentCompleted)
+        return;
+
     if (((UIViewController*) m_nativeResource).navigationItem) {
         [((UIViewController*) m_nativeResource).navigationItem
                 setTitle:title.toNSString()];
     }
-
-    d->m_title = title;
-    emit titleChanged();
 }
 
 /*!

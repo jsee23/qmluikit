@@ -344,6 +344,7 @@ int QUITableViewController::count() const
 
 void QUITableViewController::componentComplete()
 {
+    QUIViewController::componentComplete();
     m_componentCompleted = true;
 
     if (m_model && m_ownModel)

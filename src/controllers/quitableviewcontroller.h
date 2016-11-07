@@ -33,7 +33,7 @@
 #include "quiviewcontroller.h"
 #include "quitableviewsection.h"
 
-class QUITableViewController : public QUIViewController, public QQmlParserStatus
+class QUITableViewController : public QUIViewController
 {
     Q_OBJECT
 
@@ -63,8 +63,7 @@ public:
     int count() const;
 
 protected:
-    void classBegin() {}
-    void componentComplete();
+    virtual void componentComplete() override;
 
 signals:
     void sectionsChanged();
