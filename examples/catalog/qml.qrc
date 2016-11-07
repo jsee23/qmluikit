@@ -10,5 +10,6 @@
         <file>img/bullish@3.png</file>
         <file>AlertActionController.qml</file>
         <file>TableViewControllerDynamic.qml</file>
+        <file>SliderController.qml</file>
     </qresource>
 </RCC>

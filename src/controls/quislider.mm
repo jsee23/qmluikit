@@ -55,6 +55,7 @@ class QUISliderPrivate
 {
 public:
     QUISliderEventHandler* native;
+    bool continuous;
 };
 
 /*!
@@ -82,6 +83,7 @@ QUISlider::QUISlider(QObject* parent)
         action:@selector(valueChanged:)
         forControlEvents:UIControlEventValueChanged];
     d->native->control = this;
+    d->continuous = true;
 }
 
 QUISlider::~QUISlider()
@@ -100,4 +102,20 @@ qreal QUISlider::value() const
 void QUISlider::setValue(qreal value)
 {
     [((UISlider*) m_nativeResource) setValue:value animated:TRUE];
+}
+
+bool QUISlider::continuous() const
+{
+    return d->continuous;
+}
+
+void QUISlider::setContinuous(bool continuous)
+{
+    if (continuous == d->continuous)
+        return;
+
+    d->continuous = continuous;
+    emit continuousChanged();
+
+    ((UISlider*) m_nativeResource).isContinuous = continuous;
 }

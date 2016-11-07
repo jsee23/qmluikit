@@ -33,6 +33,7 @@ UIWindow {
     property TableViewControllerDynamic tableViewControllerDynamic: TableViewControllerDynamic {}
     property SegmentedController segmentedController: SegmentedController {}
     property ButtonController buttonController: ButtonController {}
+    property SliderController sliderController: SliderController {}
     property TabBarController tabBarController: TabBarController {}
     property AlertActionController alertActionController: AlertActionController {}
 
@@ -104,6 +105,7 @@ UIWindow {
                 },
                 QtObject {
                     property string label: "UISlider"
+                    property QtObject target: root.sliderController
                 },
                 QtObject {
                     property string label: "UISwitch"

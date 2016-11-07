@@ -22,36 +22,17 @@
 **
 ****************************************************************************/
 
-#ifndef QUISLIDER_H
-#define QUISLIDER_H
+import QtQuick 2.0
+import QtQuick 2.5
+import jsee23.qmluikit 0.1
 
-#include "quicontrol.h"
+UIViewController {
+    id: controller
+    title: "UISlider"
 
-class QUISliderPrivate;
-class QUISlider : public QUIControl
-{
-    Q_OBJECT
-
-    Q_PROPERTY(qreal value READ value WRITE setValue NOTIFY valueChanged)
-    Q_PROPERTY(bool continuous READ continuous
-               WRITE setContinuous NOTIFY continuousChanged)
-
-public:
-    QUISlider(QObject* parent = 0);
-    ~QUISlider();
-
-    qreal value() const;
-    void setValue(qreal value);
-
-    bool continuous() const;
-    void setContinuous(bool continuous);
-
-signals:
-    void valueChanged();
-    void continuousChanged();
-
-private:
-    QUISliderPrivate* d;
-};
-
-#endif // QUISLIDER_H
+    UISlider {
+        x: 20
+        y: 150
+        width: controller.width - 40
+    }
+}
