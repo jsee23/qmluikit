@@ -118,7 +118,12 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     Q_UNUSED(tableView)
-    return control->qlistSections().at(section)->title().toNSString();
+    
+    if (control->qlistSections().size() == 0) {
+        return NULL;
+    } else {
+        return control->qlistSections().at(section)->title().toNSString();
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
