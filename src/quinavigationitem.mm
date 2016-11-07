@@ -2,10 +2,29 @@
 
 #include <UIKit/UIKit.h>
 
+#include "quibarbuttonitem.h"
+
 QUINavigationItem::QUINavigationItem(void *item, QObject *parent)
     : QUIKitItem(parent)
 {
     m_nativeResource = item;
+}
+
+QUIBarButtonItem *QUINavigationItem::rightBarButtonItem() const
+{
+    return m_rightBarButtonItem;
+}
+
+void QUINavigationItem::setRightBarButtonItem(QUIBarButtonItem *item)
+{
+    if (item == m_rightBarButtonItem)
+        return;
+
+    m_rightBarButtonItem = item;
+    emit rightBarButtonItemChanged();
+
+    ((UINavigationItem*) m_nativeResource).rightBarButtonItem =
+            (UIBarButtonItem*) item->nativeItem();
 }
 
 QString QUINavigationItem::prompt() const

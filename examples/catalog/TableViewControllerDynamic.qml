@@ -27,12 +27,22 @@ import QtQuick 2.5
 import jsee23.qmluikit 0.1
 
 UITableViewController {
-    title: "dynamic"
+    id: dynamicController
     delegate: UITableViewCell {
-        textLabel: modelData
+        textLabel: title
     }
 
-    navigationItem.prompt: "Dies ist ein Text!"
+    model: ListModel {
+        ListElement {
+            title: "item 0"
+        }
+    }
 
-    //Component.onCompleted: navigationItem.prompt = "Dies ist ein Test!"
+    navigationItem.prompt: "UITableViewController"
+    navigationItem.rightBarButtonItem: UIBarButtonItem {
+        title: "Add"
+        onClicked: {
+            dynamicController.model.append({title: "item " + dynamicController.model.count})
+        }
+    }
 }
