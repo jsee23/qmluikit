@@ -10,6 +10,24 @@ QUINavigationItem::QUINavigationItem(void *item, QObject *parent)
     m_nativeResource = item;
 }
 
+QUIBarButtonItem *QUINavigationItem::leftBarButtonItem() const
+{
+    return m_leftBarButtonItem;
+}
+
+void QUINavigationItem::setLeftBarButtonItem(QUIBarButtonItem *item)
+{
+    if (item == m_leftBarButtonItem)
+        return;
+
+    m_leftBarButtonItem = item;
+    emit leftBarButtonItemChanged();
+
+    UIBarButtonItem* buttonItem = item ? (UIBarButtonItem*) item->nativeItem() : NULL;
+    ((UINavigationItem*) m_nativeResource).leftBarButtonItem = buttonItem;
+            ;
+}
+
 QUIBarButtonItem *QUINavigationItem::rightBarButtonItem() const
 {
     return m_rightBarButtonItem;
