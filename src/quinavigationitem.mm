@@ -4,12 +4,48 @@
 
 #include "quibarbuttonitem.h"
 
+/*!
+ * \brief TODO: doc
+ * \qmltype UINavigationItem
+ * \inqmlmodule jsee23.qmluikit
+ *
+ * \l {UINavigationItem} is a class for manupulating the "navigation bar" of a
+ * ViewController.
+ *
+ * The elements of a \l {UINavigationItem} are the left and right barButtonItems
+ * and the prompt, a small text line showing more information in addition to the
+ * title of the ViewController:
+ *
+ * TODO picture / screenshot
+ *
+ * \qml
+ * import jsee23.qmluikit 0.1
+ *
+ * UIViewController {
+ *     title: "My Controller"
+ *
+ *     navigationItem.leftBarButtonItem: UIBarButtonItem {
+ *         title: "Add"
+ *         onClicked: {
+ *             // Do something...
+ *         }
+ *     }
+ *     ...
+ * }
+ * \endqml
+ */
+
 QUINavigationItem::QUINavigationItem(void *item, QObject *parent)
     : QUIKitItem(parent)
 {
     m_nativeResource = item;
 }
 
+/*!
+ * \qmlproperty UIBarButtonItem jsee23.qmluikit::UINavigationItem::leftBarButtonItem
+ *
+ * TODO: doc
+ */
 QUIBarButtonItem *QUINavigationItem::leftBarButtonItem() const
 {
     return m_leftBarButtonItem;
@@ -28,6 +64,11 @@ void QUINavigationItem::setLeftBarButtonItem(QUIBarButtonItem *item)
             ;
 }
 
+/*!
+ * \qmlproperty UIBarButtonItem jsee23.qmluikit::UINavigationItem::rightBarButtonItem
+ *
+ * TODO: doc
+ */
 QUIBarButtonItem *QUINavigationItem::rightBarButtonItem() const
 {
     return m_rightBarButtonItem;
@@ -45,6 +86,14 @@ void QUINavigationItem::setRightBarButtonItem(QUIBarButtonItem *item)
             (UIBarButtonItem*) item->nativeItem();
 }
 
+/*!
+ * \qmlproperty string jsee23.qmluikit::UINavigationItem::prompt
+ *
+ * The prompt is a small text line horizontal centered on the UINavigationItem,
+ * above the title of the ViewController.
+ *
+ * \sa {jsee23.qmluikit::UIViewController::title}
+ */
 QString QUINavigationItem::prompt() const
 {
     return m_prompt;
