@@ -42,6 +42,7 @@
 @implementation QUIButtonEventHandler
 - (IBAction) clicked : (id) sender
 {
+    Q_UNUSED(sender);
     emit button->clicked();
 }
 @end

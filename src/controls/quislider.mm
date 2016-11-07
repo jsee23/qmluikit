@@ -42,6 +42,7 @@
 @implementation QUISliderEventHandler
 - (IBAction) valueChanged : (id) sender
 {
+    Q_UNUSED(sender)
     emit control->valueChanged();
 }
 @end

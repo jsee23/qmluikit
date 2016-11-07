@@ -42,6 +42,7 @@
 @implementation QUISegmentedControlEventHandler
 - (void) currentIndexChanged : (UISegmentedControl*) segment
 {
+    Q_UNUSED(segment)
     emit control->selectedSegmentChanged();
 }
 @end

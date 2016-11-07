@@ -40,6 +40,7 @@
 @implementation QUIDatePickerEventHandler
 - (IBAction) valueChanged : (id) sender
 {
+    Q_UNUSED(sender)
     emit control->dateChanged();
 }
 @end

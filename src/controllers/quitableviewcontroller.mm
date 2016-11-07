@@ -88,10 +88,13 @@
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView *)tableView {
+    Q_UNUSED(tableView)
     return control->qlistSections().count() == 0 ? 1 : control->qlistSections().count();
 }
 
 - (NSInteger) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    Q_UNUSED(tableView)
+
     if (control->qlistSections().count() == 0)
         return control->count();
     else
@@ -100,6 +103,8 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    Q_UNUSED(tableView)
+
     int itemIndex = 0;
     for (int i = 0; i < indexPath.section; i++) {
         itemIndex += control->qlistSections().at(i)->count();
@@ -112,6 +117,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    Q_UNUSED(tableView)
     return control->qlistSections().at(section)->title().toNSString();
 }
 

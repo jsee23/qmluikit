@@ -42,6 +42,7 @@
 @implementation QUISwitchEventHandler
 - (IBAction) valueChanged : (id) sender
 {
+    Q_UNUSED(sender)
     emit control->onChanged();
 }
 @end
