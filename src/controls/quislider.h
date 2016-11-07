@@ -35,6 +35,10 @@ class QUISlider : public QUIControl
     Q_PROPERTY(qreal value READ value WRITE setValue NOTIFY valueChanged)
     Q_PROPERTY(bool continuous READ continuous
                WRITE setContinuous NOTIFY continuousChanged)
+    Q_PROPERTY(QUrl minimumValueImage READ minimumValueImage
+               WRITE setMinimumValueImage NOTIFY minimumValueImageChanged)
+    Q_PROPERTY(QUrl maximumValueImage READ maximumValueImage
+               WRITE setMaximumValueImage NOTIFY maximumValueImageChanged)
 
 public:
     QUISlider(QObject* parent = 0);
@@ -46,9 +50,17 @@ public:
     bool continuous() const;
     void setContinuous(bool continuous);
 
+    QUrl minimumValueImage() const;
+    void setMinimumValueImage(const QUrl &url);
+
+    QUrl maximumValueImage() const;
+    void setMaximumValueImage(const QUrl &url);
+
 signals:
     void valueChanged();
     void continuousChanged();
+    void minimumValueImageChanged();
+    void maximumValueImageChanged();
 
 private:
     QUISliderPrivate* d;

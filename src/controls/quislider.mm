@@ -56,6 +56,8 @@ class QUISliderPrivate
 public:
     QUISliderEventHandler* native;
     bool continuous;
+    QUrl minimumValueImageSource;
+    QUrl maximumValueImageSource;
 };
 
 /*!
@@ -118,4 +120,36 @@ void QUISlider::setContinuous(bool continuous)
     emit continuousChanged();
 
     ((UISlider*) m_nativeResource).isContinuous = continuous;
+}
+
+QUrl QUISlider::minimumValueImage() const
+{
+    return d->minimumValueImageSource;
+}
+
+void QUISlider::setMinimumValueImage(const QUrl &url)
+{
+    if (url == d->minimumValueImageSource)
+        return;
+
+    d->minimumValueImageSource = url;
+    emit minimumValueImageChanged();
+
+    qWarning("%s is not yes implemented...", __PRETTY_FUNCTION__);
+}
+
+QUrl QUISlider::maximumValueImage() const
+{
+    return d->maximumValueImageSource;
+}
+
+void QUISlider::setMaximumValueImage(const QUrl &url)
+{
+    if (url == d->maximumValueImageSource)
+        return;
+
+    d->maximumValueImageSource = url;
+    emit maximumValueImageChanged();
+
+    qWarning("%s is not yes implemented...", __PRETTY_FUNCTION__);
 }
