@@ -3,6 +3,8 @@ TARGETPATH = jsee23/qmluikit
 IMPORT_VERSION = 0.1
 
 QT += qml qml-private
+LIBS += -framework UIKit
+
 
 OTHER_FILES = \
     qmldir \
@@ -37,7 +39,8 @@ OBJECTIVE_SOURCES += \
     quitoolbar.mm \
     quibarbuttonitem.mm \
     quitabbaritem.mm \
-    quialertaction.mm
+    quialertaction.mm \
+    quinavigationitem.mm
 
 HEADERS += \
     qmluikit_plugin.h \
@@ -63,7 +66,8 @@ HEADERS += \
     quibarbuttonitem.h \
     quitableviewsection.h \
     quitabbaritem.h \
-    quialertaction.h
+    quialertaction.h \
+    quinavigationitem.h
 
 CONFIG += no_cxx_module
 load(qml_plugin)

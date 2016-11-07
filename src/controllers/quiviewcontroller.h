@@ -30,6 +30,7 @@
 #include "quikititem.h"
 #include "../quitabbaritem.h"
 #include "../views/quiview.h"
+#include "../quinavigationitem.h"
 
 class QUIViewControllerPrivate;
 class QUIViewController : public QUIKitItem, public QQmlParserStatus
@@ -47,6 +48,7 @@ class QUIViewController : public QUIKitItem, public QQmlParserStatus
     Q_PROPERTY(QUIView* view READ view CONSTANT)
     Q_PROPERTY(QUITabBarItem* tabBarItem READ tabBarItem
                WRITE setTabBarItem NOTIFY tabBarItemChanged)
+    Q_PROPERTY(QUINavigationItem* navigationItem READ navigationItem CONSTANT)
 
     Q_INTERFACES(QQmlParserStatus)
 
@@ -72,6 +74,8 @@ public:
     QUITabBarItem* tabBarItem() const;
     void setTabBarItem(QUITabBarItem* item);
 
+    QUINavigationItem* navigationItem() const;
+
     Q_INVOKABLE void presentViewController(QUIViewController* controller);
 
     virtual void* nativeItem() Q_DECL_OVERRIDE;
@@ -85,6 +89,7 @@ protected slots:
 
 protected:
     QUIView* m_controllerView;
+    QUINavigationItem* m_navigationItem;
 
 signals:
     void titleChanged();

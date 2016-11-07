@@ -105,6 +105,9 @@ QUITabBarController::QUITabBarController(QObject *parent)
     : QUIViewController(false, parent)
 {
     initNativeResource();
+    void* item =
+            (void*) ((QNative_UITabBarController*) m_nativeResource).navigationItem;
+    m_navigationItem = new QUINavigationItem((void*) item, this);
 }
 
 QUITabBarController::~QUITabBarController()

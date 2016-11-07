@@ -46,6 +46,7 @@
 #include "quitabbaritem.h"
 #include "quitableviewsection.h"
 #include "quialertaction.h"
+#include "quinavigationitem.h"
 
 void QmlUIKitPlugin::registerTypes(const char *uri)
 {
@@ -74,6 +75,8 @@ void QmlUIKitPlugin::registerTypes(const char *uri)
 
     qmlRegisterType<QUITableViewSection>(uri, 0, 1, "UITableViewSection");
     qmlRegisterType<QUITableViewCell>(uri, 0, 1, "UITableViewCell");
+
+    qmlRegisterUncreatableType<QUINavigationItem>(uri, 0, 1, "UINavigationItem", "reason: TODO!");
 }
 
 

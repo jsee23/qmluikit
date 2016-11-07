@@ -30,6 +30,7 @@ UIWindow {
     id: root
 
     property TableViewController tableViewController: TableViewController {}
+    property TableViewControllerDynamic tableViewControllerDynamic: TableViewControllerDynamic {}
     property SegmentedController segmentedController: SegmentedController {}
     property ButtonController buttonController: ButtonController {}
     property TabBarController tabBarController: TabBarController {}
@@ -47,7 +48,7 @@ UIWindow {
             sections: [
                 UITableViewSection {
                     title: "Controllers"
-                    count: 3
+                    count: 4
                 },
                 UITableViewSection {
                     title: "Views"
@@ -77,6 +78,10 @@ UIWindow {
                 QtObject {
                     property string label: "UITableViewController"
                     property QtObject target: root.tableViewController
+                },
+                QtObject {
+                    property string label: "UITableViewController dynamic"
+                    property QtObject target: root.tableViewControllerDynamic
                 },
                 QtObject {
                     property string label: "UITabBarController"

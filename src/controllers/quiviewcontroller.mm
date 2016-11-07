@@ -98,6 +98,9 @@ QUIViewController::QUIViewController(QObject *parent)
     , m_tabBarItem(nullptr)
 {
     initNativeResource();
+    void* item =
+            (void*) ((QNative_UIViewController*) m_nativeResource).navigationItem;
+    m_navigationItem = new QUINavigationItem((void*) item, this);
 }
 
 QUIViewController::QUIViewController(bool init, QObject *parent)
@@ -106,8 +109,12 @@ QUIViewController::QUIViewController(bool init, QObject *parent)
     , m_controllerView(nullptr)
     , m_tabBarItem(nullptr)
 {
-    if (init)
+    if (init) {
         initNativeResource();
+        void* item =
+                (void*) ((QNative_UIViewController*) m_nativeResource).navigationItem;
+        m_navigationItem = new QUINavigationItem((void*) item, this);
+    }
 }
 
 void QUIViewController::initNativeResource()
@@ -261,6 +268,11 @@ void QUIViewController::setTabBarItem(QUITabBarItem *item)
     emit tabBarItemChanged();
 
     item->setTargetViewController(this);
+}
+
+QUINavigationItem *QUIViewController::navigationItem() const
+{
+    return m_navigationItem;
 }
 
 void QUIViewController::presentViewController(QUIViewController *controller)
