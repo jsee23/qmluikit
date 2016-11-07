@@ -29,10 +29,6 @@
 #include <QtQml/QtQml>
 #include <QtQml/private/qqmldelegatemodel_p.h>
 
-//////////////////////////
-// Objective-C
-//////////////////////////
-
 #include <UIKit/UIKit.h>
 
 @interface QNative_UITableViewController : UITableViewController
@@ -141,39 +137,37 @@
 }
 @end
 
-//////////////////////////
-// Qt
-//////////////////////////
-
 /*!
- * \brief Provides a \l {UIViewController} for displaying lists.
- * \qmltype UITableViewController
- * \inqmlmodule jsee23.qmluikit
- *
- * \l {UITableViewController} is a \l {UIViewController} that provides convenience
- * for displaying a list and is comparable to the QtQuick ListView item.
- *
- * \qml
- * import jsee23.qmluikit 0.1
- *
- * UIWindow {
- *     UINavigationController {
- *         initialViewController: UITableViewController {
- *             title: "UITableViewController"
- *             model: [ "Apple", "Banana", "Tomato" ]
- *             delegate: UITableViewCell {
- *                 textLabel: modelData
- *             }
- *         }
- *     }
- * }
- * \endqml
- *
- * \image UITableViewController_00.png "UITableViewController"
- *
- * The style and content of the list items are defined through the delegate
- * property and its \l {UITableViewCell} item.
- */
+    \qmltype UITableViewController
+    \inherits UIViewController
+    \inqmlmodule jsee23.qmluikit
+    \brief Provides a \l {UIViewController} for displaying lists.
+
+    \l {UITableViewController} is a \l {UIViewController} that provides convenience
+    for displaying a list and is comparable to the QtQuick ListView item.
+
+    \qml
+    import jsee23.qmluikit 0.1
+
+    // ...
+
+    UITableViewController {
+        title: "UITableViewController"
+
+        model: [ "Apple", "Banana", "Tomato" ]
+        delegate: UITableViewCell {
+            textLabel: modelData
+        }
+    }
+
+    // ...
+    \endqml
+
+    \image UITableViewController_00.png "UITableViewController"
+
+    The style and content of the list items are defined through the delegate
+    property and its \l {UITableViewCell} item.
+*/
 
 QUITableViewController::QUITableViewController(QObject* parent) :
     QUIViewController(false, parent)
@@ -193,29 +187,29 @@ QUITableViewController::~QUITableViewController()
 }
 
 /*!
- * \qmlproperty list<UITableViewSection> jsee23.qmluikit::UITableViewController::sections
- *
- * An optional property to arrange the list items in sections. By default, all the list items
- * are displayed in one section without a title.
- *
- * \qml
- * UITableViewController {
- *     model: [ "Anna", "AJ", "Boris", "Ben", "Becky" ]
- *     sections: [
- *         UITableViewSection {
- *             title: "A"
- *             count: 2
- *         },
- *         UITableViewSection {
- *             title: "B"
- *             count: 3
- *         }
- *     ]
- * }
- * \endqml
- *
- * \sa {UITableViewSection}
- */
+    \qmlproperty list<UITableViewSection> jsee23.qmluikit::UITableViewController::sections
+
+    An optional property to arrange the list items in sections. By default, all the list items
+    are displayed in one section without a title.
+
+    \qml
+    UITableViewController {
+        model: [ "Anna", "AJ", "Boris", "Ben", "Becky" ]
+        sections: [
+            UITableViewSection {
+                title: "A"
+                count: 2
+            },
+            UITableViewSection {
+                title: "B"
+                count: 3
+            }
+        ]
+    }
+    \endqml
+
+    \sa {UITableViewSection}
+*/
 QQmlListProperty<QUITableViewSection> QUITableViewController::sections()
 {
     return QQmlListProperty<QUITableViewSection>(this, 0, &QUITableViewController::append_section,
@@ -233,13 +227,13 @@ QPointer<QQmlInstanceModel> QUITableViewController::objectModel() const
 }
 
 /*!
- * \qmlproperty model jsee23.qmluikit::UITableViewController::model
- *
- * This property holds the model providing data for the list. The model
- * provides the set of data that is used to create the items in the view.
- * Models can be created directly in QML using ListModel, XmlListModel,
- * VisualItemModel or JavaScript lists.
- */
+    \qmlproperty model jsee23.qmluikit::UITableViewController::model
+
+    This property holds the model providing data for the list. The model
+    provides the set of data that is used to create the items in the view.
+    Models can be created directly in QML using ListModel, XmlListModel,
+    VisualItemModel or JavaScript lists.
+*/
 QVariant QUITableViewController::model() const
 {
     if (m_dataSourceIsObject) {
@@ -306,10 +300,10 @@ void QUITableViewController::setModel(const QVariant &m)
 }
 
 /*!
- * \qmlproperty Component jsee23.qmluikit::UITableViewController::delegate
- *
- * TODO: doc
- */
+    \qmlproperty Component jsee23.qmluikit::UITableViewController::delegate
+
+    TODO: doc
+*/
 QQmlComponent *QUITableViewController::delegate() const
 {
     if (m_model) {
@@ -340,11 +334,11 @@ void QUITableViewController::setDelegate(QQmlComponent *delegate)
 }
 
 /*!
- * \qmlproperty int jsee23.qmluikit::UITableViewController::count
- * \readonly
- *
- * This property holds the number of items in the UITableViewController.
- */
+    \qmlproperty int jsee23.qmluikit::UITableViewController::count
+    \readonly
+
+    This property holds the number of items in the UITableViewController.
+*/
 int QUITableViewController::count() const
 {
     return m_itemCount;

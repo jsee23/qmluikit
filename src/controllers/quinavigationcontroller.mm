@@ -24,10 +24,6 @@
 
 #include "quinavigationcontroller.h"
 
-//////////////////////////
-// Objective-C
-//////////////////////////
-
 #include <UIKit/UIKit.h>
 
 @interface QNative_UINavigationController : UINavigationController
@@ -82,25 +78,38 @@
 }
 @end
 
-//////////////////////////
-// Qt
-//////////////////////////
-
 /*!
- * \brief TODO: doc
- * \qmltype UINavigationController
- * \inqmlmodule jsee23.qmluikit
- *
- * TODO
- *
- * \qml
- * import jsee23.qmluikit 0.1
- *
- * UIWindow {
- *     // TODO: doc
- * }
- * \endqml
- */
+    \qmltype UINavigationController
+    \inherits UIViewController
+    \inqmlmodule jsee23.qmluikit
+    \brief Provides a container for navigating between different \l {ViewController}s.
+
+    TODO
+
+    \qml
+    import jsee23.qmluikit 0.1
+
+    UIWindow {
+        UINavigationController {
+            id: navController
+
+            initialViewController: UIViewController {
+                title: "Landing page"
+                // ...
+
+                UIButton {
+                    titleLable: "go to 2. page"
+                    onClicked: navController.pushViewController(navController.secondPage)
+                }
+            }
+
+            property UIViewController secondPage: UIViewController {
+                // ...
+            }
+        }
+    }
+    \endqml
+*/
 
 QUINavigationController::QUINavigationController(QObject* parent) :
     QUIViewController(false, parent)
@@ -126,6 +135,10 @@ void QUINavigationController::childrenDidChanged()
 {
 }
 
+/*!
+    \qmlproperty UIViewController jsee23.qmluikit::UINavigationController::initialViewController
+    TODO: doc
+*/
 QUIViewController* QUINavigationController::initialViewController() const
 {
     return m_initialViewController;
@@ -141,10 +154,9 @@ void QUINavigationController::setInitialViewController(QUIViewController *contro
 }
 
 /*!
- * \qmlmethod void jsee23.qmluikit::UINavigationController::pushViewController(UIViewController* controller)
- *
- * TODO: doc
- */
+    \qmlmethod void jsee23.qmluikit::UINavigationController::pushViewController(UIViewController* controller)
+    TODO: doc
+*/
 void QUINavigationController::pushViewController(QUIViewController* controller)
 {
     controller->setSize(QSize(width(), height()));

@@ -33,10 +33,11 @@
 <h1 class="title">UINavigationController QML Type</h1>
 <span class="subtitle"></span>
 <!-- $$$UINavigationController-brief -->
-<p>TODO: doc <a href="#details">More...</a></p>
+<p>Provides a container for navigating between different ViewControllers. <a href="#details">More...</a></p>
 <!-- @@@UINavigationController -->
 <div class="table"><table class="alignedsummary">
-<tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import  .</td></tr></table></div><ul>
+<tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import  .</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <p><a href="qml-uiviewcontroller.html">UIViewController</a></p>
+</td></tr></table></div><ul>
 <li><a href="qml-uinavigationcontroller-members.html">List of all members, including inherited members</a></li>
 </ul>
 <!-- $$$UINavigationController-description -->
@@ -49,11 +50,38 @@
   import jsee23.qmluikit 0.1
 
   <span class="type"><a href="qml-uiwindow.html">UIWindow</a></span> {
-      <span class="comment">// TODO: doc</span>
+      <span class="type"><a href="qml-uinavigationcontroller.html">UINavigationController</a></span> {
+          <span class="name">id</span>: <span class="name">navController</span>
+
+          <span class="name">initialViewController</span>: <span class="name">UIViewController</span> {
+              <span class="name">title</span>: <span class="string">&quot;Landing page&quot;</span>
+              <span class="comment">// ...</span>
+
+              <span class="type"><a href="qml-uibutton.html">UIButton</a></span> {
+                  <span class="name">titleLable</span>: <span class="string">&quot;go to 2. page&quot;</span>
+                  <span class="name">onClicked</span>: <span class="name">navController</span>.<span class="name">pushViewController</span>(<span class="name">navController</span>.<span class="name">secondPage</span>)
+              }
+          }
+
+          property <span class="type"><a href="qml-uiviewcontroller.html">UIViewController</a></span> <span class="name">secondPage</span>: <span class="name">UIViewController</span> {
+              <span class="comment">// ...</span>
+          }
+      }
   }
 
 </pre>
 <!-- @@@UINavigationController -->
+<h2>Property Documentation</h2>
+<!-- $$$initialViewController -->
+<div class="qmlitem"><div class="qmlproto">
+<div class="table"><table class="qmlname">
+<tr valign="top" class="odd" id="initialViewController-prop">
+<td class="tblQmlPropNode"><p>
+<a name="initialViewController-prop"></a><span class="name">initialViewController</span> : <span class="type"><a href="qml-uiviewcontroller.html">UIViewController</a></span></p></td></tr>
+</table></div>
+</div><div class="qmldoc"><p>TODO: doc</p>
+</div></div><!-- @@@initialViewController -->
+<br/>
 <h2>Method Documentation</h2>
 <!-- $$$pushViewController -->
 <div class="qmlitem"><div class="qmlproto">

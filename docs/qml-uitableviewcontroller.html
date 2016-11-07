@@ -36,7 +36,8 @@
 <p>Provides a <a href="qml-uiviewcontroller.html">UIViewController</a> for displaying lists. <a href="#details">More...</a></p>
 <!-- @@@UITableViewController -->
 <div class="table"><table class="alignedsummary">
-<tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import  .</td></tr></table></div><ul>
+<tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import  .</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <p><a href="qml-uiviewcontroller.html">UIViewController</a></p>
+</td></tr></table></div><ul>
 <li><a href="qml-uitableviewcontroller-members.html">List of all members, including inherited members</a></li>
 </ul>
 <!-- $$$UITableViewController-description -->
@@ -48,17 +49,18 @@
 
   import jsee23.qmluikit 0.1
 
-  <span class="type"><a href="qml-uiwindow.html">UIWindow</a></span> {
-      <span class="type"><a href="qml-uinavigationcontroller.html">UINavigationController</a></span> {
-          <span class="name">initialViewController</span>: <span class="name">UITableViewController</span> {
-              <span class="name">title</span>: <span class="string">&quot;UITableViewController&quot;</span>
-              <span class="name">model</span>: [ <span class="string">&quot;Apple&quot;</span>, <span class="string">&quot;Banana&quot;</span>, <span class="string">&quot;Tomato&quot;</span> ]
-              <span class="name">delegate</span>: <span class="name">UITableViewCell</span> {
-                  <span class="name">textLabel</span>: <span class="name">modelData</span>
-              }
-          }
+  <span class="comment">// ...</span>
+
+  <span class="type"><a href="qml-uitableviewcontroller.html">UITableViewController</a></span> {
+      <span class="name">title</span>: <span class="string">&quot;UITableViewController&quot;</span>
+
+      <span class="name">model</span>: [ <span class="string">&quot;Apple&quot;</span>, <span class="string">&quot;Banana&quot;</span>, <span class="string">&quot;Tomato&quot;</span> ]
+      <span class="name">delegate</span>: <span class="name">UITableViewCell</span> {
+          <span class="name">textLabel</span>: <span class="name">modelData</span>
       }
   }
+
+  <span class="comment">// ...</span>
 
 </pre>
 <p class="centerAlign"><img src="images/UITableViewController_00.png" alt="&quot;UITableViewController&quot;" /></p><p>The style and content of the list items are defined through the delegate property and its UITableViewCell item.</p>

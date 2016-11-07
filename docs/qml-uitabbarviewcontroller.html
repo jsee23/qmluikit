@@ -36,19 +36,44 @@
 <p>Provides a container for displaying multiple <a href="qml-uiviewcontroller.html">UIViewController</a> through a tab bar. <a href="#details">More...</a></p>
 <!-- @@@UITabBarViewController -->
 <div class="table"><table class="alignedsummary">
-<tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import  .</td></tr></table></div><ul>
+<tr><td class="memItemLeft rightAlign topAlign"> Import Statement:</td><td class="memItemRight bottomAlign"> import  .</td></tr><tr><td class="memItemLeft rightAlign topAlign"> Inherits:</td><td class="memItemRight bottomAlign"> <p><a href="qml-uiviewcontroller.html">UIViewController</a></p>
+</td></tr></table></div><ul>
 <li><a href="qml-uitabbarviewcontroller-members.html">List of all members, including inherited members</a></li>
 </ul>
 <!-- $$$UITabBarViewController-description -->
 <a name="details"></a>
 <h2 id="details">Detailed Description</h2>
 </p>
-<p><a href="qml-uitabbarviewcontroller.html">UITabBarViewController</a> is a TODO: doc</p>
+<p><a href="qml-uitabbarviewcontroller.html">UITabBarViewController</a> ..&#x2e; TODO</p>
 <pre class="qml">
 
   import jsee23.qmluikit 0.1
 
-  // TODO: doc
+  <span class="type">UITabBarController</span> {
+      <span class="type"><a href="qml-uiviewcontroller.html">UIViewController</a></span> {
+          <span class="name">title</span>: <span class="string">&quot;First&quot;</span>
+          <span class="name">tabBarItem</span>: <span class="name">UITabBarItem</span> {
+              <span class="name">title</span>: <span class="string">&quot;First&quot;</span>
+              <span class="name">systemItem</span>: <span class="name">UITabBarItem</span>.<span class="name">Contacts</span>
+          }
+
+          <span class="type">UIView</span> {
+              <span class="name">backgroundColor</span>: <span class="string">&quot;red&quot;</span>
+          }
+      }
+
+      <span class="type"><a href="qml-uiviewcontroller.html">UIViewController</a></span> {
+          <span class="name">title</span>: <span class="string">&quot;Second&quot;</span>
+          <span class="name">tabBarItem</span>: <span class="name">UITabBarItem</span> {
+              <span class="name">title</span>: <span class="string">&quot;Second&quot;</span>
+              <span class="name">systemItem</span>: <span class="name">UITabBarItem</span>.<span class="name">Recents</span>
+          }
+
+          <span class="type">UIView</span> {
+              <span class="name">backgroundColor</span>: <span class="string">&quot;green&quot;</span>
+          }
+      }
+  }
 
 </pre>
 <!-- @@@UITabBarViewController -->

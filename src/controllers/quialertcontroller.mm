@@ -25,15 +25,7 @@
 #include "quialertcontroller.h"
 #include "../quialertaction.h"
 
-//////////////////////////
-// Objective-C
-//////////////////////////
-
 #include <UIKit/UIKit.h>
-
-//////////////////////////
-// Qt
-//////////////////////////
 
 static inline UIAlertControllerStyle styleToUIAlertControllerStyle(QUIAlertController::Style style)
 {
@@ -54,18 +46,18 @@ static inline UIAlertActionStyle styleToUIAlertActionStyle(QUIAlertAction::Style
 }
 
 /*!
- * \brief Provides a popup \l {UIViewController}.
- * \qmltype UIAlertController
- * \inqmlmodule jsee23.qmluikit
- *
- * \l {UIAlertController} is a TODO: doc
- *
- * \qml
- * import jsee23.qmluikit 0.1
- *
- * // TODO: doc
- * \endqml
- */
+    \qmltype UIAlertController
+    \inqmlmodule jsee23.qmluikit
+    \brief Provides a popup \l {UIViewController}.
+
+    \l {UIAlertController} is a TODO: doc
+
+    \qml
+    import jsee23.qmluikit 0.1
+
+    // TODO: doc
+    \endqml
+*/
 
 QUIAlertController::QUIAlertController(QObject *parent)
     : QUIViewController(false, parent)
@@ -77,6 +69,11 @@ QUIAlertController::~QUIAlertController()
 {
 }
 
+/*!
+    \qmlproperty string jsee23.qmluikit::QUIAlertController::message
+
+    TODO
+ */
 QString QUIAlertController::message() const
 {
     return m_message;
@@ -91,6 +88,11 @@ void QUIAlertController::setMessage(const QString &msg)
     emit messageChanged();
 }
 
+/*!
+    \qmlproperty jsee23.qmluikit::QUIAlertController::Style jsee23.qmluikit::QUIAlertController::style
+
+    TODO
+ */
 QUIAlertController::Style QUIAlertController::style() const
 {
     return m_style;

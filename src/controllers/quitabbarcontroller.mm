@@ -24,10 +24,6 @@
 
 #include "quitabbarcontroller.h"
 
-//////////////////////////
-// Objective-C
-//////////////////////////
-
 #include <UIKit/UIKit.h>
 
 @interface QNative_UITabBarController : UITabBarController
@@ -83,23 +79,46 @@
 }
 @end
 
-//////////////////////////
-// Qt
-//////////////////////////
-
 /*!
- * \brief Provides a container for displaying multiple \l {UIViewController} through a tab bar.
- * \qmltype UITabBarViewController
- * \inqmlmodule jsee23.qmluikit
- *
- * \l {UITabBarViewController} is a TODO: doc
- *
- * \qml
- * import jsee23.qmluikit 0.1
- *
- * // TODO: doc
- * \endqml
- */
+    \qmltype UITabBarViewController
+    \inherits UIViewController
+    \inqmlmodule jsee23.qmluikit
+    \brief Provides a container for displaying multiple \l {UIViewController} through a tab bar.
+
+    \l {UITabBarViewController} ... TODO
+
+    \qml
+    import jsee23.qmluikit 0.1
+
+    UITabBarController {
+        UIViewController {
+            title: "First"
+            tabBarItem: UITabBarItem {
+                title: "First"
+                systemItem: UITabBarItem.Contacts
+            }
+
+            UIView {
+                backgroundColor: "red"
+            }
+        }
+
+        UIViewController {
+            title: "Second"
+            tabBarItem: UITabBarItem {
+                title: "Second"
+                systemItem: UITabBarItem.Recents
+            }
+
+            UIView {
+                backgroundColor: "green"
+            }
+        }
+    }
+    \endqml
+*/
+
+
 
 QUITabBarController::QUITabBarController(QObject *parent)
     : QUIViewController(false, parent)

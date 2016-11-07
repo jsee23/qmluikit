@@ -28,10 +28,6 @@
 #include "quiviewcontroller.h"
 #include "quialertcontroller.h"
 
-//////////////////////////
-// Objective-C
-//////////////////////////
-
 @interface QNative_UIViewController : UIViewController
 {
     @public
@@ -48,41 +44,37 @@
 
 @end
 
-//////////////////////////
-// Qt
-//////////////////////////
-
 #include "../views/quiview.h"
 
 /*!
- * \brief TODO: doc
- * \qmltype UIViewController
- * \inqmlmodule jsee23.qmluikit
- *
- * UIViewController is the common container for a page of your application. It
- * typically fill out the whole screen and contains views and controls.
- *
- * \qml
- * import jsee23.qmluikit 0.1
- *
- * //...
- *     UIViewController {
- *         title: "My Super App"
- *
- *         UIButton {
- *             //...
- *         }
- *
- *         UISlider {
- *             //...
- *         }
- *
- *         //...
- *     }
- * //...
- *
- * \endqml
- */
+    \brief TODO: doc
+    \qmltype UIViewController
+    \inqmlmodule jsee23.qmluikit
+
+    UIViewController is the common container for a page of your application. It
+    typically fill out the whole screen and contains views and controls.
+
+    \qml
+    import jsee23.qmluikit 0.1
+
+    //...
+    UIViewController {
+        title: "My Super App"
+
+        UIButton {
+            //...
+        }
+
+        UISlider {
+            //...
+        }
+
+        //...
+    }
+    //...
+
+    \endqml
+*/
 
 class QUIViewControllerPrivate
 {
@@ -157,10 +149,10 @@ void QUIViewController::childrenDidChanged()
 }
 
 /*!
- * \qmlproperty string jsee23.qmluikit::UIViewController::title
- *
- * TODO: doc
- */
+    \qmlproperty string jsee23.qmluikit::UIViewController::title
+
+    TODO: doc
+*/
 QString QUIViewController::title() const
 {
     return d->m_title;
@@ -181,22 +173,22 @@ void QUIViewController::setTitle(const QString &title)
 }
 
 /*!
- * \qmlproperty int jsee23.qmluikit::UIViewController::width
- * \readonly
- *
- * TODO: doc
- */
+    \qmlproperty int jsee23.qmluikit::UIViewController::width
+    \readonly
+
+    TODO: doc
+*/
 int QUIViewController::width() const
 {
     return d->m_size.width();
 }
 
 /*!
- * \qmlproperty int jsee23.qmluikit::UIViewController::height
- * \readonly
- *
- * TODO: doc
- */
+    \qmlproperty int jsee23.qmluikit::UIViewController::height
+    \readonly
+
+    TODO: doc
+*/
 int QUIViewController::height() const
 {
     return d->m_size.height();
@@ -213,11 +205,11 @@ void QUIViewController::setSize(const QSize &size)
 }
 
 /*!
- * \qmlproperty size jsee23.qmluikit::UIViewController::navigationBarGeometry
- * \readonly
- *
- * TODO: doc
- */
+    \qmlproperty size jsee23.qmluikit::UIViewController::navigationBarGeometry
+    \readonly
+
+    TODO: doc
+*/
 QRect QUIViewController::navigationBarGeometry() const
 {
     if (!((UINavigationController*) m_nativeResource).navigationBar)
@@ -230,11 +222,11 @@ QRect QUIViewController::navigationBarGeometry() const
 }
 
 /*!
- * \qmlproperty int jsee23.qmluikit::UIViewController::statusBarHeight
- * \readonly
- *
- * TODO: doc
- */
+    \qmlproperty int jsee23.qmluikit::UIViewController::statusBarHeight
+    \readonly
+
+    TODO: doc
+*/
 int QUIViewController::statusBarHeight() const
 {
     return m_statusBarHeight;
@@ -249,11 +241,22 @@ void QUIViewController::setStatusBarHeight(int height)
     emit statusBarHeightChanged();
 }
 
+/*!
+    \qmlproperty UIView jsee23.qmluikit::UIViewController::view
+    \readonly
+
+    TODO: doc
+*/
 QUIView *QUIViewController::view() const
 {
     return m_controllerView;
 }
 
+/*!
+    \qmlproperty UITabBarItem jsee23.qmluikit::UIViewController::tabBarItem
+
+    TODO: doc
+*/
 QUITabBarItem *QUIViewController::tabBarItem() const
 {
     return m_tabBarItem;
@@ -270,11 +273,21 @@ void QUIViewController::setTabBarItem(QUITabBarItem *item)
     item->setTargetViewController(this);
 }
 
+/*!
+    \qmlproperty UINavigationItem jsee23.qmluikit::UIViewController::navigationItem
+
+    TODO: doc
+*/
 QUINavigationItem *QUIViewController::navigationItem() const
 {
     return m_navigationItem;
 }
 
+/*!
+    \qmlmethod void jsee23.qmluikit::UIViewController::presentViewController(UIViewController *controller)
+
+    TODO: doc
+*/
 void QUIViewController::presentViewController(QUIViewController *controller)
 {
     QUIAlertController* alertController = qobject_cast<QUIAlertController*>(controller);

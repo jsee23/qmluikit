@@ -61,9 +61,10 @@ public:
 };
 
 /*!
- * \brief TODO: doc
  * \qmltype UISlider
  * \inqmlmodule jsee23.qmluikit
+ * \instantiates QUISlider
+ * \brief Used to select a value by sliding a handle along a track.
  *
  * \l {UISlider} is a TODO: doc
  *
@@ -96,6 +97,14 @@ QUISlider::~QUISlider()
         [((UISlider*) m_nativeResource) release];
 }
 
+/*!
+ * \qmlproperty real jsee23.qmluikit::UISlider::value
+ *
+ * This property holds the current value of the slider thumb. It is in the
+ * range of the \l {minimumValue} and \l {maximumValue}.
+ *
+ * \sa minimumValue, maximumValue, continuous
+ */
 qreal QUISlider::value() const
 {
     return ((UISlider*) m_nativeResource).value;
@@ -106,6 +115,15 @@ void QUISlider::setValue(qreal value)
     [((UISlider*) m_nativeResource) setValue:value animated:TRUE];
 }
 
+/*!
+ * \qmlproperty bool jsee23.qmluikit::UISlider::continuous
+ *
+ * This property holds if the value changes of the user should be sent continuously
+ * or not. If false, the value will just change when the user releases the thumb.
+ * By default true.
+ *
+ * \sa value
+ */
 bool QUISlider::continuous() const
 {
     return d->continuous;
@@ -122,6 +140,14 @@ void QUISlider::setContinuous(bool continuous)
     ((UISlider*) m_nativeResource).isContinuous = continuous;
 }
 
+/*!
+ * \qmlproperty real jsee23.qmluikit::UISlider::minimumValueImage
+ *
+ * This property holds the url to an image, that will be shown left to the
+ * minimum of the slider.
+ *
+ * NOTE: currently not implemented!
+ */
 QUrl QUISlider::minimumValueImage() const
 {
     return d->minimumValueImageSource;
@@ -138,6 +164,14 @@ void QUISlider::setMinimumValueImage(const QUrl &url)
     qWarning("%s is not yes implemented...", __PRETTY_FUNCTION__);
 }
 
+/*!
+ * \qmlproperty real jsee23.qmluikit::UISlider::maximumValueImage
+ *
+ * This property holds the url to an image, that will be shown right to the
+ * maximum of the slider.
+ *
+ * NOTE: currently not implemented!
+ */
 QUrl QUISlider::maximumValueImage() const
 {
     return d->maximumValueImageSource;
