@@ -4,7 +4,7 @@ IMPORT_VERSION = 0.1
 
 QT += qml qml-private
 LIBS += -framework UIKit
-
+CONFIG += no_app_extension_api_only
 
 OTHER_FILES = \
     qmldir \

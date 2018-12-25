@@ -51,6 +51,8 @@
 // Qt
 //////////////////////////
 
+#include <QtCore/QUrl>
+
 class QUISliderPrivate
 {
 public:
@@ -137,7 +139,7 @@ void QUISlider::setContinuous(bool continuous)
     d->continuous = continuous;
     emit continuousChanged();
 
-    ((UISlider*) m_nativeResource).isContinuous = continuous;
+    //ToDo: ((UISlider*) m_nativeResource).isContinuous = continuous;
 }
 
 /*!

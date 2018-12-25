@@ -27,6 +27,8 @@
 
 #include "quicontrol.h"
 
+#include <QtCore/QUrl>
+
 class QUISliderPrivate;
 class QUISlider : public QUIControl
 {
