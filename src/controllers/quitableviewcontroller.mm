@@ -107,7 +107,7 @@
     }
     itemIndex += indexPath.row;
 
-    QUITableViewCell* cell = qobject_cast<QUITableViewCell*>(control->objectModel()->object(itemIndex, false));
+    QUITableViewCell* cell = qobject_cast<QUITableViewCell*>(control->objectModel()->object(itemIndex));
     return ((UITableViewCell*) cell->nativeItem());
 }
 
@@ -132,7 +132,7 @@
     }
     itemIndex += indexPath.row;
 
-    QUITableViewCell* cell = qobject_cast<QUITableViewCell*>(control->objectModel()->object(itemIndex, false));
+    QUITableViewCell* cell = qobject_cast<QUITableViewCell*>(control->objectModel()->object(itemIndex));
     emit cell->selected();
 }
 @end
@@ -393,7 +393,7 @@ void QUITableViewController::modelUpdated(const QQmlChangeSet &changeSet, bool r
             int modelIndex = index + i;
             ++m_itemCount;
             m_deletables.insert(modelIndex, 0);
-            QObject *object = m_model->object(modelIndex, false);
+            QObject *object = m_model->object(modelIndex);
             if (object)
                 m_model->release(object);
         }
@@ -406,7 +406,7 @@ void QUITableViewController::modelUpdated(const QQmlChangeSet &changeSet, bool r
 
 void QUITableViewController::createdItem(int index, QObject *)
 {
-    QObject *object = m_model->object(index, false);
+    QObject *object = m_model->object(index);
     QUITableViewCell *item = qmlobject_cast<QUITableViewCell*>(object);
     emit itemAdded(index, item);
 
@@ -474,7 +474,7 @@ void QUITableViewController::regenerate()
 void QUITableViewController::requestItems()
 {
     for (int i = 0; i < m_itemCount; i++) {
-        QObject *object = m_model->object(i, false);
+        QObject *object = m_model->object(i);
         if (object)
             m_model->release(object);
     }
