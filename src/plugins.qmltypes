@@ -41,6 +41,9 @@ Module {
         exports: ["jsee23.qmluikit/UIControl 0.1"]
         exportMetaObjectRevisions: [0]
     }
+
+    // controls
+
     Component {
         name: "QUIButton"
         prototype: "QUIControl"
@@ -51,7 +54,50 @@ Module {
 
         Signal { name: "titleLabelChanged" }
     }
-    // TODO
+
+    Component {
+        name: "QUIDatePicker"
+        prototype: "QUIControl"
+        exports: ["jsee23.qmluikit/UIDatePicker 0.1"]
+        exportMetaObjectRevisions: [0]
+
+        Property { name: "date"; type: "datetime" }
+
+        Signal { name: "dateChanged" }
+    }
+
+    Component {
+        name: "QUISegmentedControl"
+        prototype: "QUIControl"
+        exports: ["jsee23.qmluikit/UISegmentedControl 0.1"]
+        exportMetaObjectRevisions: [0]
+
+        Property { name: "items"; type: "list" }
+        Property { name: "selectedSegment"; type: "int" }
+        Property { name: "initialSelectedSegment"; type: "int" }
+
+        Signal { name: "itemsChanged" }
+        Signal { name: "selectedSegmentChanged" }
+        Signal { name: "initialSelectedSegmentChanged" }
+    }
+
+    Component {
+        name: "QUISlider"
+        prototype: "QUIControl"
+        exports: ["jsee23.qmluikit/UISlider 0.1"]
+        exportMetaObjectRevisions: [0]
+
+        Property { name: "value"; type: "real" }
+        Property { name: "continuous"; type: "bool" }
+        Property { name: "minimumValueImage"; type: "url" }
+        Property { name: "maximumValueImage"; type: "url" }
+
+        Signal { name: "valueChanged" }
+        Signal { name: "continuousChanged" }
+        Signal { name: "minimumValueImageChanged" }
+        Signal { name: "maximumValueImageChanged" }
+    }
+
     Component {
         name: "QUISwitch"
         prototype: "QUIControl"
@@ -69,6 +115,26 @@ Module {
         Signal { name: "tintColorChanged" }
     }
 
+    // views
+
+    Component {
+        name: "QUITableViewCell"
+        prototype: "QUIView"
+        exports: ["jsee23.qmluikit/UITableViewCell 0.1"]
+        exportMetaObjectRevisions: [0]
+
+        Property { name: "textLabel"; type: "string" }
+        Property { name: "detailTextLabel"; type: "string" }
+        Property { name: "style"; type: "string" } // TODO: string -> CellStyle
+
+        Signal { name: "textLabelChanged" }
+        Signal { name: "detailTextLabelChanged" }
+        Signal { name: "styleChanged" }
+        Signal { name: "selected" }
+    }
+
+    // controllers
+
     Component {
         name: "QUIViewController"
         exports: ["jsee23.qmluikit/UIViewController 0.1"]
@@ -77,11 +143,135 @@ Module {
         Property { name: "title"; type: "string" }
         Property { name: "width"; type: "int" }
         Property { name: "height"; type: "int" }
+        Property { name: "navigationBarGeometry"; type: "QRect" }
+        Property { name: "statusBarHeight"; type: "int" }
+        Property { name: "view"; type: "QUIView" }
+        Property { name: "tabBarItem"; type: "QUITabBarItem" }
+        Property { name: "navigationItem"; type: "QUINavigationItem" }
 
         Signal { name: "titleChanged" }
         Signal { name: "widthChanged" }
         Signal { name: "widthChanged" }
+    }
 
-        // TODO - properties and signals
+    Component {
+        name: "QUITableViewController"
+        prototype: "QUIViewController"
+        exports: ["jsee23.qmluikit/UITableViewController 0.1"]
+        exportMetaObjectRevisions: [0]
+
+        Property { name: "sections"; type: "list" }
+        Property { name: "model"; type: "variant" }
+        Property { name: "delegate"; type: "component" }
+        Property { name: "count"; type: "int" }
+
+        Signal { name: "sectionsChanged" }
+        Signal { name: "modelChanged" }
+        Signal { name: "delegateChanged" }
+        Signal { name: "countChanged" }
+        Signal { name: "itemAdded" }
+        Signal { name: "itemRemoved" }
+    }
+
+    Component {
+        name: "QUINavigationController"
+        prototype: "QUIViewController"
+        exports: ["jsee23.qmluikit/UINavigationController 0.1"]
+        exportMetaObjectRevisions: [0]
+
+        Property { name: "initialViewController"; type: "QUIViewController" }
+        Signal { name: "sectionsChanged" }
+    }
+
+    Component {
+        name: "QUITabBarController"
+        prototype: "QUIViewController"
+        exports: ["jsee23.qmluikit/UITabBarController 0.1"]
+        exportMetaObjectRevisions: [0]
+    }
+
+    Component {
+        name: "QUIAlertController"
+        prototype: "QUIViewController"
+        exports: ["jsee23.qmluikit/UIAlertController 0.1"]
+        exportMetaObjectRevisions: [0]
+
+        Property { name: "message"; type: "QUIViewController" }
+        Property { name: "style"; type: "string" } // TODO: string -> Style
+
+        Signal { name: "messageChanged" }
+        Signal { name: "styleChanged" }
+    }
+
+    // other
+
+    Component {
+        name: "QUIAlertAction"
+        prototype: "QUIKitItem"
+        exports: ["jsee23.qmluikit/UIAlertAction 0.1"]
+        exportMetaObjectRevisions: [0]
+
+        Property { name: "title"; type: "string" }
+        Property { name: "style"; type: "string" } // TODO: string -> Style
+
+        Signal { name: "titleChanged" }
+        Signal { name: "styleChanged" }
+    }
+
+    Component {
+        name: "QUIBarButtonItem"
+        prototype: "QUIKitItem"
+        exports: ["jsee23.qmluikit/UIBarButtonItem 0.1"]
+        exportMetaObjectRevisions: [0]
+
+        Property { name: "title"; type: "string" }
+        Signal { name: "titleChanged" }
+    }
+
+    Component {
+        name: "QUINavigationItem"
+        prototype: "QUIKitItem"
+        exports: ["jsee23.qmluikit/UINavigationItem 0.1"]
+        exportMetaObjectRevisions: [0]
+
+        Property { name: "leftBarButtonItem"; type: "QUIBarButtonItem" }
+        Property { name: "rightBarButtonItem"; type: "QUIBarButtonItem" }
+        Property { name: "prompt"; type: "string" }
+
+        Signal { name: "promptChanged" }
+        Signal { name: "rightBarButtonItemChanged" }
+        Signal { name: "leftBarButtonItemChanged" }
+    }
+
+    Component {
+        name: "QUITabBarItem"
+        prototype: "QUIKitItem"
+        exports: ["jsee23.qmluikit/UITabBarItem 0.1"]
+        exportMetaObjectRevisions: [0]
+
+        Property { name: "title"; type: "string" }
+        Property { name: "imageSource"; type: "url" }
+        Property { name: "systemItem"; type: "string" } // TODO: string -> SystemItems
+
+        Signal { name: "clicked" }
+        Signal { name: "titleChanged" }
+        Signal { name: "imageSourceChanged" }
+        Signal { name: "systemItemChanged" }
+    }
+
+    Component {
+        name: "QUITableViewSection"
+        exports: ["jsee23.qmluikit/UITableViewSection 0.1"]
+        exportMetaObjectRevisions: [0]
+
+        Property { name: "title"; type: "string" }
+        Property { name: "count"; type: "int" }
+    }
+
+    Component {
+        name: "QUIToolbar"
+        prototype: "QUIView"
+        exports: ["jsee23.qmluikit/UIToolbar 0.1"]
+        exportMetaObjectRevisions: [0]
     }
 }
