@@ -1,18 +1,38 @@
 # qmluikit
-QML-Wrapper for UIKit classes - Qt for iOS port
+QML wrapper for UIKit classes
 
-### Idea
-The base idea of qmluikit is to provide the native UIKit controls easily in the QML language. You can use the great cross-platform API's of the Qt framework and create a unique, platform-depending, but native & intuitive UI for your users.
+### Use the power of QML with UIKit
+It isn't easy to create a native-looking UI with Qt on iOS devices. Therefore, qmluikit provides access to the iOS-native rendering through UIKit.
+As every almost Qt developer is familiar with QML, qmluikit uses QML to create those UIs:
+```
+import QtQml 2.0
+import jsee23.qmluikit 0.1
 
-### Current state
-The currently implemented controls are:
-* UIAlertController, UIAlertAction, UIBarButtonItem, UIButton, UIControl, UIDatePicker, UINavigationController, UIProgressView, UIScrollView, UISegmentedControl, UISlider, UISwitch, UITabBarController, UITabBarItem, UITableViewCell, UITableViewController, UITableViewSection(*), UIToolbar, UIView, UIViewController, UIWindow
+UIWindow {
+    UIViewController {
+        title: "my qmluikit app"
 
-(*) not part of the UIKit framework
+        UIButton {
+            titleLabel: "Press me!"
+            onClicked: {
+                // do something special!
+            }
+        }
+    }
+}
+```
 
-IMPORTANT: the implementations of these classes are very basic, e.g. styling is missing right now.
+Please take a look at the preliminary documentation at:
 
-### Try things out
+http://jsee23.github.io/qmluikit/
+
+### Wishlist / Known Issues
+
+* anchors aren't supported
+* embed QtQuick into qmluikit application
+* styling of the controls
+
+### Build & Install
 ```
 qmake
 make
