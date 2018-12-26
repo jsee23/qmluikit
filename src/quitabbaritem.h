@@ -63,8 +63,8 @@ public:
     };
     Q_ENUM(SystemItems)
 
-    QUITabBarItem(QObject* parent = 0);
-    ~QUITabBarItem();
+    QUITabBarItem(QObject* parent = nullptr);
+    ~QUITabBarItem() override;
 
     QString title() const;
     void setTitle(const QString &title);
@@ -77,11 +77,11 @@ public:
 
     void setTargetViewController(QUIViewController* controller);
 
-    virtual void* nativeItem() Q_DECL_OVERRIDE;
+    virtual void* nativeItem() override;
 
 protected:
-    void classBegin() Q_DECL_OVERRIDE {}
-    void componentComplete() Q_DECL_OVERRIDE;
+    void classBegin() override {}
+    void componentComplete() override;
 
 signals:
     void clicked();

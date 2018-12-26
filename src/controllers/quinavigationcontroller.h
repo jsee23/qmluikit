@@ -35,8 +35,8 @@ class QUINavigationController : public QUIViewController
                WRITE setInitialViewController NOTIFY initialViewControllerChanged)
 
 public:
-    QUINavigationController(QObject* parent = 0);
-    ~QUINavigationController();
+    QUINavigationController(QObject* parent = nullptr);
+    ~QUINavigationController() override;
 
     Q_INVOKABLE void pushViewController(QUIViewController*);
 
@@ -47,7 +47,7 @@ signals:
     void initialViewControllerChanged();
 
 protected slots:
-    virtual void childrenDidChanged() Q_DECL_OVERRIDE;
+    virtual void childrenDidChanged() override;
 
 private:
     void initNativeResource();

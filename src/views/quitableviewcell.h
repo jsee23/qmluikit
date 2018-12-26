@@ -52,7 +52,7 @@ public:
     };
     Q_ENUMS(CellStyle)
 
-    QUITableViewCell(QObject *parent = 0);
+    QUITableViewCell(QObject *parent = nullptr);
     ~QUITableViewCell();
 
     QString textLabel() const;

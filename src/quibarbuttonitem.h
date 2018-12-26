@@ -35,13 +35,13 @@ class QUIBarButtonItem : public QUIKitItem
     Q_PROPERTY(QString title READ title WRITE setTitle NOTIFY titleChanged)
 
 public:
-    QUIBarButtonItem(QObject* parent = 0);
-    ~QUIBarButtonItem();
+    QUIBarButtonItem(QObject* parent = nullptr);
+    ~QUIBarButtonItem() override;
 
     QString title() const;
     void setTitle(const QString &title);
 
-    virtual void* nativeItem() Q_DECL_OVERRIDE;
+    virtual void* nativeItem() override;
 
 signals:
     void clicked();

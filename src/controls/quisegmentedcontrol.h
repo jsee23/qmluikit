@@ -42,8 +42,8 @@ class QUISegmentedControl : public QUIControl, public QQmlParserStatus
     Q_INTERFACES(QQmlParserStatus)
 
 public:
-    QUISegmentedControl(QObject* parent = 0);
-    ~QUISegmentedControl();
+    QUISegmentedControl(QObject* parent = nullptr);
+    ~QUISegmentedControl() override;
 
     QStringList items() const;
     void setItems(const QStringList &items);
@@ -54,8 +54,8 @@ public:
     void setInitialSelectedSegment(int index);
 
 protected:
-    void classBegin() Q_DECL_OVERRIDE {}
-    void componentComplete() Q_DECL_OVERRIDE;
+    void classBegin() override {}
+    void componentComplete() override;
 
 signals:
     void itemsChanged();

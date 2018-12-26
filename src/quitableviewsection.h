@@ -38,7 +38,7 @@ class QUITableViewSection : public QUIKitItem
     Q_PROPERTY(int count READ count WRITE setCount NOTIFY countChanged)
 
 public:
-    QUITableViewSection(QObject *parent = 0);
+    QUITableViewSection(QObject *parent = nullptr);
 
     QString title() const;
     void setTitle(const QString &title);

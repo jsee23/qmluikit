@@ -39,11 +39,11 @@ class QUIWindow : public QUIView
     Q_OBJECT
 
 public:
-    explicit QUIWindow(QObject *parent = 0);
+    explicit QUIWindow(QObject *parent = nullptr);
     ~QUIWindow();
 
 protected slots:
-    virtual void childrenDidChanged() Q_DECL_OVERRIDE;
+    virtual void childrenDidChanged() override;
 
 private:
     QUIWindowPrivate* d;

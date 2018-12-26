@@ -32,9 +32,9 @@ class QUIControl : public QUIView
     Q_OBJECT
 
 public:
-    QUIControl(QObject* parent = 0);
-    QUIControl(bool init, QObject* parent = 0);
-    ~QUIControl();
+    QUIControl(QObject* parent = nullptr);
+    QUIControl(bool init, QObject* parent = nullptr);
+    ~QUIControl() override;
 };
 
 #endif // QUICONTROL_H

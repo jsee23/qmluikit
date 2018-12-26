@@ -35,12 +35,12 @@ class QUIKitItem : public QObject
     Q_CLASSINFO("DefaultProperty", "children")
 
 public:
-    explicit QUIKitItem(QObject *parent = 0);
+    explicit QUIKitItem(QObject *parent = nullptr);
     virtual ~QUIKitItem();
 
     QQmlListProperty<QObject> children();
     virtual void* nativeItem() {
-        return NULL;
+        return nullptr;
     }
 
     static void append_child(QQmlListProperty<QObject> *list, QObject *child);

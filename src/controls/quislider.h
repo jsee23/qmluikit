@@ -43,8 +43,8 @@ class QUISlider : public QUIControl
                WRITE setMaximumValueImage NOTIFY maximumValueImageChanged)
 
 public:
-    QUISlider(QObject* parent = 0);
-    ~QUISlider();
+    QUISlider(QObject* parent = nullptr);
+    ~QUISlider() override;
 
     qreal value() const;
     void setValue(qreal value);

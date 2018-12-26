@@ -40,7 +40,7 @@ class QUIProgressView : public QUIView
     Q_PROPERTY(bool progressAnimated READ progressAnimated WRITE setProgressAnimated NOTIFY progressAnimatedChanged)
 
 public:
-    QUIProgressView(QObject* parent = 0);
+    QUIProgressView(QObject* parent = nullptr);
     ~QUIProgressView();
 
     qreal progress() const;

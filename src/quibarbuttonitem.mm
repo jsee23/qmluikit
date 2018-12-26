@@ -62,7 +62,7 @@ QUIBarButtonItem::QUIBarButtonItem(QObject* parent)
       d(new QUIBarButtonItemPrivate)
 {
     d->native = [[QUIBarButtonItemEventHandler alloc] init];
-    m_nativeResource = NULL;
+    m_nativeResource = nullptr;
     d->native->control = this;
 }
 

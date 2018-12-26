@@ -100,7 +100,7 @@ QUITabBarItem::QUITabBarItem(QObject* parent)
     , d(new QUITabBarItemPrivate)
 {
     d->native = [[QUITabBarItemEventHandler alloc] init];
-    m_nativeResource = NULL;
+    m_nativeResource = nullptr;
     d->native->control = this;
     d->systemItem = NoSystemItem;
     d->targetViewController = nullptr;

@@ -59,9 +59,8 @@ void QUINavigationItem::setLeftBarButtonItem(QUIBarButtonItem *item)
     m_leftBarButtonItem = item;
     emit leftBarButtonItemChanged();
 
-    UIBarButtonItem* buttonItem = item ? (UIBarButtonItem*) item->nativeItem() : NULL;
+    UIBarButtonItem* buttonItem = item ? (UIBarButtonItem*) item->nativeItem() : nullptr;
     ((UINavigationItem*) m_nativeResource).leftBarButtonItem = buttonItem;
-            ;
 }
 
 /*!

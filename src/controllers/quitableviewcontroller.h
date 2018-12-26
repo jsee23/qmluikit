@@ -46,8 +46,8 @@ class QUITableViewController : public QUIViewController
     Q_INTERFACES(QQmlParserStatus)
 
 public:
-    QUITableViewController(QObject* parent = 0);
-    ~QUITableViewController();
+    QUITableViewController(QObject* parent = nullptr);
+    ~QUITableViewController() override;
 
     QQmlListProperty<QUITableViewSection> sections();
     QList<QUITableViewSection*> qlistSections() const;

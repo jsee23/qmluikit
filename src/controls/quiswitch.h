@@ -48,8 +48,8 @@ class QUISwitch : public QUIControl
                WRITE setTintColor NOTIFY tintColorChanged)
 
 public:
-    QUISwitch(QObject* parent = 0);
-    ~QUISwitch();
+    QUISwitch(QObject* parent = nullptr);
+    ~QUISwitch() override;
 
     bool on() const;
     void setOn(bool on);

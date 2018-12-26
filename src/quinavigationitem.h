@@ -17,7 +17,7 @@ class QUINavigationItem : public QUIKitItem
     Q_PROPERTY(QString prompt READ prompt WRITE setPrompt NOTIFY promptChanged)
 
 public:
-    QUINavigationItem(void* item, QObject *parent = 0);
+    QUINavigationItem(void* item, QObject *parent = nullptr);
 
     QUIBarButtonItem* leftBarButtonItem() const;
     void setLeftBarButtonItem(QUIBarButtonItem* item);

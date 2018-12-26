@@ -43,10 +43,10 @@ class QUIView : public QUIKitItem
                NOTIFY backgroundColorChanged)
 
 public:
-    QUIView(QObject* parent = 0);
+    QUIView(QObject* parent = nullptr);
     QUIView(void* controllerRoot, QObject* parent);
-    QUIView(bool init, QObject* parent = 0);
-    ~QUIView();
+    QUIView(bool init, QObject* parent = nullptr);
+    ~QUIView() override;
 
     int x() const;
     void setX(int x);
@@ -66,10 +66,10 @@ public:
     QColor backgroundColor() const;
     void setBackgroundColor(const QColor& color);
 
-    virtual void* nativeItem() Q_DECL_OVERRIDE;
+    virtual void* nativeItem() override;
 
 protected slots:
-    virtual void childrenDidChanged() Q_DECL_OVERRIDE;
+    virtual void childrenDidChanged() override;
 
 signals:
     void xChanged();

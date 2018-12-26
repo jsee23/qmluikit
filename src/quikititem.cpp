@@ -29,8 +29,8 @@ QUIKitItem::QUIKitItem(QObject *parent)
     : QObject(parent)
     , m_nativeResource(nullptr)
 {
-    connect(this, SIGNAL(childrenChanged()),
-            this, SLOT(childrenDidChanged()));
+    connect(this, &QUIKitItem::childrenChanged,
+            this, &QUIKitItem::childrenDidChanged);
 }
 
 QUIKitItem::~QUIKitItem()

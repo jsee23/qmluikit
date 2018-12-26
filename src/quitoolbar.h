@@ -33,11 +33,11 @@ class QUIToolbar : public QUIView
     Q_OBJECT
 
 public:
-    QUIToolbar(QObject* parent = 0);
+    QUIToolbar(QObject* parent = nullptr);
     ~QUIToolbar();
 
 protected slots:
-    virtual void childrenDidChanged() Q_DECL_OVERRIDE;
+    virtual void childrenDidChanged() override;
 
 private:
     QUIToolbarPrivate* d;

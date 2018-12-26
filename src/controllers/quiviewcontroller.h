@@ -53,9 +53,9 @@ class QUIViewController : public QUIKitItem, public QQmlParserStatus
     Q_INTERFACES(QQmlParserStatus)
 
 public:
-    QUIViewController(QObject *parent = 0);
-    QUIViewController(bool init, QObject *parent = 0);
-    ~QUIViewController();
+    QUIViewController(QObject *parent = nullptr);
+    QUIViewController(bool init, QObject *parent = nullptr);
+    ~QUIViewController() override;
 
     QString title() const;
     void setTitle(const QString& title);
@@ -78,14 +78,14 @@ public:
 
     Q_INVOKABLE void presentViewController(QUIViewController* controller);
 
-    virtual void* nativeItem() Q_DECL_OVERRIDE;
+    virtual void* nativeItem() override;
 
 protected:
     void classBegin() override {}
     virtual void componentComplete() override;
 
 protected slots:
-    virtual void childrenDidChanged() Q_DECL_OVERRIDE;
+    virtual void childrenDidChanged() override;
 
 protected:
     QUIView* m_controllerView;

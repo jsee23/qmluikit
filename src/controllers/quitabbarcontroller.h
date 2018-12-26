@@ -32,11 +32,11 @@ class QUITabBarController : public QUIViewController
     Q_OBJECT
 
 public:
-    QUITabBarController(QObject* parent = 0);
-    ~QUITabBarController();
+    QUITabBarController(QObject* parent = nullptr);
+    ~QUITabBarController() override;
 
 protected slots:
-    virtual void childrenDidChanged() Q_DECL_OVERRIDE;
+    virtual void childrenDidChanged() override;
 
 private:
     void initNativeResource();

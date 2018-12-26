@@ -37,7 +37,7 @@ class QUIDatePicker : public QUIControl
     Q_PROPERTY(QDateTime date READ date NOTIFY dateChanged)
 
 public:
-    QUIDatePicker(QObject* parent = 0);
+    QUIDatePicker(QObject* parent = nullptr);
     ~QUIDatePicker();
 
     QDateTime date() const;

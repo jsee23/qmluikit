@@ -116,7 +116,7 @@
     Q_UNUSED(tableView)
     
     if (control->qlistSections().size() == 0) {
-        return NULL;
+        return nullptr;
     } else {
         return control->qlistSections().at(section)->title().toNSString();
     }

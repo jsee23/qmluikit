@@ -18,8 +18,8 @@ public:
     };
     Q_ENUM(Style)
 
-    QUIAlertAction(QObject* parent = 0);
-    ~QUIAlertAction();
+    QUIAlertAction(QObject* parent = nullptr);
+    ~QUIAlertAction() override;
 
     QString title() const;
     void setTitle(const QString &title);
@@ -27,7 +27,7 @@ public:
     Style style() const;
     void setStyle(Style style);
 
-    virtual void* nativeItem() Q_DECL_OVERRIDE;
+    virtual void* nativeItem() override;
 
 signals:
     void titleChanged();

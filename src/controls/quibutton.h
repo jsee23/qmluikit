@@ -44,8 +44,8 @@ class QUIButton : public QUIControl
     Q_PROPERTY(QString titleLabel READ titleLabel WRITE setTitleLabel NOTIFY titleLabelChanged)
 
 public:
-    QUIButton(QObject *parent = 0);
-    ~QUIButton();
+    QUIButton(QObject *parent = nullptr);
+    ~QUIButton() override;
 
     QString titleLabel() const;
     void setTitleLabel(const QString& title);

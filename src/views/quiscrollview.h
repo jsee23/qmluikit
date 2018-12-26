@@ -37,7 +37,7 @@ class QUIScrollView : public QUIView
                WRITE setContentHeight NOTIFY contentHeightChanged)
 
 public:
-    QUIScrollView(QObject* parent = 0);
+    QUIScrollView(QObject* parent = nullptr);
     ~QUIScrollView();
 
     int contentWidth() const;

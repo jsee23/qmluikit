@@ -102,7 +102,7 @@ void QUITableViewCell::updateNativeItem()
 // *****************
 // FIXME:   release the old UITableViewCell in a safe way....!
 // *****************
-//    if (m_nativeResource != NULL)
+//    if (m_nativeResource != nullptr)
 //        [((UITableViewCell*) m_nativeResource) release];
 
     if (m_style == StyleDefault)

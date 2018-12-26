@@ -18,8 +18,8 @@ public:
     };
     Q_ENUM(Style)
 
-    QUIAlertController(QObject* parent = 0);
-    ~QUIAlertController();
+    QUIAlertController(QObject* parent = nullptr);
+    ~QUIAlertController() override;
 
     QString message() const;
     void setMessage(const QString &msg);
@@ -34,7 +34,7 @@ signals:
     void styleChanged();
 
 protected slots:
-    virtual void childrenDidChanged() Q_DECL_OVERRIDE;
+    virtual void childrenDidChanged() override;
 
 private:
     QString m_message;
