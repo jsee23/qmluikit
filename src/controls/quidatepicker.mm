@@ -23,6 +23,7 @@
 ****************************************************************************/
 
 #include "quidatepicker.h"
+#include "quikithelpers.h"
 
 //////////////////////////
 // Objective-C
@@ -75,10 +76,10 @@ QUIDatePicker::QUIDatePicker(QObject* parent)
 {
     d->native = [[QUIDatePickerEventHandler alloc] init];
     m_nativeResource = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 0, 100, 40)];
-    [((UIDatePicker*) m_nativeResource)
-        addTarget:d->native
-        action:@selector(valueChanged:)
-        forControlEvents:UIControlEventValueChanged];
+
+    QMLUIKIT_NATIVE_CONTROL(UIDatePicker)
+    [nativeControl addTarget:d->native action:@selector(valueChanged:)
+                   forControlEvents:UIControlEventValueChanged];
     d->native->control = this;
 }
 
@@ -86,8 +87,10 @@ QUIDatePicker::~QUIDatePicker()
 {
     if (d->native)
         [d->native release];
-    if (m_nativeResource)
-        [((UIDatePicker*) m_nativeResource) release];
+    if (m_nativeResource) {
+        QMLUIKIT_NATIVE_CONTROL(UIDatePicker)
+        [nativeControl release];
+    }
 }
 
 QDateTime QUIDatePicker::date() const

@@ -23,6 +23,7 @@
 ****************************************************************************/
 
 #include "quibutton.h"
+#include "quikithelpers.h"
 
 //////////////////////////
 // Objective-C
@@ -78,8 +79,10 @@ QUIButton::QUIButton(QObject *parent)
 {
     d->native = [[QUIButtonEventHandler alloc] init];
     m_nativeResource = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [((UIControl*) m_nativeResource) setFrame: CGRectMake(0, 0, 100, 40)];
-    [((UIButton*) m_nativeResource) addTarget:d->native action:@selector(clicked:) forControlEvents:UIControlEventTouchUpInside];
+
+    QMLUIKIT_NATIVE_CONTROL(UIButton)
+    [nativeControl setFrame: CGRectMake(0, 0, 100, 40)];
+    [nativeControl addTarget:d->native action:@selector(clicked:) forControlEvents:UIControlEventTouchUpInside];
     d->native->button = this;
 }
 
@@ -87,16 +90,20 @@ QUIButton::~QUIButton()
 {
     if (d->native)
         [d->native release];
-    if (m_nativeResource)
-        [((UIButton*) m_nativeResource) release];
+    if (m_nativeResource) {
+        QMLUIKIT_NATIVE_CONTROL(UIButton)
+        [nativeControl release];
+    }
 }
 
 QString QUIButton::titleLabel() const
 {
-    return QString::fromNSString(((UIButton*) m_nativeResource).currentTitle);
+    QMLUIKIT_NATIVE_CONTROL(UIButton)
+    return QString::fromNSString(nativeControl.currentTitle);
 }
 
 void QUIButton::setTitleLabel(const QString &title)
 {
-    [((UIButton*) m_nativeResource) setTitle:title.toNSString() forState:UIControlStateNormal];
+    QMLUIKIT_NATIVE_CONTROL(UIButton)
+    [nativeControl setTitle:title.toNSString() forState:UIControlStateNormal];
 }

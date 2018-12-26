@@ -23,6 +23,7 @@
 ****************************************************************************/
 
 #include "quitabbarcontroller.h"
+#include "quikithelpers.h"
 
 #include <UIKit/UIKit.h>
 
@@ -124,19 +125,22 @@ QUITabBarController::QUITabBarController(QObject *parent)
     : QUIViewController(false, parent)
 {
     initNativeResource();
-    void* item =
-            (void*) ((QNative_UITabBarController*) m_nativeResource).navigationItem;
-    m_navigationItem = new QUINavigationItem((void*) item, this);
+    QMLUIKIT_QT_CONTROL(UITabBarController)
+    m_navigationItem = new QUINavigationItem(qtControl.navigationItem, this);
 }
 
 QUITabBarController::~QUITabBarController()
 {
-    if (m_nativeResource)
-        [((QNative_UITabBarController*) m_nativeResource) release];
+    if (m_nativeResource) {
+        QMLUIKIT_QT_CONTROL(UITabBarController)
+        [qtControl release];
+    }
 }
 
 void QUITabBarController::childrenDidChanged()
 {
+    QMLUIKIT_QT_CONTROL(UITabBarController)
+
     NSMutableArray * controllers = [[NSMutableArray alloc] initWithCapacity:m_children.size()];
     for (int i = 0; i < m_children.size(); i++) {
         QUIViewController* item = qobject_cast<QUIViewController*>(m_children.at(i));
@@ -144,13 +148,14 @@ void QUITabBarController::childrenDidChanged()
             [controllers addObject: ((QNative_UITabBarController*)item->nativeItem())];
     }
 
-    ((QNative_UITabBarController*) m_nativeResource).viewControllers = controllers;
+    qtControl.viewControllers = controllers;
 }
 
 void QUITabBarController::initNativeResource()
 {
     m_nativeResource = [[QNative_UITabBarController alloc] init];
-    ((QNative_UITabBarController*) m_nativeResource)->control = this;
+    QMLUIKIT_QT_CONTROL(UITabBarController)
+    qtControl->control = this;
 
-    m_controllerView = new QUIView(((QNative_UITabBarController*) m_nativeResource).view, this);
+    m_controllerView = new QUIView(qtControl.view, this);
 }

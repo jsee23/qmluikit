@@ -23,6 +23,7 @@
 ****************************************************************************/
 
 #include "quitableviewcell.h"
+#include "quikithelpers.h"
 
 #include <UIKit/UIKit.h>
 
@@ -36,7 +37,8 @@ QUITableViewCell::QUITableViewCell(QObject *parent)
 
 QUITableViewCell::~QUITableViewCell()
 {
-    [((UITableViewCell*) m_nativeResource) release];
+    QMLUIKIT_NATIVE_CONTROL(UITableViewCell)
+    [nativeControl release];
     m_nativeResource = nullptr;
 }
 
@@ -53,8 +55,10 @@ void QUITableViewCell::setTextLabel(const QString &title)
     m_textLabel = title;
     emit textLabelChanged();
 
-    if (m_nativeResource != NULL)
-        ((UITableViewCell*) m_nativeResource).textLabel.text =  m_textLabel.toNSString();
+    if (m_nativeResource) {
+        QMLUIKIT_NATIVE_CONTROL(UITableViewCell)
+        nativeControl.textLabel.text =  m_textLabel.toNSString();
+    }
 }
 
 QString QUITableViewCell::detailTextLabel() const
@@ -70,8 +74,10 @@ void QUITableViewCell::setDetailTextLabel(const QString &label)
     m_detailTextLabel = label;
     emit detailTextLabelChanged();
 
-    if (m_nativeResource != NULL)
-        ((UITableViewCell*) m_nativeResource).detailTextLabel.text =  m_detailTextLabel.toNSString();
+    if (m_nativeResource) {
+        QMLUIKIT_NATIVE_CONTROL(UITableViewCell)
+        nativeControl.detailTextLabel.text =  m_detailTextLabel.toNSString();
+    }
 }
 
 QUITableViewCell::CellStyle QUITableViewCell::style() const
@@ -114,8 +120,9 @@ void QUITableViewCell::updateNativeItem()
     else
         m_nativeResource = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:nil];
 
-    ((UITableViewCell*) m_nativeResource).backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.5f];
-    ((UITableViewCell*) m_nativeResource).textLabel.text =  m_textLabel.toNSString();
-    ((UITableViewCell*) m_nativeResource).detailTextLabel.text =  m_detailTextLabel.toNSString();
+    QMLUIKIT_NATIVE_CONTROL(UITableViewCell)
+    nativeControl.backgroundColor = [UIColor colorWithRed:1.0f green:1.0f blue:1.0f alpha:0.5f];
+    nativeControl.textLabel.text =  m_textLabel.toNSString();
+    nativeControl.detailTextLabel.text =  m_detailTextLabel.toNSString();
 }
 

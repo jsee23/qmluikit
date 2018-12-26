@@ -23,6 +23,7 @@
 ****************************************************************************/
 
 #include "quislider.h"
+#include "quikithelpers.h"
 
 //////////////////////////
 // Objective-C
@@ -83,10 +84,10 @@ QUISlider::QUISlider(QObject* parent)
 {
     d->native = [[QUISliderEventHandler alloc] init];
     m_nativeResource = [[UISlider alloc] initWithFrame:CGRectMake(0, 0, 200, 40)];
-    [((UISlider*) m_nativeResource)
-        addTarget:d->native
-        action:@selector(valueChanged:)
-        forControlEvents:UIControlEventValueChanged];
+
+    QMLUIKIT_NATIVE_CONTROL(UISlider)
+    [nativeControl addTarget:d->native action:@selector(valueChanged:)
+                   forControlEvents:UIControlEventValueChanged];
     d->native->control = this;
     d->continuous = true;
 }
@@ -95,8 +96,10 @@ QUISlider::~QUISlider()
 {
     if (d->native)
         [d->native release];
-    if (m_nativeResource)
-        [((UISlider*) m_nativeResource) release];
+    if (m_nativeResource) {
+        QMLUIKIT_NATIVE_CONTROL(UISlider)
+        [nativeControl release];
+    }
 }
 
 /*!
@@ -109,12 +112,14 @@ QUISlider::~QUISlider()
  */
 qreal QUISlider::value() const
 {
-    return ((UISlider*) m_nativeResource).value;
+    QMLUIKIT_NATIVE_CONTROL(UISlider)
+    return nativeControl.value;
 }
 
 void QUISlider::setValue(qreal value)
 {
-    [((UISlider*) m_nativeResource) setValue:value animated:TRUE];
+    QMLUIKIT_NATIVE_CONTROL(UISlider)
+    [nativeControl setValue:value animated:TRUE];
 }
 
 /*!
@@ -163,7 +168,7 @@ void QUISlider::setMinimumValueImage(const QUrl &url)
     d->minimumValueImageSource = url;
     emit minimumValueImageChanged();
 
-    qWarning("%s is not yes implemented...", __PRETTY_FUNCTION__);
+    qWarning("%s is not yet implemented...", __PRETTY_FUNCTION__);
 }
 
 /*!
@@ -187,5 +192,5 @@ void QUISlider::setMaximumValueImage(const QUrl &url)
     d->maximumValueImageSource = url;
     emit maximumValueImageChanged();
 
-    qWarning("%s is not yes implemented...", __PRETTY_FUNCTION__);
+    qWarning("%s is not yet implemented...", __PRETTY_FUNCTION__);
 }

@@ -23,6 +23,7 @@
 ****************************************************************************/
 
 #include "quiprogressview.h"
+#include "quikithelpers.h"
 
 //////////////////////////
 // Objective-C
@@ -38,25 +39,30 @@ QUIProgressView::QUIProgressView(QObject* parent)
     : QUIView(false, parent)
 {
     m_nativeResource = [[UIProgressView alloc] initWithProgressViewStyle:UIProgressViewStyleDefault];
-    ((UIProgressView*) m_nativeResource).frame = CGRectMake(0,0,100,20);
+    QMLUIKIT_NATIVE_CONTROL(UIProgressView)
+    nativeControl.frame = CGRectMake(0,0,100,20);
 
     m_progressAnimated = true;
 }
 
 QUIProgressView::~QUIProgressView()
 {
-    if (m_nativeResource)
-        [((UIProgressView*) m_nativeResource) release];
+    if (m_nativeResource) {
+        QMLUIKIT_NATIVE_CONTROL(UIProgressView)
+        [nativeControl release];
+    }
 }
 
 qreal QUIProgressView::progress() const
 {
-    return ((UIProgressView*) m_nativeResource).progress;
+    QMLUIKIT_NATIVE_CONTROL(UIProgressView)
+    return nativeControl.progress;
 }
 
 void QUIProgressView::setProgress(qreal progress)
 {
-    [((UIProgressView*) m_nativeResource) setProgress:progress animated:m_progressAnimated];
+    QMLUIKIT_NATIVE_CONTROL(UIProgressView)
+    [nativeControl setProgress:progress animated:m_progressAnimated];
 }
 
 bool QUIProgressView::progressAnimated() const
@@ -68,6 +74,7 @@ void QUIProgressView::setProgressAnimated(bool animated)
 {
     if (animated == m_progressAnimated)
         return;
+
     m_progressAnimated = animated;
     emit progressAnimatedChanged();
 }

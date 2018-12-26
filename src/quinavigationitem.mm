@@ -3,6 +3,7 @@
 #include <UIKit/UIKit.h>
 
 #include "quibarbuttonitem.h"
+#include "quikithelpers.h"
 
 /*!
  * \brief TODO: doc
@@ -59,8 +60,9 @@ void QUINavigationItem::setLeftBarButtonItem(QUIBarButtonItem *item)
     m_leftBarButtonItem = item;
     emit leftBarButtonItemChanged();
 
-    UIBarButtonItem* buttonItem = item ? (UIBarButtonItem*) item->nativeItem() : nullptr;
-    ((UINavigationItem*) m_nativeResource).leftBarButtonItem = buttonItem;
+    UIBarButtonItem* buttonItem = item ? static_cast<UIBarButtonItem*>(item->nativeItem()) : nullptr;
+    QMLUIKIT_NATIVE_CONTROL(UINavigationItem)
+    nativeControl.leftBarButtonItem = buttonItem;
 }
 
 /*!
@@ -81,8 +83,8 @@ void QUINavigationItem::setRightBarButtonItem(QUIBarButtonItem *item)
     m_rightBarButtonItem = item;
     emit rightBarButtonItemChanged();
 
-    ((UINavigationItem*) m_nativeResource).rightBarButtonItem =
-            (UIBarButtonItem*) item->nativeItem();
+    QMLUIKIT_NATIVE_CONTROL(UINavigationItem)
+    nativeControl.rightBarButtonItem = static_cast<UIBarButtonItem*>(item->nativeItem());
 }
 
 /*!
@@ -106,7 +108,8 @@ void QUINavigationItem::setPrompt(const QString &prompt)
     m_prompt = prompt;
     emit promptChanged();
 
-    ((UINavigationItem*) m_nativeResource).prompt = m_prompt.toNSString();
+    QMLUIKIT_NATIVE_CONTROL(UINavigationItem)
+    nativeControl.prompt = m_prompt.toNSString();
 }
 
 void *QUINavigationItem::nativeItem()

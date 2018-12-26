@@ -23,6 +23,7 @@
 ****************************************************************************/
 
 #include "quinavigationcontroller.h"
+#include "quikithelpers.h"
 
 #include <UIKit/UIKit.h>
 
@@ -121,16 +122,19 @@ QUINavigationController::QUINavigationController(QObject* parent) :
 
 QUINavigationController::~QUINavigationController()
 {
-    if (m_nativeResource)
-        [((QNative_UINavigationController*) m_nativeResource) release];
+    if (m_nativeResource) {
+        QMLUIKIT_QT_CONTROL(UINavigationController)
+        [qtControl release];
+    }
 }
 
 void QUINavigationController::initNativeResource()
 {
     m_nativeResource = [[QNative_UINavigationController alloc] init];
-    ((QNative_UINavigationController*) m_nativeResource)->control = this;
+    QMLUIKIT_QT_CONTROL(UINavigationController)
+    qtControl->control = this;
 
-    m_controllerView = new QUIView(((QNative_UINavigationController*) m_nativeResource).view, this);
+    m_controllerView = new QUIView(qtControl.view, this);
 }
 
 void QUINavigationController::childrenDidChanged()
@@ -148,9 +152,10 @@ QUIViewController* QUINavigationController::initialViewController() const
 
 void QUINavigationController::setInitialViewController(QUIViewController *controller)
 {
+    QMLUIKIT_NATIVE_CONTROL(UINavigationController)
+
     m_initialViewController = controller;
-    [((UINavigationController*) m_nativeResource)
-            pushViewController:((UIViewController*) controller->nativeItem()) animated:YES];
+    [nativeControl pushViewController:((UIViewController*) controller->nativeItem()) animated:YES];
 
     emit initialViewControllerChanged();
 }
@@ -161,9 +166,10 @@ void QUINavigationController::setInitialViewController(QUIViewController *contro
 */
 void QUINavigationController::pushViewController(QUIViewController* controller)
 {
+    QMLUIKIT_NATIVE_CONTROL(UINavigationController)
+
     controller->setSize(QSize(width(), height()));
-    [((UINavigationController*) m_nativeResource)
-            pushViewController:((UIViewController*) controller->nativeItem()) animated:YES];
+    [nativeControl pushViewController:((UIViewController*) controller->nativeItem()) animated:YES];
 //    // check navigation bar and its height
 //    emit navigationBarGeometryChanged();
 }

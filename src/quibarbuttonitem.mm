@@ -23,6 +23,7 @@
 ****************************************************************************/
 
 #include "quibarbuttonitem.h"
+#include "quikithelpers.h"
 
 //////////////////////////
 // Objective-C
@@ -70,8 +71,10 @@ QUIBarButtonItem::~QUIBarButtonItem()
 {
     if (d->native)
         [d->native release];
-    if (m_nativeResource)
-        [((UIBarButtonItem*) m_nativeResource) release];
+    if (m_nativeResource) {
+        QMLUIKIT_NATIVE_CONTROL(UIBarButtonItem)
+        [nativeControl release];
+    }
 }
 
 QString QUIBarButtonItem::title() const
@@ -98,8 +101,10 @@ void QUIBarButtonItem::updateItem()
 {
     // ToDo: Buttons with style="image"
     if (!title().isEmpty()) {
-        if (m_nativeResource)
-            [((UIBarButtonItem*) m_nativeResource) release];
+        if (m_nativeResource) {
+            QMLUIKIT_NATIVE_CONTROL(UIBarButtonItem)
+            [nativeControl release];
+        }
 
         m_nativeResource = [[UIBarButtonItem alloc]
             initWithTitle:d->title.toNSString()

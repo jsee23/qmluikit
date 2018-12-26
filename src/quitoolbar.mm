@@ -23,6 +23,7 @@
 ****************************************************************************/
 
 #include "quitoolbar.h"
+#include "quikithelpers.h"
 
 //////////////////////////
 // Objective-C
@@ -47,13 +48,16 @@ QUIToolbar::QUIToolbar(QObject* parent)
       d(new QUIToolbarPrivate)
 {
     m_nativeResource = [[UIToolbar alloc] init];
-    ((UIToolbar*) m_nativeResource).frame = CGRectMake(0,0,100,20);
+
+    QMLUIKIT_NATIVE_CONTROL(UIToolbar)
+    nativeControl.frame = CGRectMake(0,0,100,20);
     d->items = [[NSMutableArray alloc] init];
 }
 
 QUIToolbar::~QUIToolbar()
 {
-    [((UIToolbar*) m_nativeResource) release];
+    QMLUIKIT_NATIVE_CONTROL(UIToolbar)
+    [nativeControl release];
     [d->items release];
 }
 
@@ -66,9 +70,10 @@ void QUIToolbar::childrenDidChanged()
     for (int i=0; i < m_children.size(); i++) {
         QUIBarButtonItem *view = qobject_cast<QUIBarButtonItem*>(m_children.at(i));
         if (view && view->nativeItem())
-            [d->items addObject:((UIBarButtonItem*) view->nativeItem())];
+            [d->items addObject:static_cast<UIBarButtonItem*>(view->nativeItem())];
     }
 
     // setting new array
-    [((UIToolbar*) m_nativeResource) setItems:d->items animated:NO];
+    QMLUIKIT_NATIVE_CONTROL(UIToolbar)
+    [nativeControl setItems:d->items animated:NO];
 }

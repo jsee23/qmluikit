@@ -27,6 +27,7 @@
 
 #include "quitabbaritem.h"
 #include "controllers/quiviewcontroller.h"
+#include "quikithelpers.h"
 
 //////////////////////////
 // Objective-C
@@ -111,8 +112,10 @@ QUITabBarItem::~QUITabBarItem()
 {
     if (d->native)
         [d->native release];
-    if (m_nativeResource)
-        [((UITabBarItem*) m_nativeResource) release];
+    if (m_nativeResource) {
+        QMLUIKIT_NATIVE_CONTROL(UITabBarItem)
+        [nativeControl release];
+    }
 }
 
 QString QUITabBarItem::title() const
@@ -181,8 +184,10 @@ void QUITabBarItem::componentComplete()
 void QUITabBarItem::updateItem()
 {
     if (!d->imageSource.isEmpty()) {
-        if (m_nativeResource)
-            [((UITabBarItem*) m_nativeResource) release];
+        if (m_nativeResource) {
+            QMLUIKIT_NATIVE_CONTROL(UITabBarItem)
+            [nativeControl release];
+        }
 
         // load file buffer
         QFile imgFile(d->imageSource.toString().remove("qrc"));
@@ -200,8 +205,10 @@ void QUITabBarItem::updateItem()
 
         updateViewControllerTarget();
     } else if (d->systemItem != NoSystemItem) {
-        if (m_nativeResource)
-            [((UITabBarItem*) m_nativeResource) release];
+        if (m_nativeResource) {
+            QMLUIKIT_NATIVE_CONTROL(UITabBarItem)
+            [nativeControl release];
+        }
 
         m_nativeResource = [[UITabBarItem alloc]
                 initWithTabBarSystemItem:systemItemToTag(d->systemItem)
@@ -209,8 +216,10 @@ void QUITabBarItem::updateItem()
 
         updateViewControllerTarget();
     } else {
-        if (m_nativeResource)
-            [((UITabBarItem*) m_nativeResource) release];
+        if (m_nativeResource) {
+            QMLUIKIT_NATIVE_CONTROL(UITabBarItem)
+            [nativeControl release];
+        }
 
         m_nativeResource = [[UITabBarItem alloc]
             initWithTitle:d->title.toNSString()
@@ -224,8 +233,8 @@ void QUITabBarItem::updateItem()
 void QUITabBarItem::updateViewControllerTarget()
 {
     if (d->targetViewController && m_nativeResource) {
-        UITabBarItem* nativeItem = (UITabBarItem*) this->nativeItem();
-        [((UIViewController*) d->targetViewController->nativeItem())
-                setTabBarItem:nativeItem];
+        UITabBarItem* nativeItem = static_cast<UITabBarItem*>(this->nativeItem());
+        UIViewController* controller = static_cast<UIViewController*>(d->targetViewController->nativeItem());
+        [controller setTabBarItem:nativeItem];
     }
 }

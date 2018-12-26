@@ -29,6 +29,8 @@
 #include <QtQml/QtQml>
 #include <QtQml/private/qqmldelegatemodel_p.h>
 
+#include "quikithelpers.h"
+
 #include <UIKit/UIKit.h>
 
 @interface QNative_UITableViewController : UITableViewController
@@ -173,17 +175,18 @@ QUITableViewController::QUITableViewController(QObject* parent) :
     QUIViewController(false, parent)
 {
     m_nativeResource = [[QNative_UITableViewController alloc] init];
-    ((QNative_UITableViewController*) m_nativeResource)->control = this;
-    void* item =
-            (void*) ((QNative_UITableViewController*) m_nativeResource).navigationItem;
-    m_navigationItem = new QUINavigationItem((void*) item, this);
+    QMLUIKIT_QT_CONTROL(UITableViewController)
+    qtControl->control = this;
+    void* item = (void*) qtControl.navigationItem;
+    m_navigationItem = new QUINavigationItem(item, this);
 
     m_controllerView = new QUIView(((QNative_UITableViewController*) m_nativeResource).view, this);
 }
 
 QUITableViewController::~QUITableViewController()
 {
-    [((QNative_UITableViewController*) m_nativeResource) release];
+    QMLUIKIT_QT_CONTROL(UITableViewController)
+    [qtControl release];
 }
 
 /*!
@@ -411,10 +414,11 @@ void QUITableViewController::createdItem(int index, QObject *)
     emit itemAdded(index, item);
 
     if ((index + 1) == m_itemCount) {
+        QMLUIKIT_QT_CONTROL(UITableViewController)
         // TODO
         // [self.tableView endUpdates];
 
-        [((QNative_UITableViewController*) m_nativeResource).tableView reloadData];
+        [qtControl.tableView reloadData];
     }
 }
 

@@ -23,6 +23,7 @@
 ****************************************************************************/
 
 #include "quiscrollview.h"
+#include "quikithelpers.h"
 
 //////////////////////////
 // Objective-C
@@ -42,30 +43,35 @@ QUIScrollView::QUIScrollView(QObject* parent)
 
 QUIScrollView::~QUIScrollView()
 {
-    if (m_nativeResource)
-        [((UIScrollView*) m_nativeResource) release];
+    if (m_nativeResource) {
+        QMLUIKIT_NATIVE_CONTROL(UIScrollView)
+        [nativeControl release];
+    }
 }
 
 int QUIScrollView::contentWidth() const
 {
-    return ((UIScrollView*) m_nativeResource).contentSize.width;
+    QMLUIKIT_NATIVE_CONTROL(UIScrollView)
+    return nativeControl.contentSize.width;
 }
 
 void QUIScrollView::setContentWidth(int width)
 {
-    ((UIScrollView*) m_nativeResource).contentSize =
-            CGSizeMake(width, ((UIScrollView*) m_nativeResource).contentSize.height);
+    QMLUIKIT_NATIVE_CONTROL(UIScrollView)
+
+    nativeControl.contentSize = CGSizeMake(width, nativeControl.contentSize.height);
     emit contentWidthChanged();
 }
 
 int QUIScrollView::contentHeight() const
 {
-    return ((UIScrollView*) m_nativeResource).contentSize.height;
+    QMLUIKIT_NATIVE_CONTROL(UIScrollView)
+    return nativeControl.contentSize.height;
 }
 
 void QUIScrollView::setContentHeight(int height)
 {
-    ((UIScrollView*) m_nativeResource).contentSize =
-            CGSizeMake(((UIScrollView*) m_nativeResource).contentSize.width, height);
+    QMLUIKIT_NATIVE_CONTROL(UIScrollView)
+    nativeControl.contentSize = CGSizeMake(nativeControl.contentSize.width, height);
     emit contentHeightChanged();
 }

@@ -23,6 +23,7 @@
 ****************************************************************************/
 
 #include "quisegmentedcontrol.h"
+#include "quikithelpers.h"
 
 //////////////////////////
 // Objective-C
@@ -80,10 +81,10 @@ QUISegmentedControl::QUISegmentedControl(QObject* parent)
 {
     d->native = [[QUISegmentedControlEventHandler alloc] init];
     m_nativeResource = [[UISegmentedControl alloc] initWithItems:nil];
-    [((UISegmentedControl*) m_nativeResource)
-        addTarget:d->native
-        action:@selector(currentIndexChanged:)
-        forControlEvents:UIControlEventValueChanged];
+
+    QMLUIKIT_NATIVE_CONTROL(UISegmentedControl)
+    [nativeControl addTarget:d->native action:@selector(currentIndexChanged:)
+                   forControlEvents:UIControlEventValueChanged];
     d->native->control = this;
     d->componentCompleted = false;
     d->initialSelectedSegment = -1;
@@ -93,8 +94,10 @@ QUISegmentedControl::~QUISegmentedControl()
 {
     if (d->native)
         [d->native release];
-    if (m_nativeResource)
-        [((UISegmentedControl*) m_nativeResource) release];
+    if (m_nativeResource) {
+        QMLUIKIT_NATIVE_CONTROL(UISegmentedControl)
+        [nativeControl release];
+    }
 }
 
 QStringList QUISegmentedControl::items() const
@@ -104,16 +107,18 @@ QStringList QUISegmentedControl::items() const
 
 void QUISegmentedControl::setItems(const QStringList &items)
 {
+    QMLUIKIT_NATIVE_CONTROL(UISegmentedControl)
+
     d->items = items;
-    [((UISegmentedControl*) m_nativeResource) removeAllSegments];
+    [nativeControl removeAllSegments];
     for (int i=0; i < items.size(); i++)
-        [((UISegmentedControl*) m_nativeResource) insertSegmentWithTitle:items.at(i).toNSString()
-            atIndex:i animated:FALSE];
+        [nativeControl insertSegmentWithTitle:items.at(i).toNSString() atIndex:i animated:FALSE];
 }
 
 int QUISegmentedControl::selectedSegment() const
 {
-    return ((UISegmentedControl*) m_nativeResource).selectedSegmentIndex;
+    QMLUIKIT_NATIVE_CONTROL(UISegmentedControl)
+    return nativeControl.selectedSegmentIndex;
 }
 
 int QUISegmentedControl::initialSelectedSegment() const
@@ -134,7 +139,8 @@ void QUISegmentedControl::componentComplete()
 {
     d->componentCompleted = true;
     if (d->initialSelectedSegment >= 0) {
-        ((UISegmentedControl*) m_nativeResource).selectedSegmentIndex = d->initialSelectedSegment;
+        QMLUIKIT_NATIVE_CONTROL(UISegmentedControl)
+        nativeControl.selectedSegmentIndex = d->initialSelectedSegment;
         emit selectedSegmentChanged();
     }
 }

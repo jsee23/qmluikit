@@ -50,8 +50,10 @@ QUIView::QUIView(bool init, QObject *parent) :
 
 QUIView::~QUIView()
 {
-    if (m_nativeResource)
-        [((UIView*) m_nativeResource) release];
+    if (m_nativeResource) {
+        QMLUIKIT_NATIVE_CONTROL(UIView)
+        [nativeControl release];
+    }
 }
 
 void* QUIView::nativeItem()
@@ -61,10 +63,12 @@ void* QUIView::nativeItem()
 
 void QUIView::childrenDidChanged()
 {
+    QMLUIKIT_NATIVE_CONTROL(UIView)
+
     for (int i=0; i < m_children.size(); i++) {
         QUIView *view = qobject_cast<QUIView*>(m_children.at(i));
         if (view && view->nativeItem()) {
-            [((UIView*) m_nativeResource) addSubview:(UIView*)view->nativeItem()];
+            [nativeControl addSubview:(UIView*)view->nativeItem()];
             continue;
         }
     }
@@ -72,70 +76,85 @@ void QUIView::childrenDidChanged()
 
 int QUIView::x() const
 {
-    return ((UIControl*) m_nativeResource).frame.origin.x;
+    QMLUIKIT_NATIVE_CONTROL(UIView)
+    return nativeControl.frame.origin.x;
 }
 
 void QUIView::setX(int x)
 {
-    CGRect frame = ((UIControl*) m_nativeResource).frame;
+    QMLUIKIT_NATIVE_CONTROL(UIView)
+
+    CGRect frame = nativeControl.frame;
     frame.origin.x = x;
-    [((UIControl*) m_nativeResource) setFrame:frame];
+    [nativeControl setFrame:frame];
 
     emit xChanged();
 }
 
 int QUIView::y() const
 {
-    return ((UIControl*) m_nativeResource).frame.origin.y;
+    QMLUIKIT_NATIVE_CONTROL(UIView)
+    return nativeControl.frame.origin.y;
 }
 
 void QUIView::setY(int y)
 {
-    CGRect frame = ((UIControl*) m_nativeResource).frame;
+    QMLUIKIT_NATIVE_CONTROL(UIView)
+
+    CGRect frame = nativeControl.frame;
     frame.origin.y = y;
-    [((UIControl*) m_nativeResource) setFrame:frame];
+    [nativeControl setFrame:frame];
 
     emit yChanged();
 }
 
 int QUIView::width() const
 {
-    return ((UIControl*) m_nativeResource).frame.size.width;
+    QMLUIKIT_NATIVE_CONTROL(UIView)
+    return nativeControl.frame.size.width;
 }
 
 void QUIView::setWidth(int width)
 {
-    CGRect frame = ((UIControl*) m_nativeResource).frame;
+    QMLUIKIT_NATIVE_CONTROL(UIView)
+
+    CGRect frame = nativeControl.frame;
     frame.size.width = width;
-    [((UIControl*) m_nativeResource) setFrame:frame];
+    [nativeControl setFrame:frame];
 
     emit widthChanged();
 }
 
 int QUIView::height() const
 {
-    return ((UIControl*) m_nativeResource).frame.size.height;
+    QMLUIKIT_NATIVE_CONTROL(UIView)
+    return nativeControl.frame.size.height;
 }
 
 void QUIView::setHeight(int height)
 {
-    CGRect frame = ((UIControl*) m_nativeResource).frame;
+    QMLUIKIT_NATIVE_CONTROL(UIView)
+
+    CGRect frame = nativeControl.frame;
     frame.size.height = height;
-    [((UIControl*) m_nativeResource) setFrame:frame];
+    [nativeControl setFrame:frame];
 
     emit heightChanged();
 }
 
 bool QUIView::visible() const
 {
-    return !(((UIView*) m_nativeResource).hidden);
+    QMLUIKIT_NATIVE_CONTROL(UIView)
+    return !(nativeControl.hidden);
 }
 
 void QUIView::setVisible(bool visible)
 {
     if (visible == this->visible())
         return;
-    ((UIView*) m_nativeResource).hidden = !visible;
+
+    QMLUIKIT_NATIVE_CONTROL(UIView)
+    nativeControl.hidden = !visible;
     emit visibleChanged();
 }
 
@@ -148,7 +167,9 @@ void QUIView::setBackgroundColor(const QColor& color)
 {
     m_backgroundColor = color;
     UIColor* uiColor = QUIKitColors::qcolorToUIColor(color);
-    ((UIView*) m_nativeResource).backgroundColor = uiColor;
+
+    QMLUIKIT_NATIVE_CONTROL(UIView)
+    nativeControl.backgroundColor = uiColor;
     emit backgroundColorChanged();
 }
 

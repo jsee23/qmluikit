@@ -41,5 +41,11 @@ public:
     static QColor uiColorToQColor(UIColor* color);
 };
 
+#define QMLUIKIT_NATIVE_CONTROL(x) \
+    x* nativeControl = static_cast<x*>(m_nativeResource);
+
+#define QMLUIKIT_QT_CONTROL(x) \
+    QNative_##x* qtControl = static_cast<QNative_##x*>(m_nativeResource);
+
 #endif // QUIKITHELPERS
 

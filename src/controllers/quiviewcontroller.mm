@@ -27,6 +27,7 @@
 
 #include "quiviewcontroller.h"
 #include "quialertcontroller.h"
+#include "quikithelpers.h"
 
 @interface QNative_UIViewController : UIViewController
 {
@@ -39,7 +40,7 @@
 -(void) viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator
 {
     [super viewWillTransitionToSize:size withTransitionCoordinator:coordinator];
-    control->setSize(QSize(size.width, size.height));
+    control->setSize(QSize(int(size.width), int(size.height)));
 }
 
 @end
@@ -89,10 +90,10 @@ QUIViewController::QUIViewController(QObject *parent)
     , m_controllerView(nullptr)
     , m_tabBarItem(nullptr)
 {
+    QMLUIKIT_QT_CONTROL(UIViewController)
     initNativeResource();
-    void* item =
-            (void*) ((QNative_UIViewController*) m_nativeResource).navigationItem;
-    m_navigationItem = new QUINavigationItem((void*) item, this);
+    void* item = qtControl.navigationItem;
+    m_navigationItem = new QUINavigationItem(item, this);
 }
 
 QUIViewController::QUIViewController(bool init, QObject *parent)
@@ -102,27 +103,29 @@ QUIViewController::QUIViewController(bool init, QObject *parent)
     , m_tabBarItem(nullptr)
 {
     if (init) {
+        QMLUIKIT_QT_CONTROL(UIViewController)
         initNativeResource();
-        void* item =
-                (void*) ((QNative_UIViewController*) m_nativeResource).navigationItem;
-        m_navigationItem = new QUINavigationItem((void*) item, this);
+        void* item = qtControl.navigationItem;
+        m_navigationItem = new QUINavigationItem(item, this);
     }
 }
 
 void QUIViewController::initNativeResource()
 {
     m_nativeResource = [[QNative_UIViewController alloc] init];
-    ((QNative_UIViewController*) m_nativeResource)->control = this;
+    QMLUIKIT_QT_CONTROL(UIViewController)
+    qtControl->control = this;
 
-    CGSize size = ((QNative_UIViewController*) m_nativeResource).view.frame.size;
+    CGSize size = qtControl.view.frame.size;
     d->m_size = QSize(size.width, size.height);
 
-    m_controllerView = new QUIView(((QNative_UIViewController*) m_nativeResource).view, this);
+    m_controllerView = new QUIView(qtControl.view, this);
 }
 
 QUIViewController::~QUIViewController()
 {
-    [((QNative_UIViewController*) m_nativeResource) release];
+    QMLUIKIT_QT_CONTROL(UIViewController)
+    [qtControl release];
 }
 
 void* QUIViewController::nativeItem()
@@ -139,10 +142,12 @@ void QUIViewController::componentComplete()
 
 void QUIViewController::childrenDidChanged()
 {
+    QMLUIKIT_NATIVE_CONTROL(UIViewController)
+
     for (int i=0; i < m_children.size(); i++) {
         QUIView *view = qobject_cast<QUIView*>(m_children.at(i));
         if (view && view->nativeItem()) {
-            [((UIViewController*) m_nativeResource).view addSubview:(UIView*)view->nativeItem()];
+            [nativeControl.view addSubview:(UIView*)view->nativeItem()];
             continue;
         }
     }
@@ -160,15 +165,16 @@ QString QUIViewController::title() const
 
 void QUIViewController::setTitle(const QString &title)
 {
+    QMLUIKIT_NATIVE_CONTROL(UIViewController)
+
     d->m_title = title;
     emit titleChanged();
 
     if (!m_componentCompleted)
         return;
 
-    if (((UIViewController*) m_nativeResource).navigationItem) {
-        [((UIViewController*) m_nativeResource).navigationItem
-                setTitle:title.toNSString()];
+    if (nativeControl.navigationItem) {
+        [nativeControl.navigationItem setTitle:title.toNSString()];
     }
 }
 
@@ -212,12 +218,14 @@ void QUIViewController::setSize(const QSize &size)
 */
 QRect QUIViewController::navigationBarGeometry() const
 {
-    if (!((UINavigationController*) m_nativeResource).navigationBar)
+    QMLUIKIT_NATIVE_CONTROL(UINavigationController)
+    if (!nativeControl.navigationBar)
         return QRect();
-    int x = ((UINavigationController*) m_nativeResource).navigationBar.frame.origin.x;
-    int y = ((UINavigationController*) m_nativeResource).navigationBar.frame.origin.y;
-    int width = ((UINavigationController*) m_nativeResource).navigationBar.frame.size.width;
-    int height = ((UINavigationController*) m_nativeResource).navigationBar.frame.size.height;
+
+    int x = nativeControl.navigationBar.frame.origin.x;
+    int y = nativeControl.navigationBar.frame.origin.y;
+    int width = nativeControl.navigationBar.frame.size.width;
+    int height = nativeControl.navigationBar.frame.size.height;
     return QRect(x, y, width, height);
 }
 
@@ -290,11 +298,11 @@ QUINavigationItem *QUIViewController::navigationItem() const
 */
 void QUIViewController::presentViewController(QUIViewController *controller)
 {
+    QMLUIKIT_NATIVE_CONTROL(UINavigationController)
+
     QUIAlertController* alertController = qobject_cast<QUIAlertController*>(controller);
     if (!alertController) {
-        [((UIViewController*) m_nativeResource)
-            presentViewController:((UIViewController*) controller->nativeItem())
-            animated:YES completion:nil];
+        [nativeControl presentViewController:((UIViewController*) controller->nativeItem()) animated:YES completion:nil];
     } else {
         alertController->createControllerAndPresent(this);
     }

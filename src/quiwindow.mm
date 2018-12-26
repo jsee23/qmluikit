@@ -84,7 +84,7 @@ void QUIWindow::childrenDidChanged()
     for (int i = 0; i < m_children.size(); i++) {
         QUIViewController* controller = qobject_cast<QUIViewController*>(m_children.at(i));
         if (controller && controller->nativeItem()) {
-            d->m_window.rootViewController = (UIViewController*) controller->nativeItem();
+            d->m_window.rootViewController = static_cast<UIViewController*>(controller->nativeItem());
             d->foundInitialViewController = true;
         }
     }

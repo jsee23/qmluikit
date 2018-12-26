@@ -23,6 +23,7 @@
 ****************************************************************************/
 
 #include "quicontrol.h"
+#include "quikithelpers.h"
 
 #include <UIKit/UIKit.h>
 
@@ -41,6 +42,8 @@ QUIControl::QUIControl(bool init, QObject *parent) :
 
 QUIControl::~QUIControl()
 {
-    if (m_nativeResource)
-        [((UIControl*) m_nativeResource) release];
+    if (m_nativeResource) {
+        QMLUIKIT_NATIVE_CONTROL(UIControl)
+        [nativeControl release];
+    }
 }
