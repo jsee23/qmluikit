@@ -32,6 +32,7 @@ OBJECTIVE_SOURCES += \
     controls/quisegmentedcontrol.mm \
     controls/quislider.mm \
     controls/quiswitch.mm \
+    controls/quitextfield.mm \
     quiwindow.mm \
     quikithelpers.mm \
     quitoolbar.mm \
@@ -57,6 +58,7 @@ HEADERS += \
     controls/quisegmentedcontrol.h \
     controls/quislider.h \
     controls/quiswitch.h \
+    controls/quitextfield.h \
     quiwindow.h \
     quikititem.h \
     quikithelpers.h \

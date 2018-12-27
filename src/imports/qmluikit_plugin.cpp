@@ -41,6 +41,7 @@
 #include "controls/quisegmentedcontrol.h"
 #include "controls/quislider.h"
 #include "controls/quiswitch.h"
+#include "controls/quitextfield.h"
 #include "quitoolbar.h"
 #include "quibarbuttonitem.h"
 #include "quitabbaritem.h"
@@ -76,8 +77,10 @@ void QmlUIKitPlugin::registerTypes(const char *uri)
     qmlRegisterType<QUIView>(uri, 0, 1, "UIView");
     qmlRegisterType<QUIControl>(uri, 0, 1, "UIControl");
     qmlRegisterType<QUIButton>(uri, 0, 1, "UIButton");
-    qmlRegisterType<QUISwitch>(uri, 0, 1, "UISwitch");
     qmlRegisterType<QUISlider>(uri, 0, 1, "UISlider");
+    qmlRegisterType<QUISwitch>(uri, 0, 1, "UISwitch");
+    qmlRegisterType<QUITextField>(uri, 0, 1, "UITextField");
+
     qmlRegisterType<QUILabel>(uri, 0, 1, "UILabel");
     qmlRegisterType<QUIProgressView>(uri, 0, 1, "UIProgressView");
     qmlRegisterType<QUISegmentedControl>(uri, 0, 1, "UISegmentedControl");

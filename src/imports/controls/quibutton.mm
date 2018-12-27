@@ -74,8 +74,8 @@ public:
  */
 
 QUIButton::QUIButton(QObject *parent)
-    : QUIControl(false, parent),
-      d(new QUIButtonPrivate)
+    : QUIControl(false, parent)
+    , d(new QUIButtonPrivate)
 {
     d->native = [[QUIButtonEventHandler alloc] init];
     m_nativeResource = [UIButton buttonWithType:UIButtonTypeRoundedRect];

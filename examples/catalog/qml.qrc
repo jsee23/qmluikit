@@ -11,5 +11,6 @@
         <file>AlertActionController.qml</file>
         <file>TableViewControllerDynamic.qml</file>
         <file>SliderController.qml</file>
+        <file>TextInputController.qml</file>
     </qresource>
 </RCC>

@@ -38,6 +38,7 @@ UIWindow {
     property SliderController sliderController: SliderController {}
     property TabBarController tabBarController: TabBarController {}
     property AlertActionController alertActionController: AlertActionController {}
+    property TextInputController textInputController: TextInputController {}
 
     UINavigationController {
         id: navigationController
@@ -113,7 +114,8 @@ UIWindow {
                     property string label: "UISwitch"
                 },
                 QtObject {
-                    property string label: "todo"
+                    property string label: "UITextField"
+                    property QtObject target: root.textInputController
                 }
 
             ]

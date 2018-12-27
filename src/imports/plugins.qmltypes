@@ -117,6 +117,17 @@ Module {
         Signal { name: "tintColorChanged" }
     }
 
+    Component {
+        name: "QUITextField"
+        prototype: "QUIControl"
+        exports: ["jsee23.qmluikit/UITextField 0.1"]
+        exportMetaObjectRevisions: [0]
+
+        Property { name: "text"; type: "string" }
+
+        Signal { name: "textChanged" }
+    }
+
     // views
 
     Component {
