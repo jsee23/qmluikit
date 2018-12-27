@@ -41,6 +41,7 @@ class QUIView : public QUIKitItem
 
     Q_PROPERTY(QColor backgroundColor READ backgroundColor WRITE setBackgroundColor
                NOTIFY backgroundColorChanged)
+    Q_PROPERTY(QColor tintColor READ tintColor WRITE setTintColor NOTIFY tintColorChanged)
 
 public:
     QUIView(QObject* parent = nullptr);
@@ -66,6 +67,9 @@ public:
     QColor backgroundColor() const;
     void setBackgroundColor(const QColor& color);
 
+    QColor tintColor() const;
+    void setTintColor(const QColor& color);
+
     virtual void* nativeItem() override;
 
 protected slots:
@@ -78,6 +82,7 @@ signals:
     void heightChanged();
     void visibleChanged();
     void backgroundColorChanged();
+    void tintColorChanged();
 
 private:
     QColor m_backgroundColor;

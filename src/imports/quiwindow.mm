@@ -23,6 +23,7 @@
 ****************************************************************************/
 
 #include "quiwindow.h"
+#include "quikithelpers.h"
 
 #include <UIKit/UIKit.h>
 
@@ -52,7 +53,6 @@
 class QUIWindowPrivate {
 public:
     UIScreen* m_screen;
-    UIWindow* m_window;
     bool foundInitialViewController;
 };
 
@@ -63,17 +63,19 @@ QUIWindow::QUIWindow(QObject *parent)
     d->foundInitialViewController = false;
 
     d->m_screen = [UIScreen mainScreen];
-    d->m_window = [[UIWindow alloc] initWithFrame:[d->m_screen bounds]];
+    m_nativeResource = [[UIWindow alloc] initWithFrame:[d->m_screen bounds]];
 
-    d->m_window.screen = d->m_screen;
-    d->m_window.backgroundColor = [UIColor whiteColor];
+    QMLUIKIT_NATIVE_CONTROL(UIWindow)
+    nativeControl.screen = d->m_screen;
+    nativeControl.backgroundColor = [UIColor whiteColor];
 
-    [d->m_window makeKeyAndVisible];
+    [nativeControl makeKeyAndVisible];
 }
 
 QUIWindow::~QUIWindow()
 {
-    [d->m_window release];
+    QMLUIKIT_NATIVE_CONTROL(UIWindow)
+    [nativeControl release];
 }
 
 void QUIWindow::childrenDidChanged()
@@ -81,10 +83,11 @@ void QUIWindow::childrenDidChanged()
     if (d->foundInitialViewController)
         return;
 
+    QMLUIKIT_NATIVE_CONTROL(UIWindow)
     for (int i = 0; i < m_children.size(); i++) {
         QUIViewController* controller = qobject_cast<QUIViewController*>(m_children.at(i));
         if (controller && controller->nativeItem()) {
-            d->m_window.rootViewController = static_cast<UIViewController*>(controller->nativeItem());
+            nativeControl.rootViewController = static_cast<UIViewController*>(controller->nativeItem());
             d->foundInitialViewController = true;
         }
     }

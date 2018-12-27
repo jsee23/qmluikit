@@ -173,4 +173,18 @@ void QUIView::setBackgroundColor(const QColor& color)
     emit backgroundColorChanged();
 }
 
+QColor QUIView::tintColor() const
+{
+    return QColor();
+}
+
+void QUIView::setTintColor(const QColor &color)
+{
+    UIColor* uiColor = QUIKitColors::qcolorToUIColor(color);
+
+    QMLUIKIT_NATIVE_CONTROL(UIView)
+    nativeControl.tintColor = uiColor;
+    emit tintColorChanged();
+}
+
 

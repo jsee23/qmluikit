@@ -29,6 +29,8 @@ import jsee23.qmluikit 0.1
 UIWindow {
     id: root
 
+    tintColor: "green"
+
     property TableViewController tableViewController: TableViewController {}
     property TableViewControllerDynamic tableViewControllerDynamic: TableViewControllerDynamic {}
     property SegmentedController segmentedController: SegmentedController {}
