@@ -31,9 +31,22 @@ UIViewController {
     title: "UIButton"
 
     UIButton {
+        id: activeButton
         x: (buttonController.width - width) / 2
-        y: 300
-        titleLabel: "titleLabel"
+        y: (buttonController.height - height) / 2
+        titleLabel: "Click me!"
+        onClicked: buttonController.clickCount++
+    }
+
+    property int clickCount: 0
+
+    UILabel {
+        x: (buttonController.width - width) / 2
+        y: 150
+        width: buttonController.width - 200
+        textAlignment: UILabel.NSTextAlignmentCenter
+
+        text: "click count: " + buttonController.clickCount
     }
 }
 

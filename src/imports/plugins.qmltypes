@@ -120,6 +120,19 @@ Module {
     // views
 
     Component {
+        name: "QUILabel"
+        prototype: "QUIView"
+        exports: ["jsee23.qmluikit/UILabel 0.1"]
+        exportMetaObjectRevisions: [0]
+
+        Property { name: "text"; type: "string" }
+        Property { name: "textAlignment"; type: "string" } // TODO: string -> NSTextAlignment
+
+        Signal { name: "textChanged" }
+        Signal { name: "textAlignmentChanged" }
+    }
+
+    Component {
         name: "QUITableViewCell"
         prototype: "QUIView"
         exports: ["jsee23.qmluikit/UITableViewCell 0.1"]

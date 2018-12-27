@@ -1,6 +1,6 @@
 /****************************************************************************
 **
-** Copyright (C) 2016 Jochen Seemann
+** Copyright (C) 2018 Jochen Seemann
 **
 ** This file is part of the qmluikit library.
 **
@@ -22,19 +22,40 @@
 **
 ****************************************************************************/
 
-#ifndef SRC_PLUGIN_H
-#define SRC_PLUGIN_H
+#ifndef QUILABEL_H
+#define QUILABEL_H
 
-#include <QQmlExtensionPlugin>
+#include "quiview.h"
 
-class QmlUIKitPlugin : public QQmlExtensionPlugin
+class QUILabel : public QUIView
 {
     Q_OBJECT
-    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QQmlExtensionInterface")
+
+    Q_PROPERTY(QString text READ text WRITE setText NOTIFY textChanged)
+    Q_PROPERTY(NSTextAlignment textAlignment READ textAlignment WRITE setTextAlignment NOTIFY textAlignmentChanged)
 
 public:
-    void registerTypes(const char *uri);
+    enum NSTextAlignment {
+        NSTextAlignmentLeft,
+        NSTextAlignmentRight,
+        NSTextAlignmentCenter,
+        NSTextAlignmentJustified,
+        NSTextAlignmentNatural
+    };
+    Q_ENUM(NSTextAlignment)
+
+    QUILabel(QObject *parent = nullptr);
+    ~QUILabel();
+
+    QString text() const;
+    void setText(const QString &text);
+
+    NSTextAlignment textAlignment() const;
+    void setTextAlignment(NSTextAlignment alignment);
+
+signals:
+    void textChanged();
+    void textAlignmentChanged();
 };
 
-#endif // SRC_PLUGIN_H
-
+#endif // QUILABEL_H

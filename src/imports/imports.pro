@@ -10,9 +10,6 @@ OTHER_FILES = \
     qmldir \
     plugins.qmltypes
 
-DEFINES += __x86_64__
-
-# Input
 SOURCES += \
     qmluikit_plugin.cpp \
     quikititem.cpp \
@@ -24,6 +21,7 @@ OBJECTIVE_SOURCES += \
     controllers/quitableviewcontroller.mm \
     controllers/quitabbarcontroller.mm \
     controllers/quialertcontroller.mm \
+    views/quilabel.mm \
     views/quiview.mm \
     views/quiprogressview.mm \
     views/quiscrollview.mm \
@@ -43,13 +41,13 @@ OBJECTIVE_SOURCES += \
     quinavigationitem.mm
 
 HEADERS += \
-    qmluikit_plugin.h \
     controllers/quiviewcontroller.h \
     controllers/quinavigationcontroller.h \
     controllers/quitableviewcontroller.h \
     controllers/quitabbarcontroller.h \
     controllers/quialertcontroller.h \
     views/quiview.h \
+    views/quilabel.h \
     views/quiprogressview.h \
     views/quiscrollview.h \
     views/quitableviewcell.h \
@@ -69,6 +67,7 @@ HEADERS += \
     quialertaction.h \
     quinavigationitem.h
 
-CONFIG += no_cxx_module
+CONFIG += no_cxx_module static
+DEFINES += QT_STATICPLUGIN
 load(qml_plugin)
 

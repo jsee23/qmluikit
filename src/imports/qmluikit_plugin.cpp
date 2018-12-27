@@ -22,7 +22,6 @@
 **
 ****************************************************************************/
 
-#include "qmluikit_plugin.h"
 #include <qqml.h>
 
 #include "quiwindow.h"
@@ -32,6 +31,7 @@
 #include "controllers/quitabbarcontroller.h"
 #include "controllers/quialertcontroller.h"
 #include "views/quiview.h"
+#include "views/quilabel.h"
 #include "views/quiprogressview.h"
 #include "views/quiscrollview.h"
 #include "views/quitableviewcell.h"
@@ -47,6 +47,20 @@
 #include "quitableviewsection.h"
 #include "quialertaction.h"
 #include "quinavigationitem.h"
+
+#include <QQmlExtensionPlugin>
+
+QT_BEGIN_NAMESPACE
+
+class QmlUIKitPlugin : public QQmlExtensionPlugin
+{
+    Q_OBJECT
+    Q_PLUGIN_METADATA(IID "org.qt-project.Qt.QQmlExtensionInterface")
+
+public:
+    QmlUIKitPlugin(QObject *parent = nullptr) : QQmlExtensionPlugin(parent) {}
+    void registerTypes(const char *uri);
+};
 
 void QmlUIKitPlugin::registerTypes(const char *uri)
 {
@@ -64,6 +78,7 @@ void QmlUIKitPlugin::registerTypes(const char *uri)
     qmlRegisterType<QUIButton>(uri, 0, 1, "UIButton");
     qmlRegisterType<QUISwitch>(uri, 0, 1, "UISwitch");
     qmlRegisterType<QUISlider>(uri, 0, 1, "UISlider");
+    qmlRegisterType<QUILabel>(uri, 0, 1, "UILabel");
     qmlRegisterType<QUIProgressView>(uri, 0, 1, "UIProgressView");
     qmlRegisterType<QUISegmentedControl>(uri, 0, 1, "UISegmentedControl");
     qmlRegisterType<QUIDatePicker>(uri, 0, 1, "UIDatePicker");
@@ -78,5 +93,9 @@ void QmlUIKitPlugin::registerTypes(const char *uri)
 
     qmlRegisterUncreatableType<QUINavigationItem>(uri, 0, 1, "UINavigationItem", "reason: TODO!");
 }
+
+QT_END_NAMESPACE
+
+#include "qmluikit_plugin.moc"
 
 
